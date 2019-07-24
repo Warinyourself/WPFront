@@ -1,0 +1,34 @@
+.router-animation-enter-active
+  animation: coming .2s;
+  animation-delay: .2s;
+  opacity: 0;
+
+.router-animation-leave-active 
+  animation going .1s
+
+@keyframes going
+  to 
+    opacity 0
+
+@keyframes coming 
+  from 
+    opacity 0
+  to 
+    opacity 1
+
+
+.slide-out-left-enter-active
+  animation slideInLeft .4s
+
+.slide-out-left-leave-active 
+  animation slideOutLeft .4s
+
+@keyframes slideOutLeft
+  to 
+    transform translateX(-100%)
+
+@keyframes slideInLeft 
+  from 
+    transform: translateX(-100%)
+  to 
+    transform: translateX(0)

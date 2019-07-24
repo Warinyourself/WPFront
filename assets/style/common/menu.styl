@@ -1,0 +1,36 @@
+menu
+  width size-menu
+  border-right 1px solid color-main
+  position relative
+  overflow hidden
+
+.menu--main
+  height 100vh
+  position absolute
+  z-index 5
+  display flex
+  flex-direction column
+  ul
+    flex 1 1 auto
+
+.menu__link
+  position relative
+  padding 5px
+  display flex
+  align-items center
+  font-size 1rem
+  transition .3s opacity, .4s transform
+  &:hover, &.nuxt-link-active
+    transform translateX(15px)
+    .menu__icon
+      opacity 1
+
+.menu__icon
+  width 25px
+  height 25px
+  margin-right 10px
+  fill color-main--dark
+  stroke color-main
+  stroke-width 0
+  opacity .4
+  transition .4s opacity
