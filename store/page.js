@@ -1,5 +1,6 @@
 export const state = () => ({
   openMainMenu: true,
+  isDark: false,
   mainMenu: [
         {
           name: 'Новости',
@@ -33,15 +34,19 @@ export const mutations = {
   SET_PAGE: (state, payload) => {
     state[payload.type] = payload.value;
   },
+  TOGGLE_MENU: (state) => {
+    state.openMainMenu = !state.openMainMenu;
+  }
 }
 
 export const getters = {
-  activeWindows: (state) => {
+  activeWindows: (state, rootState) => {
     let activeWindows = [];
 
     // first step is menu
     activeWindows.push({
       name: 'mainMenu',
+      active: state.openMainMenu,
       cancelParams: {
         type: 'openMainMenu',
         value: false,
@@ -52,7 +57,7 @@ export const getters = {
       },
     });
     
-    // second step is over windows
+    // second step is over modal windows
     
     // third step is focus elements
 
@@ -61,10 +66,13 @@ export const getters = {
 }
 
 export const actions = { 
-  CANCEL_SOMETHING: ({getters, commit}) => {
-    let activeWindows = getters.activeWindows;
+  CANCEL_SOMETHING: ({getters, commit, rootState}) => {
+    let activeWindows = getters.activeWindows,
+        focus = rootState.form.elementFocus;
 
-    if (activeWindows.length) {
+    if (rootState.form.elementFocus) {
+      focus.blur();
+    } else if (activeWindows.length) {
       commit('SET_PAGE', activeWindows[activeWindows.length - 1].cancelParams);
     }
   },

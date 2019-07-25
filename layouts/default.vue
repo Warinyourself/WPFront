@@ -1,5 +1,5 @@
 <template lang="pug">
-  .wrapper
+  .wrapper(:class='{"dark-theme": isDark}')
     AppIconDefs
     MainMenu
     Nuxt.main-content(:class='{"open-menu--margin": openMainMenu}')
@@ -7,8 +7,7 @@
 
 <script>
 import MainMenu from '@/components/common/MainMenu.vue'
-
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   components: {
@@ -17,6 +16,7 @@ export default {
   computed: {
     ...mapState('page', [
       'openMainMenu',
+      'isDark'
     ]),
   },
   methods: {
@@ -24,18 +24,23 @@ export default {
       'CANCEL_SOMETHING',
       'DONE_SOMETHING',
     ]),
+    ...mapMutations('page', [
+      'TOGGLE_MENU'
+    ]),
     handleKeyUp(e) {
       const KEYCODE_ENTER = 13,
-            KEYCODE_ESCAPE = 27;
+            KEYCODE_ESCAPE = 27,
+            KEYCODE_B = 66;
 
       if (e.keyCode === KEYCODE_ENTER) {
-        // Unfocus (not done) -> Close (done)
         this.DONE_SOMETHING();
       } else if (e.keyCode === KEYCODE_ESCAPE) {
-        // Unfocus (not done) -> Close (done)
         this.CANCEL_SOMETHING();
+      } else if (e.keyCode === KEYCODE_B && e.ctrlKey) {
+        console.log('toggle');
+        this.TOGGLE_MENU();
       } else {
-        console.log(e);
+        console.log(e, e.keyCode === KEYCODE_B, e.ctrlKey);
       }
     }
   },

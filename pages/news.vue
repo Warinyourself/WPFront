@@ -24,7 +24,7 @@
 import {mapState} from 'vuex'
 
 export default {
-  name: 'MainPage',
+  name: 'NewsPage',
   computed: {
     ...mapState('news', [
       'news'
