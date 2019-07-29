@@ -36,7 +36,8 @@ export default {
     '~/plugins/vue-meta.js',
     '~/plugins/axios.js',
     '~/plugins/app-components.js',
-    {src: '~plugins/vuex-router-sync.js', ssr: false}
+    {src: '~plugins/vuex-router-sync.js', ssr: false},
+    {src: '~/plugins/localStorage.js', ssr: false }
   ],
 
   modules: [

@@ -1,7 +1,7 @@
 <template lang="pug">
   .input.input--search.ai-center
     input(@focus='onFocus' @blur='onBlur' type='text' ref='search')
-    AppIcon.icon--2.icon--bg(icon='search')
+    AppIcon.icon-2.icon-bg(icon='search')
 </template>
 
 <script>

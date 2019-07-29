@@ -1,5 +1,5 @@
 <template lang="pug">
-  .avatar.avatar--menu(@click='goToUser')
+  .avatar(@click='goToUser')
     AppIcon(icon='user')
 </template>
 

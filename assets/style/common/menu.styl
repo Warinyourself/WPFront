@@ -1,6 +1,5 @@
 menu
   width size-menu
-  border-right 1px solid color-main
   position relative
   overflow hidden
 
@@ -10,8 +9,16 @@ menu
   z-index 5
   display flex
   flex-direction column
+  transition .3s width
   ul
     flex 1 1 auto
+  &.menu--minimize
+    width size-menu--minimize
+    & .menu__link
+      &.nuxt-link-active
+        transform translateX(0px)
+      &:hover
+        transform translateX(0px)
 
 .menu__link
   position relative
@@ -20,17 +27,23 @@ menu
   align-items center
   font-size 1rem
   transition .3s opacity, .4s transform
-  &:hover, &.nuxt-link-active
-    transform translateX(15px)
-    .menu__icon
-      opacity 1
+  & h4
+    position absolute
+    left 60px
 
 .menu__icon
-  width 25px
-  height 25px
-  margin-right 10px
-  fill color-main--dark
-  stroke color-main
+  transition .3s fill, .3s stroke, .5s 0s filter
   stroke-width 0
-  opacity .4
-  transition .4s opacity
+
+.menu__icon-box
+  width 40px
+  display flex
+  justify-content center
+
+.menu__footer
+  display flex
+  flex-wrap wrap
+  justify-content space-around
+  padding 5px
+  & > *
+    margin-top 10px

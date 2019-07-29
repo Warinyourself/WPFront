@@ -1,6 +1,5 @@
 <template lang="pug">
   div.container 
-    h2 {{$route.name}}
 </template>
 
 <script>

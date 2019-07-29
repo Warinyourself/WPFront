@@ -2,20 +2,24 @@
   .wrapper(:class='{"dark-theme": isDark}')
     AppIconDefs
     MainMenu
-    Nuxt.main-content(:class='{"open-menu--margin": openMainMenu}')
+    .page-content(:class='{"open-menu--margin": !minimizeMenu}')
+      MainHeaderBar
+      Nuxt.main-content
 </template>
 
 <script>
 import MainMenu from '@/components/common/MainMenu.vue'
+import MainHeaderBar from '@/components/common/MainHeaderBar.vue'
 import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   components: {
     MainMenu,
+    MainHeaderBar,
   },
   computed: {
     ...mapState('page', [
-      'openMainMenu',
+      'minimizeMenu',
       'isDark'
     ]),
   },
@@ -37,7 +41,6 @@ export default {
       } else if (e.keyCode === KEYCODE_ESCAPE) {
         this.CANCEL_SOMETHING();
       } else if (e.keyCode === KEYCODE_B && e.ctrlKey) {
-        console.log('toggle');
         this.TOGGLE_MENU();
       } else {
         console.log(e, e.keyCode === KEYCODE_B, e.ctrlKey);

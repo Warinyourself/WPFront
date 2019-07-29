@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.container {{$route.name}}
+  div.container
     button(@click='checkAuth') Check
 </template>
 

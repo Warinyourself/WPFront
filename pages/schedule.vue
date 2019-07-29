@@ -1,10 +1,10 @@
 <template lang="pug">
-  div.container {{$route.name}}
+  div.container Расписание
 </template>
 
 <script>
 export default {
-  name: 'MainPage',
+  name: 'SchedulePage',
 }
 </script>
 

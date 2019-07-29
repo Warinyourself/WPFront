@@ -1,10 +1,15 @@
 <template lang="pug">
-  div.container {{$route.name}}
+  div.container
+    ArcChart
 </template>
 
 <script>
+import ArcChart from '@/components/common/ArcChart'
+
 export default {
-  name: 'MainPage',
+  name: 'SchedulePage',
+  components: {
+    ArcChart,
+  },
 }
 </script>
-

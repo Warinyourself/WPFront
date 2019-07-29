@@ -1,0 +1,47 @@
+color-active-link = #36a2fd
+color-background--second = #98ccf8
+
+body
+  background-color color-background
+  color color-text
+  border-color color-main
+  stroke color-main--dark
+  fill color-main--dark
+  a:visited
+    stroke color-main--dark
+    fill color-main--dark
+  .color-light
+    color color-background
+  .color-dark-link
+    color color-main--darkest
+  .bgc-main
+    background-color color-background
+  .bgc-main--second
+    background-color color-background--second
+  .bgc-light
+    background-color #0b518c
+  .bgc-dark
+    background-color color-main--dark
+  .icon-darkest
+    fill color-main--darkest
+    stroke color-main--darkest
+  .icon-background
+    fill color-background
+    stroke color-background
+  .icon-dark
+    fill color-main--dark
+    stroke color-main--dark
+  .menu--main
+    background-color #c0e2ff
+    .menu__link, svg
+      color color-main--darkest
+      fill color-main--darkest
+      stroke color-main--darkest
+    & .nuxt-link-active 
+      color color-active-link
+      *
+        color color-active-link
+      .menu__icon
+        fill color-active-link
+        stroke color-active-link
+        filter drop-shadow(0 0 3px currentColor)

@@ -1,10 +1,10 @@
 export const state = () => ({
-  openMainMenu: true,
   isDark: false,
+  minimizeMenu: false,
   mainMenu: [
         {
           name: 'Новости',
-          icon: 'love',
+          icon: 'events',
           link: {name: 'news'}
         },
         {
@@ -35,31 +35,49 @@ export const mutations = {
     state[payload.type] = payload.value;
   },
   TOGGLE_MENU: (state) => {
-    state.openMainMenu = !state.openMainMenu;
+    state.minimizeMenu = !state.minimizeMenu;
   }
 }
 
 export const getters = {
+  getStatePage: (state) => (type) => {
+    return state[type];
+  },
+  determineNameByRoute: (state) => (route) => {
+    let title = route.name;
+
+    switch (title) {
+      case 'statistics':
+        title = 'Статистика';
+        break;
+      case 'search':
+        title = 'Поиск';
+        break;
+      case 'schedule':
+        title = 'Расписание';
+        break;
+      case 'news':
+        title = 'События';
+        break;
+      case 'settings':
+        title = 'Настройки';
+        break;
+    }
+
+    return title;
+  },
   activeWindows: (state, rootState) => {
     let activeWindows = [];
 
-    // first step is menu
-    activeWindows.push({
-      name: 'mainMenu',
-      active: state.openMainMenu,
-      cancelParams: {
-        type: 'openMainMenu',
-        value: false,
-      },
-      doneParams: {
-        type: 'openMainMenu',
-        value: true,
-      },
-    });
+    // Structure
+    //   name (store value)
+    //   cancelParams 
+    //     type (commit name)
+    //     value (commit value)
     
-    // second step is over modal windows
+    // first step is over modal windows
     
-    // third step is focus elements
+    // second step is focus elements
 
     return activeWindows;
   }

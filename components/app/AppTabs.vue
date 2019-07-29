@@ -1,9 +1,6 @@
 <template lang="pug">
-  .toggle.ai-center.bgc-dark(@click='changeToggle' :class='classObject' )
-    AppIcon.toggle__icon.icon-1.icon-darkest(v-if='type === "arrow"' icon='arrow')
-    AppIcon.toggle__icon.icon-1.icon-darkest(v-if='icons[0]' :icon='icons[0]')
-    .toggle__item.bgc-main
-    AppIcon.toggle__icon.icon-1.icon-darkest(v-if='icons[1]' :icon='icons[1]')
+  .tabs.ai-center.bgc-dark(@changeTab='changeTab' :class='classObject' )
+    slot
 </template>
 
 <script>
@@ -70,15 +67,18 @@ export default {
     },
   },
   methods: {
-    changeToggle() {
-      this.active = !this.active;
+    changeTab() {
+      console.log('CHANGE TAB')
+    }
+    //changeToggle() {
+      //this.active = !this.active;
 
-      if (this.active && (this.commitOn || this.commit)) {
-        this.$store.commit(this.commit.path, {type: this.commit.type, value: this.active})
-      } else if (!this.active && (this.commitOff || this.commit)) {
-        this.$store.commit(this.commit.path, {type: this.commit.type, value: this.active})
-      }
-    },
+      //if (this.active && (this.commitOn || this.commit)) {
+        //this.$store.commit(this.commit.path, {type: this.commit.type, value: this.active})
+      //} else if (!this.active && (this.commitOff || this.commit)) {
+        //this.$store.commit(this.commit.path, {type: this.commit.type, value: this.active})
+      //}
+    //},
   },
 }
 </script>

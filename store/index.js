@@ -11,4 +11,3 @@ export const mutations = {
     state[type] = items
   },
 }
-
