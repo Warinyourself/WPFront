@@ -20,16 +20,13 @@ export default {
       default: 'classic',
     },
     icon: String,
+    value: String,
     iconsPosition: {
       type: String,
       default: 'left',
     },
-    commit: {
-      type: Object,
-    },
-    action: {
-      type: Object,
-    },
+    commit: Object,
+    action: Object,
     disabled: false,
     state: {
       type: Object,
@@ -42,15 +39,16 @@ export default {
       let classObject = {}
 
       let path = this.state.path;
-      let type = this.state.type;
+      let field = this.state.field;
 
-      if (type && path) {
-        let value = this.$store.getters[path](type);
-        classObject['toggle--active'] = value;
-        this.active = value;
-      } else {
-        classObject['toggle--active'] = this.active;
-      }
+      if (field && path) {
+        let value = this.$store.getters[path](field);
+
+        console.log(value, this.value, value === this.value)
+
+        classObject['button--active'] = value === this.value;
+      } 
+
 
       classObject[classToggle] = true;
 
@@ -61,6 +59,10 @@ export default {
     handleClick() {
       console.log('CLICK');
       
+      if (this.value && this.commit) {
+        console.log('TAB state')
+        this.$store.commit(this.commit.path, {field: this.commit.field, value: this.value})
+      }
       //if (this.active && (this.commitOn || this.commit)) {
         //this.$store.commit(this.commit.path, {type: this.commit.type, value: this.active})
       //} else if (!this.active && (this.commitOff || this.commit)) {

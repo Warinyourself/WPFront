@@ -13,10 +13,10 @@
                 //- :state='{path: "page/getStatePage", field: "isDark"}')
       AppToggle(:icons='["sun", "moon"]'
                 :state='{ field: "isDark", path: "page/getStatePage"}'
-                :commit='{field: "isDark", path: "page/SET_PAGE"}')
+                :commit='{field: "isDark", path: "page/SET_STATE_PAGE"}')
       AppToggle(type='arrow'
                 :state='{field: "minimizeMenu", path: "page/getStatePage"}'
-                :commit='{field: "minimizeMenu", path: "page/SET_PAGE"}')
+                :commit='{field: "minimizeMenu", path: "page/SET_STATE_PAGE"}')
 </template>
 
 <script>

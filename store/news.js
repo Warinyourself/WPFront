@@ -15,24 +15,11 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_NEWS: (state, payload) => {
+  SET_STATE_NEWS: (state, payload) => {
     state[payload.field] = payload.value
   }
 }
 
 export const actions = {
-  CANCEL_SOMETHING: ({ getters, commit }) => {
-    const activeWindows = getters.activeWindows
 
-    if (activeWindows.length) {
-      commit('SET_PAGE', activeWindows[activeWindows.length - 1].cancelParams)
-    }
-  },
-  DONE_SOMETHING: ({ getters, commit }) => {
-    const activeWindows = getters.activeWindows
-
-    if (activeWindows.length) {
-      commit('SET_PAGE', activeWindows[activeWindows.length - 1].doneParams)
-    }
-  }
 }

@@ -27,7 +27,7 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_PAGE: (state, payload) => {
+  SET_STATE_PAGE: (state, payload) => {
     state[payload.field] = payload.value
   },
   TOGGLE_MENU: (state) => {
@@ -102,14 +102,14 @@ export const actions = {
     if (rootState.form.elementFocus) {
       focus.blur()
     } else if (activeWindows.length) {
-      commit('SET_PAGE', activeWindows[activeWindows.length - 1].cancelParams)
+      commit('SET_STATE_PAGE', activeWindows[activeWindows.length - 1].cancelParams)
     }
   },
   DONE_SOMETHING: ({ getters, commit }) => {
     const activeWindows = getters.activeWindows
 
     if (activeWindows.length) {
-      commit('SET_PAGE', activeWindows[activeWindows.length - 1].doneParams)
+      commit('SET_STATE_PAGE', activeWindows[activeWindows.length - 1].doneParams)
     }
   }
 }
