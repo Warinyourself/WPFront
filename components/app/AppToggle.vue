@@ -1,5 +1,5 @@
 <template lang="pug">
-  .toggle.ai-center.bgc-dark(@click='changeToggle' :class='classObject' )
+  .toggle.ai-center(@click='changeToggle' :class='classObject' )
     AppIcon.toggle__icon.icon-1.icon-darkest(v-if='type === "arrow"' icon='arrow')
     AppIcon.toggle__icon.icon-1.icon-darkest(v-if='icons[0]' :icon='icons[0]')
     .toggle__item.bgc-main
@@ -52,6 +52,12 @@ export default {
         this.active = value
       } else {
         classObject['toggle--active'] = this.active
+      }
+
+      if (this.type === 'arrow') {
+        classObject['bgc-main'] = true;
+      } else {
+        classObject['bgc-dark'] = true;
       }
 
       classObject[classToggle] = true
