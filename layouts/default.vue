@@ -8,53 +8,66 @@
 </template>
 
 <script>
+import { mapState, mapMutations, mapActions } from 'vuex'
 import MainMenu from '@/components/common/MainMenu.vue'
 import MainHeaderBar from '@/components/common/MainHeaderBar.vue'
-import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   components: {
     MainMenu,
-    MainHeaderBar,
+    MainHeaderBar
   },
   computed: {
     ...mapState('page', [
       'minimizeMenu',
-      'isDark'
-    ]),
+      'isDark',
+      'language'
+    ])
+  },
+  watch: {
+    language() {
+      console.log('CHANGE LANG')
+      this.$i18n.locale = this.language;
+    }
   },
   methods: {
     ...mapActions('page', [
       'CANCEL_SOMETHING',
-      'DONE_SOMETHING',
+      'DONE_SOMETHING'
     ]),
-    ...mapMutations('page', [
-      'TOGGLE_MENU'
-    ]),
+    ...mapMutations('page', ['TOGGLE_MENU']),
     handleKeyUp(e) {
-      const KEYCODE_ENTER = 13,
-            KEYCODE_ESCAPE = 27,
-            KEYCODE_B = 66;
+      const KEYCODE_ENTER = 13
+      const KEYCODE_ESCAPE = 27
+      const KEYCODE_B = 66
 
       if (e.keyCode === KEYCODE_ENTER) {
-        this.DONE_SOMETHING();
+        this.DONE_SOMETHING()
       } else if (e.keyCode === KEYCODE_ESCAPE) {
-        this.CANCEL_SOMETHING();
+        this.CANCEL_SOMETHING()
       } else if (e.keyCode === KEYCODE_B && e.ctrlKey) {
-        this.TOGGLE_MENU();
+        this.TOGGLE_MENU()
       } else {
-        console.log(e, e.keyCode === KEYCODE_B, e.ctrlKey);
+        console.log(e, e.keyCode === KEYCODE_B, e.ctrlKey)
       }
     }
   },
+  mounted() {
+    // updateLangaega after parse;
+    // console.log(this.$i18n.locale)
+    // this.$i18n.locale = 'ru'
+    // console.log(this.$i18n.locale)
+    // console.log(this.$i18n)
+  },
   created() {
+    // console.log(this.$i18n.locale)
     if (process.browser) {
-      window.addEventListener('keyup', this.handleKeyUp, {passive: false})
+      window.addEventListener('keyup', this.handleKeyUp, { passive: false })
     }
   },
   destroyed() {
     if (process.browser) {
-      window.removeEventListener('keyup', this.handleKeyUp);
+      window.removeEventListener('keyup', this.handleKeyUp)
     }
   }
 }

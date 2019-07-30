@@ -7,78 +7,86 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'AppToggle',
-  data() {
-    return {
-      active: false,
-    }
-  },
   props: {
     type: {
       type: String,
-      default: 'classic',
+      default: 'classic'
     },
     icons: {
       type: Array,
-      default: () => ['', ''],
+      default: () => ['', '']
     },
-    commit: {
-      type: Object,
-    },
-    commitOn: {
-      type: Object,
-    },
-    commitOff: {
-      type: Object,
-    },
-    action: {
-      type: Object,
-    },
-    actionOn: {
-      type: Object,
-    },
-    actionOff: {
-      type: Object,
-    },
+    commit: Object,
+    commitOn: Object,
+    commitOff: Object,
+    action: Object,
+    actionOn: Object,
+    actionOff: Object,
     state: {
       type: Object,
-      default: () => {return {}},
+      default: () => {
+        return {}
+      }
+    }
+  },
+  data() {
+    return {
+      active: false
     }
   },
   computed: {
     classObject() {
-      let classToggle = 'toggle--' + this.type;
-      let classObject = {}
+      const classToggle = 'toggle--' + this.type
+      const classObject = {}
 
-      let path = this.state.path;
-      let type = this.state.type;
+      const path = this.state.path
+      const field = this.state.field
 
-      if (type && path) {
-        let value = this.$store.getters[path](type);
-        classObject['toggle--active'] = value;
-        this.active = value;
+      if (field && path) {
+        const value = this.$store.getters[path](field)
+        classObject['toggle--active'] = value
+        this.active = value
       } else {
-        classObject['toggle--active'] = this.active;
+        classObject['toggle--active'] = this.active
       }
 
-      classObject[classToggle] = true;
+      classObject[classToggle] = true
 
-      return classObject;
-    },
+      return classObject
+    }
   },
   methods: {
     changeToggle() {
-      this.active = !this.active;
+      this.active = !this.active
 
-      if (this.active && (this.commitOn || this.commit)) {
-        this.$store.commit(this.commit.path, {type: this.commit.type, value: this.active})
-      } else if (!this.active && (this.commitOff || this.commit)) {
-        this.$store.commit(this.commit.path, {type: this.commit.type, value: this.active})
+      if (this.active && this.commit) {
+        this.$store.commit(this.commit.path, {
+          field: this.commit.field,
+          value: this.active
+        })
+      } else if (this.active && this.commitOn) {
+        console.log('ON TRUE', this.commitOn)
+        this.$store.commit(this.commitOn.path, {
+          field: this.commitOn.field,
+          value: this.commitOn.value
+        })
+      } else if (!this.active && this.commit) {
+        this.$store.commit(this.commit.path, {
+          field: this.commit.field,
+          value: this.active
+        })
+      } else if (!this.active && this.commitOff) {
+        console.log('ON FALSE', this.commitOff)
+        this.$store.commit(this.commitOff.path, {
+          field: this.commitOff.field,
+          value: this.commitOff.value
+        })
       }
-    },
-  },
+    }
+  }
 }
 </script>

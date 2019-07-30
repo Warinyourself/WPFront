@@ -1,10 +1,9 @@
 <template lang="pug">
-  div.container Расписание
+  div.container {{ $t('menu.schedule') }}
 </template>
 
 <script>
 export default {
-  name: 'SchedulePage',
+  name: 'SchedulePage'
 }
 </script>
-

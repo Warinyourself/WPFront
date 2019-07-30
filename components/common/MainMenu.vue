@@ -1,26 +1,37 @@
 <template lang="pug">
   menu.menu--main.bgc-light(:class='{"menu--minimize": minimizeMenu}')
     ul
-      NuxtLink.menu__link(v-for='(item, i) in mainMenu' :key='i' :to='item.link')
+      NuxtLink.menu__link(v-for='(item, i) in mainMenu' :key='i' :to='{ name: item.name }')
         .menu__icon-box
           AppIcon.menu__icon.icon-3.icon-darker(:icon='item.icon')
-        h4.color-dark-link {{item.name}}
+        h4.color-dark-link {{ $t(determinePathByName(item.name)) }}
     .menu__footer
+      AppToggle(:icons='["ru", "en"]'
+                :values='["ru", "en"]'
+                :commitOn='{field: "language", path: "page/CHANGE_LANGUAGE", value: "en"}'
+                :commitOff='{field: "language", path: "page/CHANGE_LANGUAGE", value: "ru"}')
+                //- :state='{path: "page/getStatePage", field: "isDark"}')
       AppToggle(:icons='["sun", "moon"]'
-                :state='{path: "page/getStatePage", type: "isDark"}'
-                :commit='{type: "isDark", path: "page/SET_PAGE"}')
+                :state='{ field: "isDark", path: "page/getStatePage"}'
+                :commit='{field: "isDark", path: "page/SET_PAGE"}')
       AppToggle(type='arrow'
-                :state='{path: "page/getStatePage", type: "minimizeMenu"}'
-                :commit='{type: "minimizeMenu", path: "page/SET_PAGE"}')
+                :state='{field: "minimizeMenu", path: "page/getStatePage"}'
+                :commit='{field: "minimizeMenu", path: "page/SET_PAGE"}')
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'MenuMenu',
   computed: {
-    ...mapState('page', ['minimizeMenu', 'mainMenu'])
+    ...mapState('page', [
+      'minimizeMenu',
+      'mainMenu'
+    ]),
+    ...mapGetters('page', [
+      'determinePathByName',
+    ]),
   },
   methods: {
     ...mapActions('user', ['logout'])

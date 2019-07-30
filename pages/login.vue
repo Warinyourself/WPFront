@@ -13,10 +13,13 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex';
+import { mapState, mapActions } from 'vuex'
 import Wave from '@/components/decorations/Wave'
 
 export default {
+  components: {
+    Wave
+  },
   data() {
     return {
       email: 'start@gmail.com',
@@ -24,23 +27,17 @@ export default {
     }
   },
   layout: 'none',
-  components: {
-    Wave,
-  },
   methods: {
-    ...mapActions('user', [
-      'login',
-      'create',
-    ]),
+    ...mapActions('user', ['login', 'create']),
     async loginUser() {
-      let payload = {email: this.email, password: this.password};
+      const payload = { email: this.email, password: this.password }
 
-      await this.login(payload);
+      await this.login(payload)
     },
     async createUser() {
-      let payload = {email: this.email, password: this.password};
+      const payload = { email: this.email, password: this.password }
 
-      await this.create(payload);
+      await this.create(payload)
     }
   }
 }

@@ -1,0 +1,24 @@
+{
+  "menu": {
+    "profile": "Профиль",
+    "main": "Главная",
+    "news": "События",
+    "search": "Поиск",
+    "schedule": "Расписание",
+    "statistics": "Статистика",
+    "settings": "Настройки"
+  },
+  "search": {
+    "products": "Продукты",
+    "courses": "Курсы",
+    "recipes": "Рецепты"
+  },
+  "home": {
+    "title": "Welcome",
+    "introduction": "This is an introduction in English."
+  },
+  "about": {
+    "title": "About",
+    "introduction": "This page is made to give you more informations."
+  }
+}

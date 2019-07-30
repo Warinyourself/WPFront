@@ -1,0 +1,24 @@
+{
+  "menu": {
+    "profile": "Home",
+    "main": "Main",
+    "news": "News",
+    "search": "Search",
+    "schedule": "Schedule",
+    "statistics": "Statistics",
+    "settings": "Settings"
+  },
+  "search": {
+    "products": "Products",
+    "courses": "Сourses",
+    "recipes": "Recipes"
+  },
+  "home": {
+    "title": "Welcome",
+    "introduction": "This is an introduction in English."
+  },
+  "about": {
+    "title": "About",
+    "introduction": "This page is made to give you more informations."
+  }
+}

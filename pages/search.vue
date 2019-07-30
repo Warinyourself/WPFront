@@ -3,9 +3,9 @@
     .container__body
     AppSearch
     .flex.mt-2
-      AppButton.mr-1.p-2.br-1.bgc-main--second(icon='products') Продукты
-      AppButton.mr-1.p-2.br-1.bgc-main--second(icon='cycle') Курсы
-      AppButton.p-2.br-1.bgc-main--second(icon='recipes') Рецепты
+      AppButton.mr-1.p-2.br-1.bgc-main--second(icon='products') {{ $t('search.products')}}
+      AppButton.mr-1.p-2.br-1.bgc-main--second(icon='cycle') {{ $t('search.courses')}}
+      AppButton.p-2.br-1.bgc-main--second(icon='recipes') {{ $t('search.recipes')}}
 </template>
 
 <script>

@@ -5,26 +5,24 @@
 </template>
 
 <script>
-import {mapState, mapMutations} from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'AppSearch',
   methods: {
-    ...mapMutations('form', [
-      'SET_FORM'
-    ]),
+    ...mapMutations('form', ['SET_FORM']),
     onFocus(e) {
-      this.SET_FORM({type: 'elementFocus', items: e.target})
+      this.SET_FORM({ field: 'elementFocus', items: e.target })
     },
     onBlur(e) {
-      this.SET_FORM({type: 'elementFocus', items: false})
+      this.SET_FORM({ field: 'elementFocus', items: false })
     }
   },
   mounted() {
-    this.SET_FORM({type: 'searchView', items: this.$refs.search})
+    this.SET_FORM({ field: 'searchView', items: this.$refs.search })
   },
   beforeDestroy() {
-    this.SET_FORM({type: 'searchView', items: false})
+    this.SET_FORM({ field: 'searchView', items: false })
   }
 }
 </script>

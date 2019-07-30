@@ -1,105 +1,115 @@
 export const state = () => ({
   isDark: false,
   minimizeMenu: false,
+  language: 'en',
   mainMenu: [
-        {
-          name: 'Новости',
-          icon: 'events',
-          link: {name: 'news'}
-        },
-        {
-          name: 'Расписание',
-          icon: 'schedule',
-          link: {name: 'schedule'}
-        },
-        {
-          name: 'Поиск',
-          icon: 'search',
-          link: {name: 'search'}
-        },
-        {
-          name: 'Диаграмма',
-          icon: 'statistics',
-          link: {name: 'statistics'}
-        },
-        {
-          name: 'Настройки',
-          icon: 'settings',
-          link: {name: 'settings'}
-        },
-      ],
+    {
+      name: 'news',
+      icon: 'events',
+    },
+    {
+      name: 'schedule',
+      icon: 'schedule',
+    },
+    {
+      name: 'search',
+      icon: 'search',
+    },
+    {
+      name: 'statistics',
+      icon: 'statistics',
+    },
+    {
+      name: 'settings',
+      icon: 'settings',
+    }
+  ]
 })
 
 export const mutations = {
   SET_PAGE: (state, payload) => {
-    state[payload.type] = payload.value;
+    state[payload.field] = payload.value
   },
   TOGGLE_MENU: (state) => {
-    state.minimizeMenu = !state.minimizeMenu;
+    state.minimizeMenu = !state.minimizeMenu
+  },
+  CHANGE_LANGUAGE: (state, payload) => {
+    // console.log('CHANGE_LANGUAGE', this)
+    // console.log('CHANGE_LANGUAGE', $router)
+
+    // Maybe sync this i18n
+    
+    // this.$i18n.locale = 'ru'
+    state[payload.field] = payload.value
   }
 }
 
 export const getters = {
-  getStatePage: (state) => (type) => {
-    return state[type];
+  getStatePage: state => (field) => {
+    return state[field]
   },
-  determineNameByRoute: (state) => (route) => {
-    let title = route.name;
+  determinePathByName: state => (name) => {
+    let title = name
 
     switch (title) {
+      case 'index':
+        title = 'menu.main'
+        break
+      case 'profile':
+        title = 'menu.profile'
+        break
       case 'statistics':
-        title = 'Статистика';
-        break;
+        title = 'menu.statistics'
+        break
       case 'search':
-        title = 'Поиск';
-        break;
+        title = 'menu.search'
+        break
       case 'schedule':
-        title = 'Расписание';
-        break;
+        title = 'menu.schedule'
+        break
       case 'news':
-        title = 'События';
-        break;
+        title = 'menu.news'
+        break
       case 'settings':
-        title = 'Настройки';
-        break;
+        title = 'menu.settings'
+        break
     }
 
-    return title;
+    return title
   },
   activeWindows: (state, rootState) => {
-    let activeWindows = [];
+    const activeWindows = []
 
     // Structure
     //   name (store value)
-    //   cancelParams 
-    //     type (commit name)
+    //   cancelParams
+    //     field (commit name)
     //     value (commit value)
-    
+
     // first step is over modal windows
-    
+
     // second step is focus elements
 
-    return activeWindows;
+    return activeWindows
   }
 }
 
-export const actions = { 
-  CANCEL_SOMETHING: ({getters, commit, rootState}) => {
-    let activeWindows = getters.activeWindows,
-        focus = rootState.form.elementFocus;
+export const actions = {
+  CANCEL_SOMETHING: ({ getters, commit, rootState }) => {
+    const activeWindows = getters.activeWindows
+    const focus = rootState.form.elementFocus
 
     if (rootState.form.elementFocus) {
-      focus.blur();
+      focus.blur()
     } else if (activeWindows.length) {
-      commit('SET_PAGE', activeWindows[activeWindows.length - 1].cancelParams);
+      commit('SET_PAGE', activeWindows[activeWindows.length - 1].cancelParams)
     }
   },
-  DONE_SOMETHING: ({getters, commit}) => {
-    let activeWindows = getters.activeWindows;
+  DONE_SOMETHING: ({ getters, commit }) => {
+    const activeWindows = getters.activeWindows
 
     if (activeWindows.length) {
-      commit('SET_PAGE', activeWindows[activeWindows.length - 1].doneParams);
+      commit('SET_PAGE', activeWindows[activeWindows.length - 1].doneParams)
     }
-  },
+  }
 }
-

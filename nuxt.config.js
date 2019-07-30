@@ -19,16 +19,14 @@ export default {
 
   loading: { color: '#ff1c76' },
 
-  //transition: {
-    //name: 'router-animation',
-  //},
+  // transition: {
+  // name: 'router-animation',
+  // },
 
   /*
    ** Global CSS
    */
-  css: [
-    '@/assets/style/index.styl',
-  ],
+  css: ['@/assets/style/index.styl'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -36,14 +34,15 @@ export default {
     '~/plugins/vue-meta.js',
     '~/plugins/axios.js',
     '~/plugins/app-components.js',
-    {src: '~plugins/vuex-router-sync.js', ssr: false},
-    {src: '~/plugins/localStorage.js', ssr: false }
+    '~/plugins/i18n.js',
+    { src: '~plugins/vuex-router-sync.js', ssr: false },
+    { src: '~/plugins/localStorage.js', ssr: false }
   ],
 
   modules: [
     '@nuxtjs/axios', // https://axios.nuxtjs.org/extend
-    '@nuxtjs/pwa',
-    //'@nuxtjs/eslint-module'
+    '@nuxtjs/pwa'
+    // '@nuxtjs/eslint-module'
   ],
   /*
    ** Axios module configuration
@@ -54,12 +53,12 @@ export default {
   },
 
   manifest: {
-    "name": "CAC",
-    "display": "standalone",
-    "background_color": "#19102e",
-    "theme_color": "#150d28"
+    name: 'CAC',
+    display: 'standalone',
+    background_color: '#19102e',
+    theme_color: '#150d28'
   },
-  
+
   /*
    ** Build configuration
    */
