@@ -2,7 +2,8 @@
   position relative
   cursor pointer
   display block
-  .toggle__icon
+  .toggle__icon, .toggle__text
+    font-size 11px
     position absolute
     top 50%
     transform translateY(-50%)
@@ -11,6 +12,7 @@
       left 4px
     &:nth-child(3)
       right 4px
+
 
 .toggle--classic
   height 20px
@@ -21,7 +23,7 @@
     height 20px
     border-radius 50%
     transition .3s
-  &.toggle--active 
+  &.toggle--active
     .toggle__item
       transform translateX(100%)
 
@@ -34,6 +36,6 @@
   border-radius 20px
   .icon--arrow
     transition .3s
-  &.toggle--active 
+  &.toggle--active
     .icon--arrow
       transform translateY(-50%) rotate(180deg)

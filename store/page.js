@@ -5,23 +5,23 @@ export const state = () => ({
   mainMenu: [
     {
       name: 'news',
-      icon: 'events',
+      icon: 'events'
     },
     {
       name: 'schedule',
-      icon: 'schedule',
+      icon: 'schedule'
     },
     {
       name: 'search',
-      icon: 'search',
+      icon: 'search'
     },
     {
       name: 'statistics',
-      icon: 'statistics',
+      icon: 'statistics'
     },
     {
       name: 'settings',
-      icon: 'settings',
+      icon: 'settings'
     }
   ]
 })
@@ -38,7 +38,6 @@ export const mutations = {
     // console.log('CHANGE_LANGUAGE', $router)
 
     // Maybe sync this i18n
-    
     // this.$i18n.locale = 'ru'
     state[payload.field] = payload.value
   }
@@ -102,14 +101,20 @@ export const actions = {
     if (rootState.form.elementFocus) {
       focus.blur()
     } else if (activeWindows.length) {
-      commit('SET_STATE_PAGE', activeWindows[activeWindows.length - 1].cancelParams)
+      commit(
+        'SET_STATE_PAGE',
+        activeWindows[activeWindows.length - 1].cancelParams
+      )
     }
   },
   DONE_SOMETHING: ({ getters, commit }) => {
     const activeWindows = getters.activeWindows
 
     if (activeWindows.length) {
-      commit('SET_STATE_PAGE', activeWindows[activeWindows.length - 1].doneParams)
+      commit(
+        'SET_STATE_PAGE',
+        activeWindows[activeWindows.length - 1].doneParams
+      )
     }
   }
 }

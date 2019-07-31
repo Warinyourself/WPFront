@@ -1,9 +1,12 @@
 <template lang="pug">
-  .toggle.ai-center(@click='changeToggle' :class='classObject' )
+  .toggle.ai-center(@click='changeToggle' :class='classObject')
     AppIcon.toggle__icon.icon-1.icon-darkest(v-if='type === "arrow"' icon='arrow')
-    AppIcon.toggle__icon.icon-1.icon-darkest(v-if='icons[0]' :icon='icons[0]')
+
+    AppIcon.toggle__icon.icon-1.icon-darkest(v-if='icons && icons[0]' :icon='icons[0]')
+    span.toggle__text(v-if='values && values[0]') {{values[0]}}
     .toggle__item.bgc-main
-    AppIcon.toggle__icon.icon-1.icon-darkest(v-if='icons[1]' :icon='icons[1]')
+    AppIcon.toggle__icon.icon-1.icon-darkest(v-if='icons && icons[1]' :icon='icons[1]')
+    span.toggle__text(v-if='values && values[1]') {{values[1]}}
 </template>
 
 <script>
@@ -17,9 +20,9 @@ export default {
       default: 'classic'
     },
     icons: {
-      type: Array,
-      default: () => ['', '']
+      type: Array
     },
+    values: Array,
     commit: Object,
     commitOn: Object,
     commitOff: Object,
@@ -48,16 +51,25 @@ export default {
 
       if (field && path) {
         const value = this.$store.getters[path](field)
-        classObject['toggle--active'] = value
-        this.active = value
+
+        if (this.values && value === this.values[0]) {
+          classObject['toggle--active'] = false
+          this.active = false
+        } else if (this.values && value === this.values[1]) {
+          classObject['toggle--active'] = true
+          this.active = true
+        } else {
+          classObject['toggle--active'] = value
+          this.active = value
+        }
       } else {
         classObject['toggle--active'] = this.active
       }
 
       if (this.type === 'arrow') {
-        classObject['bgc-main'] = true;
+        classObject['bgc-main'] = true
       } else {
-        classObject['bgc-dark'] = true;
+        classObject['bgc-dark'] = true
       }
 
       classObject[classToggle] = true
@@ -75,7 +87,6 @@ export default {
           value: this.active
         })
       } else if (this.active && this.commitOn) {
-        console.log('ON TRUE', this.commitOn)
         this.$store.commit(this.commitOn.path, {
           field: this.commitOn.field,
           value: this.commitOn.value
@@ -86,7 +97,6 @@ export default {
           value: this.active
         })
       } else if (!this.active && this.commitOff) {
-        console.log('ON FALSE', this.commitOff)
         this.$store.commit(this.commitOff.path, {
           field: this.commitOff.field,
           value: this.commitOff.value

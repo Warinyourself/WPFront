@@ -1,6 +1,6 @@
 export const state = () => ({
   openMainMenu: true,
-  activeTab: 'products',
+  activeTab: 'products'
 })
 
 export const mutations = {
@@ -12,9 +12,7 @@ export const mutations = {
 export const getters = {
   getStateSearch: state => (field) => {
     return state[field]
-  },
+  }
 }
 
-export const actions = {
-
-}
+export const actions = {}

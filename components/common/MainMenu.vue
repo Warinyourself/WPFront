@@ -6,8 +6,8 @@
           AppIcon.menu__icon.icon-3.icon-darker(:icon='item.icon')
         h4.color-dark-link {{ $t(determinePathByName(item.name)) }}
     .menu__footer
-      AppToggle(:icons='["ru", "en"]'
-                :values='["ru", "en"]'
+      AppToggle(:values='["ru", "en"]'
+                :state='{ field: "language", path: "page/getStatePage"}'
                 :commitOn='{field: "language", path: "page/CHANGE_LANGUAGE", value: "en"}'
                 :commitOff='{field: "language", path: "page/CHANGE_LANGUAGE", value: "ru"}')
                 //- :state='{path: "page/getStatePage", field: "isDark"}')
@@ -25,13 +25,8 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
   name: 'MenuMenu',
   computed: {
-    ...mapState('page', [
-      'minimizeMenu',
-      'mainMenu'
-    ]),
-    ...mapGetters('page', [
-      'determinePathByName',
-    ]),
+    ...mapState('page', ['minimizeMenu', 'mainMenu']),
+    ...mapGetters('page', ['determinePathByName'])
   },
   methods: {
     ...mapActions('user', ['logout'])
