@@ -1,10 +1,9 @@
 <template lang="pug">
-  div.container 
+  div.container
 </template>
 
 <script>
 export default {
-  name: 'MainPage',
+  name: 'MainPage'
 }
 </script>
-

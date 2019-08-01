@@ -2,6 +2,7 @@ export const state = () => ({
   isDark: false,
   minimizeMenu: false,
   language: 'en',
+  modalWindows: [],
   mainMenu: [
     {
       name: 'news',
@@ -33,6 +34,9 @@ export const mutations = {
   TOGGLE_MENU: (state) => {
     state.minimizeMenu = !state.minimizeMenu
   },
+  ADD_ACTIVE_MODAL: (state, payload) => {
+    state.modalWindows.push(payload)
+  },
   CHANGE_LANGUAGE: (state, payload) => {
     // console.log('CHANGE_LANGUAGE', this)
     // console.log('CHANGE_LANGUAGE', $router)
@@ -44,10 +48,10 @@ export const mutations = {
 }
 
 export const getters = {
-  getStatePage: state => (field) => {
+  getStatePage: (state) => (field) => {
     return state[field]
   },
-  determinePathByName: state => (name) => {
+  determinePathByName: (state) => (name) => {
     let title = name
 
     switch (title) {

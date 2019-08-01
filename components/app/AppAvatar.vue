@@ -4,20 +4,15 @@
 </template>
 
 <script>
-
 export default {
-  name: 'AvatarComponent',
+  name: 'AppAvatar',
   props: {
-    img: {
-      type: String,
-    },
-    id: {
-      type: Number,
-    }
+    img: String,
+    id: Number
   },
   methods: {
     goToUser() {
-      this.$router.push({name: 'profile'})
+      this.$router.push({ name: 'profile' })
     }
   }
 }

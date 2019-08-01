@@ -215,6 +215,7 @@
 
 <script>
 export default {
+  name: 'AppIcon',
   props: {
     icon: String
   }
