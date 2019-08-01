@@ -26,7 +26,6 @@ export default {
   },
   watch: {
     language() {
-      console.log('CHANGE LANG')
       this.$i18n.locale = this.language;
     }
   },
@@ -48,19 +47,11 @@ export default {
       } else if (e.keyCode === KEYCODE_B && e.ctrlKey) {
         this.TOGGLE_MENU()
       } else {
-        console.log(e, e.keyCode === KEYCODE_B, e.ctrlKey)
+        //console.log(e, e.keyCode === KEYCODE_B, e.ctrlKey)
       }
     }
   },
-  mounted() {
-    // updateLangaega after parse;
-    // console.log(this.$i18n.locale)
-    // this.$i18n.locale = 'ru'
-    // console.log(this.$i18n.locale)
-    // console.log(this.$i18n)
-  },
   created() {
-    // console.log(this.$i18n.locale)
     if (process.browser) {
       window.addEventListener('keyup', this.handleKeyUp, { passive: false })
     }

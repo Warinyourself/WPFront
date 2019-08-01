@@ -1,6 +1,6 @@
 <template lang="pug">
   .input.input--search.ai-center
-    input(@focus='onFocus' @blur='onBlur' type='text' ref='search')
+    input(v-model='search' @input='handleInput' @focus='onFocus' @blur='onBlur' type='text' ref='search')
     AppIcon.icon-2.icon-bg(icon='search')
 </template>
 
@@ -9,16 +9,60 @@ import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'AppSearch',
+  data() {
+    return {
+      search: '',
+      timeout: false,
+    }
+  },
+  props: {
+    delayType: {
+      type: String,
+      default: 'debounce',
+    },
+    delay: Number,
+    commit: Object,
+    action: Object,
+  },
   methods: {
     ...mapMutations('form', ['SET_FORM']),
+    handleInput(e) {
+      if (this.delay && this.delayType === 'debounce') {
+        this.debounce(this.updateStore, e, false);
+      } else if (this.delay && this.delayType === 'throttle') {
+        console.log('create throttle function');
+      } else if (this.delayType === 'none'){
+        this.updateStore(e);
+      }
+    },
+    updateStore(e) {
+      console.log('updateStore', e.target.value);
+      this.$store.commit(this.commit.path, {field: this.commit.field, value: e.target.value})
+    },
     onFocus(e) {
       this.SET_FORM({ field: 'elementFocus', items: e.target })
     },
     onBlur(e) {
       this.SET_FORM({ field: 'elementFocus', items: false })
-    }
+    },
+    debounce(func, values, immediate) {
+      let later = () => {
+        this.timeout = false;
+        if (!immediate) {
+          func(values);
+        }
+      }
+
+      clearTimeout(this.timeout);
+
+      this.timeout = setTimeout(later, this.delay);
+      if (immediate) {
+        func(values);
+      }
+    },
   },
   mounted() {
+    //console.log(this.$attrs)
     this.SET_FORM({ field: 'searchView', items: this.$refs.search })
   },
   beforeDestroy() {

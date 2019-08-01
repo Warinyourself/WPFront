@@ -43,9 +43,6 @@ export default {
 
       if (field && path) {
         let value = this.$store.getters[path](field);
-
-        console.log(value, this.value, value === this.value)
-
         classObject['button--active'] = value === this.value;
       } 
 
@@ -57,10 +54,7 @@ export default {
   },
   methods: {
     handleClick() {
-      console.log('CLICK');
-      
       if (this.value && this.commit) {
-        console.log('TAB state')
         this.$store.commit(this.commit.path, {field: this.commit.field, value: this.value})
       }
       //if (this.active && (this.commitOn || this.commit)) {

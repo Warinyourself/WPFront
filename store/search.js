@@ -1,5 +1,5 @@
 export const state = () => ({
-  openMainMenu: true,
+  searchInput: '',
   activeTab: 'products'
 })
 

@@ -1,7 +1,10 @@
 <template lang="pug">
   div.container
     .container__body
-    AppSearch
+    AppSearch(
+      :delay='1000'
+      :commit='{path: "search/SET_STATE_SEARCH", field: "searchInput"}'
+    )
     .flex.mt-2
       AppButton.mr-1.p-2.br-1.bgc-main--lightest(
         icon='products'
@@ -21,6 +24,9 @@
         :state='{path: "search/getStateSearch", field: "activeTab"}'
         :commit='{path: "search/SET_STATE_SEARCH", field: "activeTab"}'
       ) {{ $t('search.recipes')}}
+    .flex.mt-2
+      span {{activeTab}}
+      span {{searchInput}}
 </template>
 
 <script>
@@ -30,8 +36,9 @@ export default {
   name: 'SearchPage',
   computed: {
     ...mapState('search', [
-      'activeTab'
-    ]) 
+      'activeTab',
+      'searchInput',
+    ]),
   }
 }
 </script>
