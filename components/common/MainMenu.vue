@@ -10,7 +10,6 @@
                 :state='{ field: "language", path: "page/getStatePage"}'
                 :commitOn='{field: "language", path: "page/CHANGE_LANGUAGE", value: "en"}'
                 :commitOff='{field: "language", path: "page/CHANGE_LANGUAGE", value: "ru"}')
-                //- :state='{path: "page/getStatePage", field: "isDark"}')
       AppToggle(:icons='["sun", "moon"]'
                 :state='{ field: "isDark", path: "page/getStatePage"}'
                 :commit='{field: "isDark", path: "page/SET_STATE_PAGE"}')
