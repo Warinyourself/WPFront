@@ -20,7 +20,10 @@ export default {
       type: String,
       default: 'debounce',
     },
-    delay: Number,
+    delay: {
+      type: Number,
+      default: 500,
+    },
     commit: Object,
     action: Object,
   },
@@ -36,7 +39,6 @@ export default {
       }
     },
     updateStore(e) {
-      console.log('updateStore', e.target.value);
       this.$store.commit(this.commit.path, {field: this.commit.field, value: e.target.value})
     },
     onFocus(e) {
@@ -45,24 +47,8 @@ export default {
     onBlur(e) {
       this.SET_FORM({ field: 'elementFocus', items: false })
     },
-    debounce(func, values, immediate) {
-      let later = () => {
-        this.timeout = false;
-        if (!immediate) {
-          func(values);
-        }
-      }
-
-      clearTimeout(this.timeout);
-
-      this.timeout = setTimeout(later, this.delay);
-      if (immediate) {
-        func(values);
-      }
-    },
   },
   mounted() {
-    //console.log(this.$attrs)
     this.SET_FORM({ field: 'searchView', items: this.$refs.search })
   },
   beforeDestroy() {

@@ -39,6 +39,6 @@ export default {
       'activeTab',
       'searchInput',
     ]),
-  }
+  },
 }
 </script>

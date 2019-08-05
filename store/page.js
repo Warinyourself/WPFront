@@ -37,6 +37,11 @@ export const mutations = {
   ADD_ACTIVE_MODAL: (state, payload) => {
     state.modalWindows.push(payload)
   },
+  CLOSE_MODAL: (state, payload) => {
+    console.log(payload)
+    // payload is name modal
+    state.modalWindows.splice(state.modalWindows.indexOf(payload), 1)
+  },
   CHANGE_LANGUAGE: (state, payload) => {
     // console.log('CHANGE_LANGUAGE', this)
     // console.log('CHANGE_LANGUAGE', $router)
@@ -52,6 +57,7 @@ export const getters = {
     return state[field]
   },
   determinePathByName: (state) => (name) => {
+    //rename functions determinaKeyFori18nByTitleMenu
     let title = name
 
     switch (title) {

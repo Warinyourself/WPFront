@@ -33,10 +33,12 @@ export default {
   plugins: [
     '~/plugins/vue-meta.js',
     '~/plugins/axios.js',
-    '~/plugins/app-components.js',
     '~/plugins/i18n.js',
+    '~/plugins/app-mixins.js',
+    '~/plugins/app-methods.js',
+    '~/plugins/app-components.js',
     { src: '~plugins/vuex-router-sync.js', ssr: false },
-    { src: '~/plugins/localStorage.js', ssr: false }
+    { src: '~/plugins/vuex-persistedstate.js', ssr: false }
   ],
 
   modules: [

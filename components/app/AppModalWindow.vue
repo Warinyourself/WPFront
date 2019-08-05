@@ -1,18 +1,16 @@
 <template lang="pug">
-  .modul(:class='classObject' v-if='isView')
-    AppIcon.icon-3(icon='user')
+  transition(name='router-animation')
+    .mobal__background(@click='closeMonal' v-if='isView')
+      .modal__body.bgc-main--second(:class='classObject')
+        AppIcon.icon-3(icon='user')
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'AppModalWindow',
   props: {
-    name: {
-      type: String,
-      default: 'Default'
-    },
     type: {
       type: String,
       default: 'classic'
@@ -28,7 +26,7 @@ export default {
       return !!this.modalWindows.find(item => item === this.title)
     },
     classObject() {
-      const classToggle = 'toggle--' + this.type
+      const classToggle = 'modal--' + this.type
       const classObject = {}
 
       classObject[classToggle] = true
@@ -37,8 +35,12 @@ export default {
     }
   },
   methods: {
-    goToUser() {
-      this.$router.push({ name: 'profile' })
+    ...mapMutations('page', [
+      'CLOSE_MODAL'
+    ]),
+    closeMonal() {
+      console.log('CLOSE');
+      this.CLOSE_MODAL(this.title)
     }
   }
 }
