@@ -14,7 +14,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import Wave from '@/components/decorations/Wave'
+import Wave from '@/components/common/Wave'
 
 export default {
   components: {
