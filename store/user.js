@@ -1,130 +1,41 @@
 export const state = () => ({
-  isDark: false,
-  minimizeMenu: false,
-  language: 'en',
-  modalWindows: [],
-  mainMenu: [
-    {
-      name: 'news',
-      icon: 'events'
-    },
-    {
-      name: 'schedule',
-      icon: 'schedule'
-    },
-    {
-      name: 'search',
-      icon: 'search'
-    },
-    {
-      name: 'statistics',
-      icon: 'statistics'
-    },
-    {
-      name: 'settings',
-      icon: 'settings'
-    }
-  ]
+  email: '',
+  //token: localStorage.getItem('token') || '',
+  status: 'Offline',
 })
 
 export const mutations = {
-  SET_STATE_PAGE: (state, payload) => {
-    state[payload.field] = payload.value
-  },
-  TOGGLE_MENU: (state) => {
-    state.minimizeMenu = !state.minimizeMenu
-  },
-  ADD_ACTIVE_MODAL: (state, payload) => {
-    state.modalWindows.push(payload)
-  },
-  CLOSE_MODAL: (state, payload) => {
-    console.log(payload)
-    // payload is name modal
-    state.modalWindows.splice(state.modalWindows.indexOf(payload), 1)
-  },
-  CHANGE_LANGUAGE: (state, payload) => {
-    // console.log('CHANGE_LANGUAGE', this)
-    // console.log('CHANGE_LANGUAGE', $router)
-
-    // Maybe sync this i18n
-    // this.$i18n.locale = 'ru'
-    state[payload.field] = payload.value
-  }
-}
-
-export const getters = {
-  getStatePage: (state) => (field) => {
-    return state[field]
-  },
-  determinePathByName: (state) => (name) => {
-    //rename functions determinaKeyFori18nByTitleMenu
-    let title = name
-
-    switch (title) {
-      case 'index':
-        title = 'menu.main'
-        break
-      case 'profile':
-        title = 'menu.profile'
-        break
-      case 'statistics':
-        title = 'menu.statistics'
-        break
-      case 'search':
-        title = 'menu.search'
-        break
-      case 'schedule':
-        title = 'menu.schedule'
-        break
-      case 'news':
-        title = 'menu.news'
-        break
-      case 'settings':
-        title = 'menu.settings'
-        break
-    }
-
-    return title
-  },
-  activeWindows: (state, rootState) => {
-    const activeWindows = []
-
-    // Structure
-    //   name (store value)
-    //   cancelParams
-    //     field (commit name)
-    //     value (commit value)
-
-    // first step is over modal windows
-
-    // second step is focus elements
-
-    return activeWindows
+  CHANGE_EMAIL: (state, value) => {
+    state.email = value;
   }
 }
 
 export const actions = {
-  CANCEL_SOMETHING: ({ getters, commit, rootState }) => {
-    const activeWindows = getters.activeWindows
-    const focus = rootState.form.elementFocus
+  async login({}, {email, password}) {
+    let answer = await this.$axios.post('/login', {email, password});
 
-    if (rootState.form.elementFocus) {
-      focus.blur()
-    } else if (activeWindows.length) {
-      commit(
-        'SET_STATE_PAGE',
-        activeWindows[activeWindows.length - 1].cancelParams
-      )
-    }
+    localStorage.setItem('token', answer.data.token)
+    this.$router.push({name: 'index'})
   },
-  DONE_SOMETHING: ({ getters, commit }) => {
-    const activeWindows = getters.activeWindows
+  async create(state, {password, email}) {
+    let answer = await this.$axios.post('/create-user', {email, password});
 
-    if (activeWindows.length) {
-      commit(
-        'SET_STATE_PAGE',
-        activeWindows[activeWindows.length - 1].doneParams
-      )
-    }
+    console.log(answer.data);
+  },
+  logout() {
+    localStorage.removeItem('token')
+
+    this.$router.push({name: 'login'})
+  },
+  updateLocalStorage({}, payload) {
+    let user = Object.assign(JSON.parse(localStorage.getItem('user') || {}), payload);
+
+    localStorage.setItem('user', JSON.stringify(user));
+  },
+  async checkAuth({token}) {
+    let answer = await this.$axios.get('/head', { headers: {'x-access-token': localStorage.getItem('token')}});
+
+    console.log(answer);
   }
 }
+
