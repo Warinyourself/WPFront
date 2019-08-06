@@ -8,6 +8,13 @@
     "statistics": "Statistics",
     "settings": "Settings"
   },
+  "login": {
+    "title": "Login field",
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "create_new_user": "Create new user"
+  },
   "search": {
     "products": "Products",
     "courses": "Сourses",

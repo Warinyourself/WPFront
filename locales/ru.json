@@ -8,6 +8,13 @@
     "statistics": "Статистика",
     "settings": "Настройки"
   },
+  "login": {
+    "title": "Поле входа",
+    "username": "Логин",
+    "password": "Пароль",
+    "login": "Войти",
+    "create_new_user": "Создать нового пользователя"
+  },
   "search": {
     "products": "Продукты",
     "courses": "Курсы",
