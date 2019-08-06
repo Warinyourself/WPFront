@@ -4,7 +4,7 @@
     .clip-wave
       Wave(:amount='5')
       .animation-cube
-    form.form--login.center-position(@submit.prevent )
+    form.form--login.position-center(@submit.prevent )
       h1.ta-center Поле входа
       input.w-100.ta-center(placeholder='Email' type='email' v-model='email' required)
       input.w-100.ta-center(placeholder='Password' v-model='password' type='password' required)

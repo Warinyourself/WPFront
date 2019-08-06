@@ -1,7 +1,5 @@
 @import './mixins'
-@import './fonts'
 @import './variables'
-@import './animation'
 
 html
   font-family 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -50,25 +48,32 @@ input, button
     outline none
 
 
-@import './general.styl'
 
 @import './app/modal'
+@import './app/form'
+@import './app/button'
+@import './app/avatar'
+@import './app/input'
+@import './app/toggle'
 
-@import './common/form'
-@import './common/input'
-@import './common/button'
+
+@import './common/decorations'
+@import './common/tags'
 @import './common/bar'
 @import './common/menu'
-@import './common/avatar'
-@import './common/container'
-@import './common/icon'
-@import './common/text'
+
 
 @import './pages/news'
 
-@import './components/decorations'
-@import './components/tags'
-@import './components/toggle'
 
-@import './theme/dark'
-@import './theme/light'
+@import './general/index'
+
+@import './general/container'
+@import './general/icon'
+@import './general/animation'
+@import './general/text'
+@import './general/fonts'
+@import './general/page'
+
+@import './general/theme/dark'
+@import './general/theme/light'
