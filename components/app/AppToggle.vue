@@ -1,7 +1,6 @@
 <template lang="pug">
   .toggle.ai-center(@click='changeToggle' :class='classObject')
     AppIcon.toggle__icon.icon-1.icon-darkest(v-if='type === "arrow"' icon='arrow')
-
     AppIcon.toggle__icon.icon-1.icon-darkest(v-if='icons && icons[0]' :icon='icons[0]')
     span.toggle__text(v-if='values && values[0]') {{values[0]}}
     .toggle__item.bgc-main
@@ -22,13 +21,16 @@ export default {
     icons: {
       type: Array
     },
-    values: Array,
     commit: Object,
     commitOn: Object,
     commitOff: Object,
     action: Object,
     actionOn: Object,
     actionOff: Object,
+    values: {
+      type: Array,
+      default: () => []
+    },
     state: {
       type: Object,
       default: () => {
@@ -39,6 +41,11 @@ export default {
   data() {
     return {
       active: false
+    }
+  },
+  watch: {
+    active() {
+      console.log('CHAnGE ACTIVE', this.active)
     }
   },
   computed: {
@@ -52,18 +59,17 @@ export default {
       if (field && path) {
         const value = this.$store.getters[path](field)
 
-        if (this.values && value === this.values[0]) {
-          classObject['toggle--active'] = false
-          this.active = false
-        } else if (this.values && value === this.values[1]) {
-          classObject['toggle--active'] = true
-          this.active = true
+        if (this.values.length) {
+          let active = this.values[0] !== value;
+
+          classObject['toggle--active'] = active;
+          this.active = active;
         } else {
-          classObject['toggle--active'] = value
-          this.active = value
+          classObject['toggle--active'] = value;
+          this.active = value;
         }
       } else {
-        classObject['toggle--active'] = this.active
+        classObject['toggle--active'] = this.active;
       }
 
       if (this.type === 'arrow') {
@@ -79,29 +85,21 @@ export default {
   },
   methods: {
     changeToggle() {
-      this.active = !this.active
+      if (!this.values.length && !this.state) {
+        this.active = !this.active;
+      }
 
       if (this.active && this.commit) {
         this.$store.commit(this.commit.path, {
           field: this.commit.field,
-          value: this.active
-        })
-      } else if (this.active && this.commitOn) {
-        this.$store.commit(this.commitOn.path, {
-          field: this.commitOn.field,
-          value: this.commitOn.value
+          value: this.values[0] || !this.active
         })
       } else if (!this.active && this.commit) {
         this.$store.commit(this.commit.path, {
           field: this.commit.field,
-          value: this.active
+          value: this.values[1] || !this.active
         })
-      } else if (!this.active && this.commitOff) {
-        this.$store.commit(this.commitOff.path, {
-          field: this.commitOff.field,
-          value: this.commitOff.value
-        })
-      }
+      } 
     }
   }
 }

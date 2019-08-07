@@ -8,8 +8,7 @@
     .menu__footer
       AppToggle(:values='["ru", "en"]'
                 :state='{ field: "language", path: "page/getStatePage"}'
-                :commitOn='{field: "language", path: "page/CHANGE_LANGUAGE", value: "en"}'
-                :commitOff='{field: "language", path: "page/CHANGE_LANGUAGE", value: "ru"}')
+                :commit='{field: "language", path: "page/CHANGE_LANGUAGE"}')
       AppToggle(:icons='["sun", "moon"]'
                 :state='{ field: "isDark", path: "page/getStatePage"}'
                 :commit='{field: "isDark", path: "page/SET_STATE_PAGE"}')
