@@ -142,7 +142,7 @@
     v-else-if="icon === 'love'"
     xmlns="http://www.w3.org/2000/svg"
     style="isolation:isolate"
-    viewBox="0 0 40 35"
+    viewBox="0 0 43 40"
   >
     <path
       d="M20 4c-2-2-5-4-9-4C5 0 0 5 0 12q0 9 20 23 20-13 20-23c0-9-5-12-11-12-4 0-7 2-9 4z"
@@ -205,7 +205,7 @@
     v-else
     xmlns="http://www.w3.org/2000/svg"
     style="isolation:isolate"
-    viewBox="-0.5 0 45 43"
+    viewBox="-0.5 0 43 40"
   >
     <path
       d="M20 4c-2-2-5-4-9-4C5 0 0 5 0 12q0 9 20 23 20-13 20-23c0-9-5-12-11-12-4 0-7 2-9 4z"

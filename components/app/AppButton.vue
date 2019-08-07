@@ -1,7 +1,8 @@
 <template lang="pug">
   .button.ai-center(@click='handleClick' :class='classObject' )
-    AppIcon.icon-3.mr-1(v-if='icon' :icon='icon')
-    slot.ln-0
+    AppIcon.icon-3(v-if='icon' :icon='icon')
+    .button__body(:class='{"ml-2": icon}' v-if='$slots.default')
+      slot.ln-0
 </template>
 
 <script>
@@ -9,6 +10,9 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'AppButton',
+  mounted() {
+    console.log(this.$slots)
+  },
   props: {
     type: {
       type: String,

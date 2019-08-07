@@ -18,12 +18,45 @@
         :state='{path: "search/getStateSearch", field: "activeTab"}'
         :commit='{path: "search/SET_STATE_SEARCH", field: "activeTab"}'
       ) {{ $t('search.courses')}}
-      AppButton.p-2.br-1.bgc-main--lightest(
+      AppButton.mr-1.p-2.br-1.bgc-main--lightest(
         icon='recipes'
         value='recipes'
         :state='{path: "search/getStateSearch", field: "activeTab"}'
         :commit='{path: "search/SET_STATE_SEARCH", field: "activeTab"}'
       ) {{ $t('search.recipes')}}
+      AppModalWindow(name='modalFormProducts')
+        h2 FORM
+        input(commit=''
+              name=''
+              validator='{}'
+              placeholder='Title'
+        )
+        input(commit=''
+              name=''
+              validator='{}'
+              placeholder='Description'
+        )
+        input(commit=''
+              name=''
+              validator='{}'
+              type='file'
+              placeholder='Images'
+        )
+        input(commit=''
+              name=''
+              validator='{}'
+              placeholder=''
+        )
+        input(commit=''
+              name=''
+              validator='{}'
+              placeholder='Title'
+        )
+      AppButton.p-2.br-1.bgc-main--lightest.br-50(
+          icon='plus'
+          value='modalFormProducts'
+          :commit='{path: "page/ADD_ACTIVE_MODAL"}'
+        )
     .flex.mt-2
       span {{activeTab}}
       span {{searchInput}}

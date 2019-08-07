@@ -1,6 +1,7 @@
 <template lang="pug">
   div.container {{ $t('menu.schedule') }}
     AppModalWindow
+      h2 Hello
     AppButton.p-2.br-1(
         icon='love'
         value='Classic'

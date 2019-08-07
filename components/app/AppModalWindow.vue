@@ -1,8 +1,8 @@
 <template lang="pug">
   transition(name='router-animation')
     .mobal__background(@click='closeMonal' v-if='isView')
-      .modal__body.bgc-main--second(:class='classObject')
-        AppIcon.icon-3(icon='user')
+      .modal__body.bgc-main--second(@click.stop :class='classObject')
+        slot
 </template>
 
 <script>
@@ -15,7 +15,7 @@ export default {
       type: String,
       default: 'classic'
     },
-    title: {
+    name: {
       type: String,
       default: 'Classic'
     }
@@ -23,7 +23,7 @@ export default {
   computed: {
     ...mapState('page', ['modalWindows']),
     isView() {
-      return !!this.modalWindows.find(item => item === this.title)
+      return !!this.modalWindows.find(item => item === this.name)
     },
     classObject() {
       const classToggle = 'modal--' + this.type
@@ -39,8 +39,7 @@ export default {
       'CLOSE_MODAL'
     ]),
     closeMonal() {
-      console.log('CLOSE');
-      this.CLOSE_MODAL(this.title)
+      this.CLOSE_MODAL(this.name)
     }
   }
 }
