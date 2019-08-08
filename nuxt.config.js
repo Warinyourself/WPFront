@@ -17,7 +17,7 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
-  loading: { color: '#ff1c76' },
+  loading: { color: '#36a2fd' },
 
   // transition: {
   // name: 'router-animation',
@@ -43,7 +43,7 @@ export default {
 
   modules: [
     '@nuxtjs/axios', // https://axios.nuxtjs.org/extend
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
     // '@nuxtjs/eslint-module'
   ],
   /*
@@ -55,7 +55,7 @@ export default {
   },
 
   manifest: {
-    name: 'CAC',
+    name: 'WP',
     display: 'standalone',
     background_color: '#19102e',
     theme_color: '#150d28'

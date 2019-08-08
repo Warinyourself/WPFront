@@ -28,7 +28,7 @@ export default {
     action: Object,
   },
   methods: {
-    ...mapMutations('form', ['SET_FORM']),
+    ...mapMutations('form', ['SET_STATE_FORM']),
     handleInput(e) {
       if (this.delay && this.delayType === 'debounce') {
         this.debounce(this.updateStore, e, false);
@@ -42,17 +42,17 @@ export default {
       this.$store.commit(this.commit.path, {field: this.commit.field, value: e.target.value})
     },
     onFocus(e) {
-      this.SET_FORM({ field: 'elementFocus', items: e.target })
+      this.SET_STATE_FORM({ field: 'elementFocus', items: e.target })
     },
     onBlur(e) {
-      this.SET_FORM({ field: 'elementFocus', items: false })
+      this.SET_STATE_FORM({ field: 'elementFocus', items: false })
     },
   },
   mounted() {
-    this.SET_FORM({ field: 'searchView', items: this.$refs.search })
+    this.SET_STATE_FORM({ field: 'searchView', items: this.$refs.search })
   },
   beforeDestroy() {
-    this.SET_FORM({ field: 'searchView', items: false })
+    this.SET_STATE_FORM({ field: 'searchView', items: false })
   }
 }
 </script>

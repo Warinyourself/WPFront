@@ -25,33 +25,17 @@
         :commit='{path: "search/SET_STATE_SEARCH", field: "activeTab"}'
       ) {{ $t('search.recipes')}}
       AppModalWindow(name='modalFormProducts')
-        h2 FORM
-        input(commit=''
-              name=''
-              validator='{}'
-              placeholder='Title'
-        )
-        input(commit=''
-              name=''
-              validator='{}'
-              placeholder='Description'
-        )
-        input(commit=''
-              name=''
-              validator='{}'
-              type='file'
-              placeholder='Images'
-        )
-        input(commit=''
-              name=''
-              validator='{}'
-              placeholder=''
-        )
-        input(commit=''
-              name=''
-              validator='{}'
-              placeholder='Title'
-        )
+        AppForm(name='formProducts')
+          h2 FORM
+          AppInput.w-100(name='ProductTitle'
+            :validators='{required: true}'
+            placeholder='Title'
+          )
+          AppButton.p-2.mt-2.br-1.bgc-main--lightest.br-50(
+            icon='submit'
+            type='submit'
+          )
+
       AppButton.p-2.br-1.bgc-main--lightest.br-50(
           icon='plus'
           value='modalFormProducts'

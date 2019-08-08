@@ -1,5 +1,5 @@
 <template lang="pug">
-  .button.ai-center(@click='handleClick' :class='classObject' )
+  button.button.ai-center(@click='handleClick' :class='classObject' v-bind='$attrs' :type='this.type')
     AppIcon.icon-3(v-if='icon' :icon='icon')
     .button__body(:class='{"ml-2": icon}' v-if='$slots.default')
       slot.ln-0
@@ -10,9 +10,6 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'AppButton',
-  mounted() {
-    console.log(this.$slots)
-  },
   props: {
     type: {
       type: String,
@@ -60,7 +57,6 @@ export default {
   methods: {
     handleClick() {
       if (this.value && this.commit) {
-        console.log('TAB state')
         if (this.commit.field) {
           this.$store.commit(this.commit.path, {
             field: this.commit.field,
@@ -70,11 +66,6 @@ export default {
           this.$store.commit(this.commit.path, this.value)
         }
       }
-      // if (this.active && (this.commitOn || this.commit)) {
-      // this.$store.commit(this.commit.path, {type: this.commit.type, value: this.active})
-      // } else if (!this.active && (this.commitOff || this.commit)) {
-      // this.$store.commit(this.commit.path, {type: this.commit.type, value: this.active})
-      // }
     }
   }
 }
