@@ -6,17 +6,24 @@
           @input='handleInput'
           @focus='onFocus'
           @blur='onBlur')
+    .error-block(v-if='input')
+     .error-blocks(v-for='(error, i) in input.errors' :key='i') {{error.text}}
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 
 export default {
-  name: 'AppSearch',
+  name: 'AppInput',
   data() {
     return {
       value: '',
       timeout: false,
+    }
+  },
+  watch: {
+    input() {
+      console.log('UPDATED COMPUTED INPUT', this.input)
     }
   },
   inject: ['form'],
@@ -35,6 +42,14 @@ export default {
     validators: {
       type: Object,
       default: {},
+    }
+  },
+  computed: {
+    ...mapGetters('form', [
+      'getInputByName',
+    ]),
+    input() {
+      return this.getInputByName(this.name);
     }
   },
   methods: {

@@ -27,12 +27,23 @@ export const mutations = {
                 .children.find(child => child.name === inputName);
 
     child.errors = errors;
-  }
+  },
+  DELETE_INPUT_ERRORS(state, {formName, inputName, errors}) {
+    let child = state.forms.find(form => form.name === formName)
+                .children.find(child => child.name === inputName);
+
+    child.errors = [];
+  },
 }
 
 export const getters = {
   getFormByName: (state) => (name) => {
     return state.forms.find(form => form.name === name);
+  },
+  getInputByName: (state) => (name) => {
+    console.log('ALERt, GET INPUT BY NAME', name)
+    console.log(state.forms.map(form => form.children))
+    return state.forms.map(form => form.children).flat().find(child => child.name === name);
   },
   checkInputValidation: (state, getters) => ({value, validators}) => {
     let answers = [];
@@ -44,7 +55,9 @@ export const getters = {
     return answers.filter(answer => typeof(answer) === 'object')
   },
   required: (state) => ({value, options}) => {
+    console.log(value, 'REQURED')
     if (!value) {
+      console.log('THROW ERROR REQUIRED')
       return {text: 'Поле обязательное'};
     } 
     return true;
@@ -66,6 +79,11 @@ export const actions = {
           formName: name,
           inputName: child.name,
           errors, errors
+        })
+      } else {
+        commit('DELETE_INPUT_ERRORS', {
+          formName: name,
+          inputName: child.name,
         })
       }
     })
