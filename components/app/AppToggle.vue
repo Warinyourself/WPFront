@@ -43,11 +43,6 @@ export default {
       active: false
     }
   },
-  watch: {
-    active() {
-      console.log('CHAnGE ACTIVE', this.active)
-    }
-  },
   computed: {
     classObject() {
       const classToggle = 'toggle--' + this.type

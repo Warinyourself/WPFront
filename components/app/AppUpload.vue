@@ -1,7 +1,8 @@
 <template lang="pug">
   .input.fd-column
-    .input__body
-      label.upload-block(:for='name')
+    .input__body.ai-center.jc-space-between
+      .upload-title {{fileName || $attrs.placeholder}}
+      label.upload-block.pointer(:for='name')
       input.d-n(:id='name'
             v-bind='$attrs'
             ref='upload'
@@ -18,7 +19,10 @@ import { mapState, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'AppUpload',
   props: {
-    name: String,
+    name: {
+      type: String,
+      default: 'uploads'
+    },
     commit: Object,
     action: Object,
     type: String,
@@ -29,7 +33,7 @@ export default {
   },
   data() {
     return {
-      value: ''
+      fileName: ''
     }
   },
   inject: ['form'],
@@ -42,7 +46,19 @@ export default {
   methods: {
     ...mapMutations('form', ['SET_STATE_FORM', 'ADD_INPUT_IN_FORM']),
     handleUpload(e) {
-      console.log(e)
+      const input = e.target
+
+      this.fileName = input.files[0].name
+
+      if (input.files && input.files[0]) {
+        const reader = new FileReader()
+
+        reader.onload = (e) => {
+          console.log(e, e.target.result)
+        }
+
+        // reader.readAsDataURL(input.files[0])
+      }
     }
   },
   mounted() {
