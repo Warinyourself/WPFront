@@ -26,21 +26,26 @@
       ) {{ $t('search.recipes')}}
       AppModalWindow(name='modalFormProducts')
         AppForm(name='formProducts')
-          h2 FORM
+          h2 {{ $t('search.form.name') }}
           AppInput.w-100(name='ProductTitle'
             :validators='{required: true}'
-            placeholder='Title'
+            :placeholder='$t("search.form.name_product")'
+          )
+          AppUpload.w-100(name='ProductTitle'
+            type='file'
+            :validators='{required: true}'
+            :placeholder='$t("forms.upload")'
           )
           AppButton.p-2.mt-2.br-1.bgc-main--lightest.br-50(
             icon='submit'
             type='submit'
-          )
+          ) {{ $t('forms.submit')}}
 
       AppButton.p-2.br-1.bgc-main--lightest.br-50(
-          icon='plus'
-          value='modalFormProducts'
-          :commit='{path: "page/ADD_ACTIVE_MODAL"}'
-        )
+        icon='plus'
+        value='modalFormProducts'
+        :commit='{path: "page/ADD_ACTIVE_MODAL"}'
+      )
     .flex.mt-2
       span {{activeTab}}
       span {{searchInput}}
@@ -52,10 +57,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'SearchPage',
   computed: {
-    ...mapState('search', [
-      'activeTab',
-      'searchInput',
-    ]),
-  },
+    ...mapState('search', ['activeTab', 'searchInput'])
+  }
 }
 </script>

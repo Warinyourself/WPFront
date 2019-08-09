@@ -8,7 +8,7 @@ export const state = () => ({
 
 export const mutations = {
   SET_STATE_FORM(state, payload) {
-    state[payload.field] = payload.value;
+    state[payload.field] = payload.value
   },
   SET_FORM(state, payload) {
     state.forms.push({
@@ -20,70 +20,75 @@ export const mutations = {
     state.forms.splice(state.forms.length - 1, 1)
   },
   ADD_INPUT_IN_FORM(state, payload) {
-    state.forms[state.forms.length - 1].children.push(payload);
+    state.forms[state.forms.length - 1].children.push(payload)
   },
-  SET_INPUT_ERRORS(state, {formName, inputName, errors}) {
-    let child = state.forms.find(form => form.name === formName)
-                .children.find(child => child.name === inputName);
+  SET_INPUT_ERRORS(state, { formName, inputName, errors }) {
+    const child = state.forms
+      .find(form => form.name === formName)
+      .children.find((child) => child.name === inputName)
 
-    child.errors = errors;
+    child.errors = errors
   },
-  DELETE_INPUT_ERRORS(state, {formName, inputName, errors}) {
-    let child = state.forms.find(form => form.name === formName)
-                .children.find(child => child.name === inputName);
+  DELETE_INPUT_ERRORS(state, { formName, inputName, errors }) {
+    const child = state.forms
+      .find(form => form.name === formName)
+      .children.find((child) => child.name === inputName)
 
-    child.errors = [];
-  },
+    child.errors = []
+  }
 }
 
 export const getters = {
   getFormByName: (state) => (name) => {
-    return state.forms.find(form => form.name === name);
+    return state.forms.find(form => form.name === name)
   },
   getInputByName: (state) => (name) => {
-    console.log('ALERt, GET INPUT BY NAME', name)
-    console.log(state.forms.map(form => form.children))
-    return state.forms.map(form => form.children).flat().find(child => child.name === name);
+    return state.forms
+      .map(form => form.children)
+      .flat()
+      .find(child => child.name === name)
   },
-  checkInputValidation: (state, getters) => ({value, validators}) => {
-    let answers = [];
+  checkInputValidation: (state, getters) => ({ value, validators }) => {
+    const answers = []
 
-    for (let [key, options] of Object.entries(validators)) {
-      answers.push(getters[key]({value: value, options: options}));
+    for (const [key, options] of Object.entries(validators)) {
+      answers.push(getters[key]({ value: value, options: options }))
     }
 
-    return answers.filter(answer => typeof(answer) === 'object')
+    return answers.filter(answer => typeof answer === 'object')
   },
-  required: (state) => ({value, options}) => {
+  required: (state) => ({ value, options }) => {
     console.log(value, 'REQURED')
     if (!value) {
       console.log('THROW ERROR REQUIRED')
-      return {text: 'Поле обязательное'};
-    } 
-    return true;
-  },
+      return { pathText: 'forms.errors.required' }
+    }
+    return true
+  }
 }
 
 export const actions = {
-  SUBMIT_FORM({state, getters, commit}, {name}) {
-    let children = getters.getFormByName(name).children;
+  SUBMIT_FORM({ state, getters, commit }, { name }) {
+    const children = getters.getFormByName(name).children
 
     children.forEach((child) => {
-      let errors = getters.checkInputValidation({
+      const errors = getters.checkInputValidation({
         value: child.node.value,
         validators: child.validators
-      });
+      })
 
       if (errors.length) {
         commit('SET_INPUT_ERRORS', {
           formName: name,
           inputName: child.name,
-          errors, errors
+          errors,
+
+          errors
         })
       } else {
         commit('DELETE_INPUT_ERRORS', {
           formName: name,
-          inputName: child.name,
+          inputName: child.name
         })
       }
     })

@@ -18,7 +18,18 @@
   "search": {
     "products": "Продукты",
     "courses": "Курсы",
-    "recipes": "Рецепты"
+    "recipes": "Рецепты",
+    "form": {
+      "name": "Создать продукт",
+      "image": "Выгрузить изображение",
+      "name_product": "Название продукта",
+      "description": "Описание продукта",
+      "body": "Основной текст",
+      "calories": "Калорийность",
+      "carbohydrates": "Углеводы",
+      "protein": "Белки",
+      "fats": "Жиры"
+    }
   },
   "home": {
     "title": "Welcome",
@@ -27,5 +38,12 @@
   "about": {
     "title": "About",
     "introduction": "This page is made to give you more informations."
+  },
+  "forms" : {
+    "submit": "Подтвердить",
+    "upload": "Выгрузить изображение",
+    "errors": {
+      "required": "Обязательное поле"
+    }
   }
 }

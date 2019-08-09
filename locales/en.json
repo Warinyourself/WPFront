@@ -18,7 +18,17 @@
   "search": {
     "products": "Products",
     "courses": "Сourses",
-    "recipes": "Recipes"
+    "recipes": "Recipes",
+    "form": {
+      "name": "Create product",
+      "name_product": "Product name",
+      "description": "Product description",
+      "body": "Base text",
+      "calories": "Calories",
+      "carbohydrates": "Carbohydrates",
+      "protein": "Protein",
+      "fats": "Fats"
+    }
   },
   "home": {
     "title": "Welcome",
@@ -27,5 +37,12 @@
   "about": {
     "title": "About",
     "introduction": "This page is made to give you more informations."
+  },
+  "forms" : {
+    "submit": "Submit",
+    "upload": "Upload image",
+    "errors": {
+      "required": "Required field"
+    }
   }
 }

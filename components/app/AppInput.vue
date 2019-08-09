@@ -1,13 +1,16 @@
 <template lang="pug">
-  .input.ai-center
-    input(v-bind='$attrs'
-          ref='input'
-          v-model='value'
-          @input='handleInput'
-          @focus='onFocus'
-          @blur='onBlur')
-    .error-block(v-if='input')
-     .error-blocks(v-for='(error, i) in input.errors' :key='i') {{error.text}}
+  .input.fd-column
+    .input__body
+      input(v-bind='$attrs'
+            ref='input'
+            :type='type'
+            v-model='value'
+            @input='handleInput'
+            @focus='onFocus'
+            @blur='onBlur')
+      .highlight.highlight__line--bottom
+    .error-block.mt-2(v-if='input')
+     .error-blocks(v-for='(error, i) in input.errors' :key='i') {{ $t(error.pathText) }}
 </template>
 
 <script>
@@ -15,50 +18,41 @@ import { mapState, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'AppInput',
-  data() {
-    return {
-      value: '',
-      timeout: false,
-    }
-  },
-  watch: {
-    input() {
-      console.log('UPDATED COMPUTED INPUT', this.input)
-    }
-  },
-  inject: ['form'],
   props: {
     name: String,
     commit: Object,
     action: Object,
+    type: String,
     delay: {
       type: Number,
-      default: 500,
+      default: 500
     },
     delayType: {
       type: String,
-      default: 'debounce',
+      default: 'debounce'
     },
     validators: {
       type: Object,
-      default: {},
+      default: {}
     }
   },
+  data() {
+    return {
+      value: '',
+      timeout: false
+    }
+  },
+  inject: ['form'],
   computed: {
-    ...mapGetters('form', [
-      'getInputByName',
-    ]),
+    ...mapGetters('form', ['getInputByName']),
     input() {
-      return this.getInputByName(this.name);
+      return this.getInputByName(this.name)
     }
   },
   methods: {
-    ...mapMutations('form', [
-      'SET_STATE_FORM',
-      'ADD_INPUT_IN_FORM',
-    ]),
+    ...mapMutations('form', ['SET_STATE_FORM', 'ADD_INPUT_IN_FORM']),
     handleInput(e) {
-      console.log(e);
+      console.log(e)
       // if (this.delay && this.delayType === 'debounce') {
       //   this.debounce(this.updateStore, e, false);
       // } else if (this.delay && this.delayType === 'throttle') {
@@ -76,21 +70,17 @@ export default {
     },
     onBlur(e) {
       // this.SET_STATE_FORM({ field: 'elementFocus', items: false })
-    },
+    }
   },
   mounted() {
-    console.log('MOUNTED CHILD INPUT');
     if (this.form) {
       this.ADD_INPUT_IN_FORM({
         name: this.name,
         errors: [],
         node: this.$refs.input,
-        validators: this.validators, 
+        validators: this.validators
       })
     }
-  },
-  // beforeDestroy() {
-  //   this.SET_STATE_FORM({ field: 'searchView', items: false })
-  // }
+  }
 }
 </script>
