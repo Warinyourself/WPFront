@@ -33,6 +33,7 @@
           )
           AppUpload.w-100(name='ProductTitle'
             type='file'
+            accept='image/png, image/jpeg'
             :validators='{required: true}'
             :placeholder='$t("forms.upload")'
           )

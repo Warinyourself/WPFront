@@ -73,7 +73,7 @@ export const actions = {
 
     children.forEach((child) => {
       const errors = getters.checkInputValidation({
-        value: child.node.value,
+        value: child.value,
         validators: child.validators
       })
 

@@ -76,9 +76,9 @@ export default {
     if (this.form) {
       this.ADD_INPUT_IN_FORM({
         name: this.name,
-        errors: [],
-        node: this.$refs.input,
-        validators: this.validators
+        value: this.value,
+        validators: this.validators,
+        errors: []
       })
     }
   }
