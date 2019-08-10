@@ -80,7 +80,7 @@ export default {
         .join('path')
         .attr('fill', (d) => {
           const opacityColor = d3.color(color(d.data.name))
-          opacityColor.opacity = 0.3
+          opacityColor.opacity = 0.8
 
           return opacityColor
         })

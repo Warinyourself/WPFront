@@ -7,14 +7,26 @@
   animation going .1s
 
 @keyframes going
-  to 
+  to
     opacity 0
 
 @keyframes coming 
-  from 
+  from
     opacity 0
-  to 
+  to
     opacity 1
+
+
+.error-leave-active 
+  max-height 20px
+  opacity 1
+
+.error-enter-active, .error-leave-active
+  transition all 1s
+
+.error-enter, .error-leave-to 
+  opacity 0
+  max-height 0px
 
 
 .slide-out-left-enter-active

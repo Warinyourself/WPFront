@@ -42,7 +42,8 @@
     "submit": "Submit",
     "upload": "Upload image",
     "errors": {
-      "required": "Required field"
+      "required": "Required field",
+      "letters": "Only letters"
     }
   }
 }

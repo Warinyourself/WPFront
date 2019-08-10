@@ -1,6 +1,6 @@
 export const state = () => ({
   email: '',
-  //token: localStorage.getItem('token') || '',
+  token: '',
   status: 'Offline',
 })
 

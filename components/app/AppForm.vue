@@ -21,7 +21,6 @@ export default {
   },
   methods: {
     ...mapMutations('form', [
-      'SET_STATE_FORM',
       'SET_FORM',
       'DELETE_FORM',
     ]),
@@ -29,7 +28,6 @@ export default {
       'SUBMIT_FORM'
     ]),
     handleSubmit(e) {
-      // console.log(e, 'HANDLE SUBMIT');
       this.SUBMIT_FORM({name: this.name});
     }
   },
@@ -38,7 +36,7 @@ export default {
       'getFormByName'
     ]),
     form() {
-      return this.getFormByName(this.name);
+      return this.getFormByName({name: this.name});
     }
   },
   mounted() {

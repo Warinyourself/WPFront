@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'AppUpload',
@@ -44,11 +44,12 @@ export default {
   computed: {
     ...mapGetters('form', ['getInputByName']),
     input() {
-      return this.getInputByName(this.name)
+      return this.getInputByName({name: this.name})
     }
   },
   methods: {
-    ...mapMutations('form', ['SET_STATE_FORM', 'ADD_INPUT_IN_FORM']),
+    ...mapActions('form', ['UPDATE_INPUT_IN_FORM']),
+    ...mapMutations('form', ['ADD_INPUT_IN_FORM']),
     handleUpload(e) {
       const input = e.target
 
@@ -61,7 +62,13 @@ export default {
 
         reader.onload = (e) => {
           this.fileValue = e.target.result;
-          console.log(e, e.target.result)
+          this.UPDATE_INPUT_IN_FORM({
+            name: this.name,
+            body: {
+              size: this.fileSize,
+              value: this.fileValue
+            }
+          })
         }
 
         reader.readAsDataURL(input.files[0])
@@ -69,7 +76,6 @@ export default {
     }
   },
   mounted() {
-    console.log('MOUNTED UPLOAD')
     if (this.form) {
       this.ADD_INPUT_IN_FORM({
         name: this.name,

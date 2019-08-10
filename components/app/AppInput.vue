@@ -1,6 +1,6 @@
 <template lang="pug">
   .input.fd-column
-    .input__body
+    .input__body(:class='{"input--error": input && input.errors.length}')
       input(v-bind='$attrs'
             ref='input'
             :type='type'
@@ -9,12 +9,12 @@
             @focus='onFocus'
             @blur='onBlur')
       .highlight.highlight__line--bottom
-    .error-block.mt-2(v-if='input')
-     .error-blocks(v-for='(error, i) in input.errors' :key='i') {{ $t(error.pathText) }}
+    transition(name='error')
+      .error-block(v-if='input && input.errors.length') {{ $t(input.errors[0].pathText) }}
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'AppInput',
@@ -46,30 +46,36 @@ export default {
   computed: {
     ...mapGetters('form', ['getInputByName']),
     input() {
-      return this.getInputByName(this.name)
+      return this.getInputByName({name: this.name})
     }
   },
   methods: {
+    ...mapActions('form', ['UPDATE_INPUT_IN_FORM']),
     ...mapMutations('form', ['SET_STATE_FORM', 'ADD_INPUT_IN_FORM']),
     handleInput(e) {
-      console.log(e)
-      // if (this.delay && this.delayType === 'debounce') {
-      //   this.debounce(this.updateStore, e, false);
-      // } else if (this.delay && this.delayType === 'throttle') {
-      //   console.log('create throttle function');
-      // } else if (this.delayType === 'none'){
-      //   this.updateStore(e);
-      // }
+      if (this.delay && this.delayType === 'debounce') {
+        this.debounce(this.updateStore, e, false);
+      } else if (this.delay && this.delayType === 'throttle') {
+        console.log('create throttle function'); 
+      } else if (this.delayType === 'none'){
+        this.updateStore(e);
+      }
     },
     updateStore(e) {
-      console.log(e)
+      this.UPDATE_INPUT_IN_FORM({
+        name: this.name,
+        body: {
+          value: this.value,
+        }
+      })
+      console.log(e, 'UPDATE STORE')
       // this.$store.commit(this.commit.path, {field: this.commit.field, value: e.target.value})
     },
     onFocus(e) {
-      // this.SET_STATE_FORM({ field: 'elementFocus', items: e.target })
+      this.SET_STATE_FORM({ key: 'elementFocus', items: e.target })
     },
     onBlur(e) {
-      // this.SET_STATE_FORM({ field: 'elementFocus', items: false })
+      this.SET_STATE_FORM({ key: 'elementFocus', items: false })
     }
   },
   mounted() {

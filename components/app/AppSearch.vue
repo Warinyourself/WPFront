@@ -1,5 +1,5 @@
 <template lang="pug">
-  .input.input--search.ai-center
+  .input.input-search.ai-center
     input(v-model='search' @input='handleInput' @focus='onFocus' @blur='onBlur' type='text' ref='search')
     AppIcon.icon-2.icon-bg(icon='search')
 </template>
@@ -42,17 +42,17 @@ export default {
       this.$store.commit(this.commit.path, {field: this.commit.field, value: e.target.value})
     },
     onFocus(e) {
-      this.SET_STATE_FORM({ field: 'elementFocus', items: e.target })
+      this.SET_STATE_FORM({ key: 'elementFocus', items: e.target })
     },
     onBlur(e) {
-      this.SET_STATE_FORM({ field: 'elementFocus', items: false })
+      this.SET_STATE_FORM({ key: 'elementFocus', items: false })
     },
   },
   mounted() {
-    this.SET_STATE_FORM({ field: 'searchView', items: this.$refs.search })
+    this.SET_STATE_FORM({ key: 'searchView', items: this.$refs.search })
   },
   beforeDestroy() {
-    this.SET_STATE_FORM({ field: 'searchView', items: false })
+    this.SET_STATE_FORM({ key: 'searchView', items: false })
   }
 }
 </script>

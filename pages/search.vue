@@ -27,11 +27,11 @@
       AppModalWindow(name='modalFormProducts')
         AppForm(name='formProducts')
           h2 {{ $t('search.form.name') }}
-          AppInput.w-100(name='ProductTitle'
-            :validators='{required: true}'
+          AppInput.w-100.mb-2(name='ProductTitle'
+            :validators='{required: true, letters: true}'
             :placeholder='$t("search.form.name_product")'
           )
-          AppUpload.w-100(name='ProductTitle'
+          AppUpload.w-100(name='ProductUpload'
             type='file'
             accept='image/png, image/jpeg'
             :validators='{required: true}'
