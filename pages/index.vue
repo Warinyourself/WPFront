@@ -4,15 +4,12 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'MainPage',
   methods: {
-    ...mapActions('user', [
-      'checkAuth',
-    ])
+    ...mapActions('user', ['checkAuth'])
   }
 }
 </script>
-

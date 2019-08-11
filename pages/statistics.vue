@@ -9,7 +9,7 @@ import ArcChart from '@/components/common/ArcChart'
 export default {
   name: 'SchedulePage',
   components: {
-    ArcChart,
-  },
+    ArcChart
+  }
 }
 </script>

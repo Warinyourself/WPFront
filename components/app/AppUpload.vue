@@ -37,14 +37,14 @@ export default {
       fileName: '',
       fileSize: 0,
       fileType: '',
-      fileValue: '',
+      fileValue: ''
     }
   },
   inject: ['form'],
   computed: {
     ...mapGetters('form', ['getInputByName']),
     input() {
-      return this.getInputByName({name: this.name})
+      return this.getInputByName({ name: this.name })
     }
   },
   methods: {
@@ -61,7 +61,7 @@ export default {
         const reader = new FileReader()
 
         reader.onload = (e) => {
-          this.fileValue = e.target.result;
+          this.fileValue = e.target.result
           this.UPDATE_INPUT_IN_FORM({
             name: this.name,
             body: {
@@ -82,7 +82,7 @@ export default {
         size: this.fileSize,
         value: this.fileValue,
         validators: this.validators,
-        errors: [],
+        errors: []
       })
     }
   }

@@ -6,8 +6,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   name: 'AppButton',
   props: {
@@ -45,9 +43,9 @@ export default {
       const field = this.state.field
 
       if (field && path) {
-        let value = this.$store.getters[path](field);
-        classObject['button--active'] = value === this.value;
-      } 
+        const value = this.$store.getters[path](field)
+        classObject['button--active'] = value === this.value
+      }
 
       classObject[classToggle] = true
 

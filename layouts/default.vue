@@ -18,22 +18,15 @@ export default {
     MainHeaderBar
   },
   computed: {
-    ...mapState('page', [
-      'minimizeMenu',
-      'isDark',
-      'language'
-    ])
+    ...mapState('page', ['minimizeMenu', 'isDark', 'language'])
   },
   watch: {
     language() {
-      this.$i18n.locale = this.language;
+      this.$i18n.locale = this.language
     }
   },
   methods: {
-    ...mapActions('page', [
-      'CANCEL_SOMETHING',
-      'DONE_SOMETHING'
-    ]),
+    ...mapActions('page', ['CANCEL_SOMETHING', 'DONE_SOMETHING']),
     ...mapMutations('page', ['TOGGLE_MENU']),
     handleKeyUp(e) {
       const KEYCODE_ENTER = 13
@@ -47,7 +40,7 @@ export default {
       } else if (e.keyCode === KEYCODE_B && e.ctrlKey) {
         this.TOGGLE_MENU()
       } else {
-        //console.log(e, e.keyCode === KEYCODE_B, e.ctrlKey)
+        // console.log(e, e.keyCode === KEYCODE_B, e.ctrlKey)
       }
     }
   },

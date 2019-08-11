@@ -28,10 +28,7 @@ export default {
   },
   layout: 'none',
   methods: {
-    ...mapActions('user', [
-      'login',
-      'create',
-    ]),
+    ...mapActions('user', ['login', 'create']),
     async loginUser() {
       const payload = { email: this.email, password: this.password }
 

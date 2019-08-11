@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'AppModalWindow',
@@ -23,7 +23,10 @@ export default {
   computed: {
     ...mapState('page', ['modalWindows']),
     isView() {
-      return !!this.modalWindows.find(item => item === this.name)
+      // replace on getters with name value
+      return !!this.modalWindows.find((item) => {
+        return item === this.name
+      })
     },
     classObject() {
       const classToggle = 'modal--' + this.type
@@ -35,9 +38,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('page', [
-      'CLOSE_MODAL'
-    ]),
+    ...mapMutations('page', ['CLOSE_MODAL']),
     closeMonal() {
       this.CLOSE_MODAL(this.name)
     }

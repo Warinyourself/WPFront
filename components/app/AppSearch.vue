@@ -5,48 +5,51 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'AppSearch',
-  data() {
-    return {
-      search: '',
-      timeout: false,
-    }
-  },
   props: {
     delayType: {
       type: String,
-      default: 'debounce',
+      default: 'debounce'
     },
     delay: {
       type: Number,
-      default: 500,
+      default: 500
     },
     commit: Object,
-    action: Object,
+    action: Object
+  },
+  data() {
+    return {
+      search: '',
+      timeout: false
+    }
   },
   methods: {
     ...mapMutations('form', ['SET_STATE_FORM']),
     handleInput(e) {
       if (this.delay && this.delayType === 'debounce') {
-        this.debounce(this.updateStore, e, false);
+        this.debounce(this.updateStore, e, false)
       } else if (this.delay && this.delayType === 'throttle') {
-        console.log('create throttle function');
-      } else if (this.delayType === 'none'){
-        this.updateStore(e);
+        // Create throttle function
+      } else if (this.delayType === 'none') {
+        this.updateStore(e)
       }
     },
     updateStore(e) {
-      this.$store.commit(this.commit.path, {field: this.commit.field, value: e.target.value})
+      this.$store.commit(this.commit.path, {
+        field: this.commit.field,
+        value: e.target.value
+      })
     },
     onFocus(e) {
       this.SET_STATE_FORM({ key: 'elementFocus', items: e.target })
     },
     onBlur(e) {
       this.SET_STATE_FORM({ key: 'elementFocus', items: false })
-    },
+    }
   },
   mounted() {
     this.SET_STATE_FORM({ key: 'searchView', items: this.$refs.search })

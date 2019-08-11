@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+/* jshint nonew: false */
 
 export default {
   name: 'AppToggle',
@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     changeTab() {
-      console.log('CHANGE TAB')
+      // Mutations Change tab
     }
     // changeToggle() {
     // this.active = !this.active;

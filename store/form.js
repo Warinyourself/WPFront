@@ -4,7 +4,7 @@ export const state = () => ({
   searchLoading: false,
   elementFocus: false,
   searchView: false,
-  formError: false,
+  formError: false
 })
 
 export const mutations = {
@@ -27,21 +27,25 @@ export const mutations = {
     child.errors = errors
   },
   UPDATE_INPUT_IN_FORM(state, { child, body }) {
-    for (let [key, value] of Object.entries(body)) {
-      child[key] = value;
+    for (const [key, value] of Object.entries(body)) {
+      child[key] = value
     }
-  },
+  }
 }
 
 export const getters = {
-  getFormByName: (state) => ({ name }) => {
-    return state.forms.find(form => form.name === name)
+  getFormByName: (state, getters) => ({ name }) => {
+    return state.forms.find((form, i) => form.name === name)
   },
-  getInputByName: (state) => ({ name }) => {
+  getInputByName: (state, getters) => ({ name }) => {
     return state.forms
-      .map(form => form.children)
+      .map((form) => {
+        return form.children
+      })
       .flat()
-      .find(child => child.name === name)
+      .find((child) => {
+        return child.name === name
+      })
   },
   getInputErrors: (state, getters) => ({ value, validators }) => {
     const answers = []
@@ -50,38 +54,39 @@ export const getters = {
       answers.push(getters[key]({ value, options }))
     }
 
-    return answers.filter(answer => typeof answer === 'object')
+    return answers.filter((answer, i) => typeof answer === 'object')
   },
-  letters: (state) => ({ value, options }) => {
+  letters: (state, getters) => ({ value, options }) => {
     if (/^([a-zA-Z]|\s)+$/.test(value)) {
       return true
     }
     return { pathText: 'forms.errors.letters' }
   },
-  required: (state) => ({ value, options }) => {
+  required: (state, getters) => ({ value, options }) => {
     if (value) {
       return true
-    } 
+    }
     return { pathText: 'forms.errors.required' }
   }
 }
 
 export const actions = {
-  async SUBMIT_FORM({ getters, dispatch }, { name }) {
+  SUBMIT_FORM({ getters, dispatch }, { name }) {
     const children = getters.getFormByName({ name }).children
 
-    let errors = children.map(async (child) => {
-      return await dispatch('CHECK_INPUT_VALIDATION', {name: child.name})      
+    const errors = children.map(async (child) => {
+      return await dispatch('CHECK_INPUT_VALIDATION', { name: child.name })
     })
 
     dispatch('GET_VALUES_FROM_FORM', { name })
+
     if (!errors.length) {
-      console.log('CREATE SYNC FUNC')
+      // CREATE SYNC FUNC
     }
   },
-  GET_VALUES_FROM_FORM({state, getters }, { name }) {
-    let form = getters.getFormByName({ name })
-    let answer = {}
+  GET_VALUES_FROM_FORM({ state, getters }, { name }) {
+    const form = getters.getFormByName({ name })
+    const answer = {}
 
     form.children.forEach((input) => {
       answer[input.name] = input.value

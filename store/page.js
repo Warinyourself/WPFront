@@ -55,7 +55,7 @@ export const getters = {
     return state[field]
   },
   determinePathByName: (state) => (name) => {
-    //rename functions determinaKeyFori18nByTitleMenu
+    // rename functions determinaKeyFori18nByTitleMenu
     let title = name
 
     switch (title) {

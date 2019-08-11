@@ -1,21 +1,21 @@
-import Vue from 'vue';
+import Vue from 'vue'
 
 Vue.mixin({
   methods: {
     debounce(func, values, immediate) {
-      let later = () => {
-        this.timeout = false;
+      const later = () => {
+        this.timeout = false
         if (!immediate) {
-          func(values);
+          func(values)
         }
       }
 
-      clearTimeout(this.timeout);
+      clearTimeout(this.timeout)
 
-      this.timeout = setTimeout(later, this.delay);
+      this.timeout = setTimeout(later, this.delay)
       if (immediate) {
-        func(values);
+        func(values)
       }
-    },
+    }
   }
 })

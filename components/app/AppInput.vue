@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'AppInput',
@@ -33,7 +33,9 @@ export default {
     },
     validators: {
       type: Object,
-      default: {}
+      default: () => {
+        return {}
+      }
     }
   },
   data() {
@@ -46,7 +48,7 @@ export default {
   computed: {
     ...mapGetters('form', ['getInputByName']),
     input() {
-      return this.getInputByName({name: this.name})
+      return this.getInputByName({ name: this.name })
     }
   },
   methods: {
@@ -54,21 +56,20 @@ export default {
     ...mapMutations('form', ['SET_STATE_FORM', 'ADD_INPUT_IN_FORM']),
     handleInput(e) {
       if (this.delay && this.delayType === 'debounce') {
-        this.debounce(this.updateStore, e, false);
+        this.debounce(this.updateStore, e, false)
       } else if (this.delay && this.delayType === 'throttle') {
-        console.log('create throttle function'); 
-      } else if (this.delayType === 'none'){
-        this.updateStore(e);
+        // Create throttle function
+      } else if (this.delayType === 'none') {
+        this.updateStore(e)
       }
     },
     updateStore(e) {
       this.UPDATE_INPUT_IN_FORM({
         name: this.name,
         body: {
-          value: this.value,
+          value: this.value
         }
       })
-      console.log(e, 'UPDATE STORE')
       // this.$store.commit(this.commit.path, {field: this.commit.field, value: e.target.value})
     },
     onFocus(e) {

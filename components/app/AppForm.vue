@@ -4,46 +4,39 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'AppForm',
   props: {
     name: {
       type: String,
-      required: true,
+      required: true
     },
     commit: Object,
-    action: Object,
+    action: Object
   },
   provide: {
-    form: 'AppForm',
+    form: 'AppForm'
   },
   methods: {
-    ...mapMutations('form', [
-      'SET_FORM',
-      'DELETE_FORM',
-    ]),
-    ...mapActions('form', [
-      'SUBMIT_FORM'
-    ]),
+    ...mapMutations('form', ['SET_FORM', 'DELETE_FORM']),
+    ...mapActions('form', ['SUBMIT_FORM']),
     handleSubmit(e) {
-      this.SUBMIT_FORM({name: this.name});
+      this.SUBMIT_FORM({ name: this.name })
     }
   },
   computed: {
-    ...mapGetters('form', [
-      'getFormByName'
-    ]),
+    ...mapGetters('form', ['getFormByName']),
     form() {
-      return this.getFormByName({name: this.name});
+      return this.getFormByName({ name: this.name })
     }
   },
   mounted() {
-    this.SET_FORM({name: this.name});
+    this.SET_FORM({ name: this.name })
   },
   beforeDestroy() {
-    this.DELETE_FORM();
+    this.DELETE_FORM()
   }
 }
 </script>

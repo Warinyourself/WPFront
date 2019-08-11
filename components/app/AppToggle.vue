@@ -55,16 +55,16 @@ export default {
         const value = this.$store.getters[path](field)
 
         if (this.values.length) {
-          let active = this.values[0] !== value;
+          const active = this.values[0] !== value
 
-          classObject['toggle--active'] = active;
-          this.active = active;
+          classObject['toggle--active'] = active
+          this.active = active
         } else {
-          classObject['toggle--active'] = value;
-          this.active = value;
+          classObject['toggle--active'] = value
+          this.active = value
         }
       } else {
-        classObject['toggle--active'] = this.active;
+        classObject['toggle--active'] = this.active
       }
 
       if (this.type === 'arrow') {
@@ -81,7 +81,7 @@ export default {
   methods: {
     changeToggle() {
       if (!this.values.length && !this.state) {
-        this.active = !this.active;
+        this.active = !this.active
       }
 
       if (this.active && this.commit) {
@@ -94,7 +94,7 @@ export default {
           field: this.commit.field,
           value: this.values[1] || !this.active
         })
-      } 
+      }
     }
   }
 }
