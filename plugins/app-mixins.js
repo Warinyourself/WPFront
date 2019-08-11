@@ -2,6 +2,9 @@ import Vue from 'vue'
 
 Vue.mixin({
   methods: {
+    changeData({ key, value }) {
+      this[key] = value
+    },
     debounce(func, values, immediate) {
       const later = () => {
         this.timeout = false

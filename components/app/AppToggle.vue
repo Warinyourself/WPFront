@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   name: 'AppToggle',
   props: {
@@ -33,9 +31,7 @@ export default {
     },
     state: {
       type: Object,
-      default: () => {
-        return {}
-      }
+      default: () => Object.create(null)
     }
   },
   data() {
@@ -52,16 +48,16 @@ export default {
       const field = this.state.field
 
       if (field && path) {
-        const value = this.$store.getters[path](field)
+        let value = this.$store.getters[path](field)
 
         if (this.values.length) {
-          const active = this.values[0] !== value
+          value = this.values[0] !== value
 
-          classObject['toggle--active'] = active
-          this.active = active
+          classObject['toggle--active'] = value
+          this.changeData({ key: 'active', value })
         } else {
           classObject['toggle--active'] = value
-          this.active = value
+          this.changeData({ key: 'active', value })
         }
       } else {
         classObject['toggle--active'] = this.active

@@ -11,7 +11,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async login({}, { email, password }) {
+  async login(state, { email, password }) {
     const answer = await this.$axios.post('/login', { email, password })
 
     localStorage.setItem('token', answer.data.token)
@@ -20,6 +20,7 @@ export const actions = {
   async create(state, { password, email }) {
     const answer = await this.$axios.post('/create-user', { email, password })
 
+    // eslint-disable-next-line no-console
     console.log(answer.data)
   },
   logout() {
@@ -27,7 +28,7 @@ export const actions = {
 
     this.$router.push({ name: 'login' })
   },
-  updateLocalStorage({}, payload) {
+  updateLocalStorage(state, payload) {
     const user = Object.assign(
       JSON.parse(localStorage.getItem('user') || {}),
       payload
@@ -40,6 +41,7 @@ export const actions = {
       headers: { 'x-access-token': localStorage.getItem('token') }
     })
 
+    // eslint-disable-next-line no-console
     console.log(answer)
   }
 }

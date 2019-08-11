@@ -28,8 +28,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_STATE_PAGE: (state, payload) => {
-    state[payload.field] = payload.value
+  SET_STATE_PAGE: (state, { key, value }) => {
+    state[key] = value
   },
   TOGGLE_MENU: (state) => {
     state.minimizeMenu = !state.minimizeMenu
@@ -40,21 +40,21 @@ export const mutations = {
   CLOSE_MODAL: (state, payload) => {
     state.modalWindows.splice(state.modalWindows.indexOf(payload), 1)
   },
-  CHANGE_LANGUAGE: (state, payload) => {
+  CHANGE_LANGUAGE: (state, { key, value }) => {
     // console.log('CHANGE_LANGUAGE', this)
     // console.log('CHANGE_LANGUAGE', $router)
 
     // Maybe sync this i18n
     // this.$i18n.locale = 'ru'
-    state[payload.field] = payload.value
+    state[key] = value
   }
 }
 
 export const getters = {
-  getStatePage: (state) => (field) => {
-    return state[field]
+  getStatePage: (state, getters) => (key) => {
+    return state[key]
   },
-  determinePathByName: (state) => (name) => {
+  determinePathByName: (state, getters) => (name) => {
     // rename functions determinaKeyFori18nByTitleMenu
     let title = name
 

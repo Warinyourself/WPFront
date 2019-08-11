@@ -24,9 +24,7 @@ export default {
     disabled: Boolean,
     state: {
       type: Object,
-      default: () => {
-        return {}
-      }
+      default: () => Object.create(null)
     }
   },
   data() {

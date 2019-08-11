@@ -43,8 +43,8 @@ export default {
 
   modules: [
     '@nuxtjs/axios', // https://axios.nuxtjs.org/extend
-    '@nuxtjs/pwa'
-    // '@nuxtjs/eslint-module'
+    '@nuxtjs/pwa',
+    '@nuxtjs/eslint-module'
   ],
   /*
    ** Axios module configuration

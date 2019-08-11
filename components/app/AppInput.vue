@@ -33,9 +33,7 @@ export default {
     },
     validators: {
       type: Object,
-      default: () => {
-        return {}
-      }
+      default: () => Object.create(null)
     }
   },
   data() {

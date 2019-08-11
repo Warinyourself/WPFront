@@ -7,14 +7,14 @@
         h4.color-dark-link {{ $t(determinePathByName(item.name)) }}
     .menu__footer
       AppToggle(:values='["ru", "en"]'
-                :state='{ field: "language", path: "page/getStatePage"}'
-                :commit='{field: "language", path: "page/CHANGE_LANGUAGE"}')
+                :state='{ key: "language", path: "page/getStatePage"}'
+                :commit='{key: "language", path: "page/CHANGE_LANGUAGE"}')
       AppToggle(:icons='["sun", "moon"]'
-                :state='{ field: "isDark", path: "page/getStatePage"}'
-                :commit='{field: "isDark", path: "page/SET_STATE_PAGE"}')
+                :state='{ key: "isDark", path: "page/getStatePage"}'
+                :commit='{key: "isDark", path: "page/SET_STATE_PAGE"}')
       AppToggle(type='arrow'
-                :state='{field: "minimizeMenu", path: "page/getStatePage"}'
-                :commit='{field: "minimizeMenu", path: "page/SET_STATE_PAGE"}')
+                :state='{key: "minimizeMenu", path: "page/getStatePage"}'
+                :commit='{key: "minimizeMenu", path: "page/SET_STATE_PAGE"}')
 </template>
 
 <script>

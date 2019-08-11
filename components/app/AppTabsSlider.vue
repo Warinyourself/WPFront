@@ -37,9 +37,7 @@ export default {
     },
     state: {
       type: Object,
-      default: () => {
-        return {}
-      }
+      default: () => Object.create(null)
     }
   },
   data() {

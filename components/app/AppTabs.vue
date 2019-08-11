@@ -4,8 +4,6 @@
 </template>
 
 <script>
-/* jshint nonew: false */
-
 export default {
   name: 'AppToggle',
   props: {
@@ -37,9 +35,7 @@ export default {
     },
     state: {
       type: Object,
-      default: () => {
-        return {}
-      }
+      default: () => Object.create(null)
     }
   },
   data() {
@@ -58,7 +54,7 @@ export default {
       if (type && path) {
         const value = this.$store.getters[path](type)
         classObject['toggle--active'] = value
-        this.active = value
+        this.changeData({ key: 'active', value })
       } else {
         classObject['toggle--active'] = this.active
       }

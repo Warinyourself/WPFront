@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'AppUpload',
@@ -29,7 +29,7 @@ export default {
     type: String,
     validators: {
       type: Object,
-      default: {}
+      default: () => Object.create(null)
     }
   },
   data() {

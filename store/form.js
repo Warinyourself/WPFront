@@ -75,7 +75,10 @@ export const actions = {
     const children = getters.getFormByName({ name }).children
 
     const errors = children.map(async (child) => {
-      return await dispatch('CHECK_INPUT_VALIDATION', { name: child.name })
+      const error = await dispatch('CHECK_INPUT_VALIDATION', {
+        name: child.name
+      })
+      return error
     })
 
     dispatch('GET_VALUES_FROM_FORM', { name })

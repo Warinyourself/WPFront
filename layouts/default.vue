@@ -44,7 +44,7 @@ export default {
       }
     }
   },
-  created() {
+  mounted() {
     if (process.browser) {
       window.addEventListener('keyup', this.handleKeyUp, { passive: false })
     }

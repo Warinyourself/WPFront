@@ -25,21 +25,21 @@ export default {
       ]
     }
   },
-  async mounted() {
+  mounted() {
     this.initPieChart()
   },
   methods: {
-    async initPieChart() {
-      const that = this
+    initPieChart() {
+      // const that = this
       const width = document.documentElement.clientWidth
       const height = document.documentElement.clientHeight
       const margin = 10
       const minValue = Math.min(width, height) / 2
       const radius = minValue / 2 - margin * 2
-      const range = d3
-        .scaleLinear()
-        .domain([0, 100])
-        .range([0, 100])
+      // const range = d3
+      //   .scaleLinear()
+      //   .domain([0, 100])
+      //   .range([0, 100])
       const svg = d3
         .select(this.$refs.svgPie)
         .attr('style', `width: ${minValue}px; height: ${minValue}px`)
@@ -49,14 +49,23 @@ export default {
       const pie = d3
         .pie()
         .sort(null)
-        .value(d => d.value)
+        .value((d) => {
+          return d.value
+        })
 
       const color = d3
         .scaleOrdinal()
-        .domain(this.data.map(d => d.name))
+        .domain(
+          this.data.map((d) => {
+            return d.name
+          })
+        )
         .range(
           d3
-            .quantize(t => d3.interpolateSpectral(t * 0.3), this.data.length)
+            .quantize((t) => {
+              return d3.interpolateSpectral(t * 0.3)
+              // return d3.interpolateSpectral(t * 0.3), this.data.length
+            })
             .reverse()
         )
 
@@ -70,7 +79,6 @@ export default {
       const arcs = pie(this.data)
       // let cl = d3.color('rgb(228, 86, 73)');
       // cl.opacity = .8;
-      // console.log(cl);
 
       svg
         .append('g')

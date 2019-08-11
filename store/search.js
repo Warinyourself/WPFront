@@ -4,14 +4,14 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_STATE_SEARCH: (state, payload) => {
-    state[payload.field] = payload.value
+  SET_STATE_SEARCH: (state, { key, value }) => {
+    state[key] = value
   }
 }
 
 export const getters = {
-  getStateSearch: state => (field) => {
-    return state[field]
+  getStateSearch: (state, getters) => (key) => {
+    return state[key]
   }
 }
 
