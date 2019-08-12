@@ -22,8 +22,13 @@ export default {
       default: () => Object.create(null)
     }
   },
-  provide: {
-    form: 'AppForm'
+  provide() {
+    const form = {}
+    Object.defineProperty(form, 'name', {
+      enumerable: true,
+      get: () => this.name
+    })
+    return { form }
   },
   computed: {
     ...mapGetters('form', ['getFormByName']),

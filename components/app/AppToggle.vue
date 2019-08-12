@@ -73,10 +73,10 @@ export default {
           value = this.values[0] !== value
 
           classObject['toggle--active'] = value
-          // this.changeData({ key: 'active', value })
+          this.changeData({ key: 'active', value })
         } else {
           classObject['toggle--active'] = value
-          // this.changeData({ key: 'active', value })
+          this.changeData({ key: 'active', value })
         }
       } else {
         classObject['toggle--active'] = this.active
@@ -94,11 +94,9 @@ export default {
     }
   },
   methods: {
-    // changeData({ key, value }) {
-    //   // eslint-disable-next-line no-console
-    //   console.log(this)
-    //   this[key] = value
-    // },
+    changeData({ key, value }) {
+      this[key] = value
+    },
     changeToggle() {
       if (!this.values.length && !this.state) {
         this.active = !this.active

@@ -15,6 +15,20 @@
     <path d="M12 25a13 13 0 1 0 15-13l-2 13H12z" />
   </svg>
 
+  <!-- <svg xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" viewBox="0 0 35 35" width="47" height="47"><circle vector-effect="non-scaling-stroke" cx="18" cy="18" r="18" fill="#EBEBEB"/><path d=""/></svg> -->
+  <svg
+    v-else-if="icon === 'plusInCircle'"
+    xmlns="http://www.w3.org/2000/svg"
+    style="isolation:isolate"
+    viewBox="0 0 36 36"
+  >
+    <circle cx="18" cy="18" r="18" />
+    <path
+      class="icon-darkest"
+      d="M16 19v10a2 2 0 0 0 3 0V19h10a2 2 0 0 0 0-3H19V6a2 2 0 0 0-3 0v10H6a2 2 0 0 0 0 3h10z"
+    />
+  </svg>
+
   <svg
     v-else-if="icon === 'events'"
     xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +105,7 @@
     d="M20 38H5l-2-2V6l2-2h15a2 2 0 0 0 0-3H5C2 1 0 3 0 6v30c0 3 2 5 5 5h15a2 2 0 0 0 0-3zm20-18L29 10h-2v2l7 7H15l-2 2 2 2h19l-7 7a2 2 0 0 0 1 3l1-1 11-10a2 2 0 0 0 0-2z"
     fill-rule="evenodd"
   />
-  </svg> -->
+  </svg>-->
   <svg
     v-else-if="icon === 'upload'"
     xmlns="http://www.w3.org/2000/svg"

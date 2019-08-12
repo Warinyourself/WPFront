@@ -38,12 +38,11 @@
             :placeholder='$t("forms.upload")'
           )
           AppButton.p-2.mt-2.br-1.bgc-main--lightest.br-50(
-            icon='submit'
             type='submit'
           ) {{ $t('forms.submit')}}
 
       AppButton.p-2.br-1.bgc-main--lightest.br-50(
-        icon='plus'
+        icon='plusInCircle'
         value='modalFormProducts'
         :commit='{path: "page/ADD_ACTIVE_MODAL"}'
       )

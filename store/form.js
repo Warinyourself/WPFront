@@ -17,7 +17,7 @@ export const mutations = {
       children: []
     })
   },
-  DELETE_FORM(state) {
+  DELETE_FORM(state, { name }) {
     state.forms.splice(state.forms.length - 1, 1)
   },
   ADD_INPUT_IN_FORM(state, payload) {
@@ -35,7 +35,9 @@ export const mutations = {
 
 export const getters = {
   getFormByName: (state, getters) => ({ name }) => {
-    return state.forms.find((form, i) => form.name === name)
+    return state.forms.find((form) => {
+      return form.name === name
+    })
   },
   getInputByName: (state, getters) => ({ name }) => {
     return state.forms
@@ -56,6 +58,17 @@ export const getters = {
 
     return answers.filter((answer, i) => typeof answer === 'object')
   },
+  hasFormErrors: (state, getters) => (name) => {
+    const form = getters.getFormByName(name)
+
+    // eslint-disable-next-line no-console
+    console.log(form.children)
+    return form.children
+      .map((input) => {
+        return !!input.errors.length
+      })
+      .includes(true)
+  },
   letters: (state, getters) => ({ value, options }) => {
     if (/^([a-zA-Z]|\s)+$/.test(value)) {
       return true
@@ -71,23 +84,37 @@ export const getters = {
 }
 
 export const actions = {
-  SUBMIT_FORM({ getters, dispatch }, { name }) {
-    const children = getters.getFormByName({ name }).children
+  async SUBMIT_FORM({ getters, commit, dispatch }, { name }) {
+    // lowercase
+    await dispatch('checkForm', { name })
 
-    const errors = children.map(async (child) => {
-      const error = await dispatch('CHECK_INPUT_VALIDATION', {
-        name: child.name
-      })
-      return error
-    })
+    const hasErrors = getters.hasFormErrors({ name })
 
-    dispatch('GET_VALUES_FROM_FORM', { name })
+    if (!hasErrors) {
+      const answer = await dispatch('GET_VALUES_FROM_FORM', { name })
 
-    if (!errors.length) {
-      // CREATE SYNC FUNC
+      // eslint-disable-next-line no-console
+      console.log(hasErrors, 'In VUEX', answer)
+
+      // Not required
+      // commit('DELETE_FORM', { name })
     }
   },
-  GET_VALUES_FROM_FORM({ state, getters }, { name }) {
+  async checkForm({ getters, dispatch }, { name }) {
+    const form = getters.getFormByName({ name })
+
+    await Promise.all(
+      form.children.map(async (input) => {
+        const error = await dispatch('CHECK_INPUT_VALIDATION', {
+          name: input.name
+        })
+
+        return error
+      })
+    )
+  },
+  GET_VALUES_FROM_FORM({ getters }, { name }) {
+    // lowercase
     const form = getters.getFormByName({ name })
     const answer = {}
 
@@ -97,7 +124,7 @@ export const actions = {
 
     return answer
   },
-  async CHECK_INPUT_VALIDATION({ getters, dispatch }, { name }) {
+  CHECK_INPUT_VALIDATION({ getters, dispatch }, { name }) {
     const child = getters.getInputByName({ name })
 
     const errors = getters.getInputErrors({
@@ -106,18 +133,16 @@ export const actions = {
     })
 
     if (errors.length) {
-      await dispatch('SET_INPUT_ERRORS', {
+      dispatch('SET_INPUT_ERRORS', {
         name: child.name,
         errors
       })
     } else {
-      await dispatch('SET_INPUT_ERRORS', {
+      dispatch('SET_INPUT_ERRORS', {
         name: child.name,
         errors: []
       })
     }
-
-    return errors
   },
   SET_INPUT_ERRORS({ getters, commit }, { name, errors }) {
     const child = getters.getInputByName({ name })
