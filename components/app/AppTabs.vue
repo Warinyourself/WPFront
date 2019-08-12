@@ -16,22 +16,28 @@ export default {
       default: () => ['', '']
     },
     commit: {
-      type: Object
+      type: Object,
+      default: () => Object.create(null)
     },
     commitOn: {
-      type: Object
+      type: Object,
+      default: () => Object.create(null)
     },
     commitOff: {
-      type: Object
+      type: Object,
+      default: () => Object.create(null)
     },
     action: {
-      type: Object
+      type: Object,
+      default: () => Object.create(null)
     },
     actionOn: {
-      type: Object
+      type: Object,
+      default: () => Object.create(null)
     },
     actionOff: {
-      type: Object
+      type: Object,
+      default: () => Object.create(null)
     },
     state: {
       type: Object,

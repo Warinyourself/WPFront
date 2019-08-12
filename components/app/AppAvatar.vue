@@ -7,8 +7,14 @@
 export default {
   name: 'AppAvatar',
   props: {
-    img: String,
-    id: Number
+    img: {
+      type: String,
+      default: null
+    },
+    id: {
+      type: Number,
+      default: null
+    }
   },
   methods: {
     goToUser() {

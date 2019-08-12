@@ -19,10 +19,22 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   name: 'AppInput',
   props: {
-    name: String,
-    commit: Object,
-    action: Object,
-    type: String,
+    name: {
+      type: String,
+      default: 'input'
+    },
+    type: {
+      type: String,
+      default: 'text'
+    },
+    commit: {
+      type: Object,
+      default: () => Object.create(null)
+    },
+    action: {
+      type: Object,
+      default: () => Object.create(null)
+    },
     delay: {
       type: Number,
       default: 500
@@ -49,6 +61,16 @@ export default {
       return this.getInputByName({ name: this.name })
     }
   },
+  mounted() {
+    if (this.form) {
+      this.ADD_INPUT_IN_FORM({
+        name: this.name,
+        value: this.value,
+        validators: this.validators,
+        errors: []
+      })
+    }
+  },
   methods: {
     ...mapActions('form', ['UPDATE_INPUT_IN_FORM']),
     ...mapMutations('form', ['SET_STATE_FORM', 'ADD_INPUT_IN_FORM']),
@@ -68,23 +90,12 @@ export default {
           value: this.value
         }
       })
-      // this.$store.commit(this.commit.path, {field: this.commit.field, value: e.target.value})
     },
     onFocus(e) {
       this.SET_STATE_FORM({ key: 'elementFocus', items: e.target })
     },
     onBlur(e) {
       this.SET_STATE_FORM({ key: 'elementFocus', items: false })
-    }
-  },
-  mounted() {
-    if (this.form) {
-      this.ADD_INPUT_IN_FORM({
-        name: this.name,
-        value: this.value,
-        validators: this.validators,
-        errors: []
-      })
     }
   }
 }

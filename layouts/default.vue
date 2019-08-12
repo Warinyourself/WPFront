@@ -25,6 +25,16 @@ export default {
       this.$i18n.locale = this.language
     }
   },
+  mounted() {
+    if (process.browser) {
+      window.addEventListener('keyup', this.handleKeyUp, { passive: false })
+    }
+  },
+  destroyed() {
+    if (process.browser) {
+      window.removeEventListener('keyup', this.handleKeyUp)
+    }
+  },
   methods: {
     ...mapActions('page', ['CANCEL_SOMETHING', 'DONE_SOMETHING']),
     ...mapMutations('page', ['TOGGLE_MENU']),
@@ -42,16 +52,6 @@ export default {
       } else {
         // console.log(e, e.keyCode === KEYCODE_B, e.ctrlKey)
       }
-    }
-  },
-  mounted() {
-    if (process.browser) {
-      window.addEventListener('keyup', this.handleKeyUp, { passive: false })
-    }
-  },
-  destroyed() {
-    if (process.browser) {
-      window.removeEventListener('keyup', this.handleKeyUp)
     }
   }
 }

@@ -17,14 +17,33 @@ export default {
       default: 'classic'
     },
     icons: {
-      type: Array
+      type: Array,
+      default: () => ['', '']
     },
-    commit: Object,
-    commitOn: Object,
-    commitOff: Object,
-    action: Object,
-    actionOn: Object,
-    actionOff: Object,
+    commit: {
+      type: Object,
+      default: () => Object.create(null)
+    },
+    commitOn: {
+      type: Object,
+      default: () => Object.create(null)
+    },
+    commitOff: {
+      type: Object,
+      default: () => Object.create(null)
+    },
+    action: {
+      type: Object,
+      default: () => Object.create(null)
+    },
+    actionOn: {
+      type: Object,
+      default: () => Object.create(null)
+    },
+    actionOff: {
+      type: Object,
+      default: () => Object.create(null)
+    },
     values: {
       type: Array,
       default: () => []
@@ -45,19 +64,19 @@ export default {
       const classObject = {}
 
       const path = this.state.path
-      const field = this.state.field
+      const key = this.state.key
 
-      if (field && path) {
-        let value = this.$store.getters[path](field)
+      if (key && path) {
+        let value = this.$store.getters[path](key)
 
         if (this.values.length) {
           value = this.values[0] !== value
 
           classObject['toggle--active'] = value
-          this.changeData({ key: 'active', value })
+          // this.changeData({ key: 'active', value })
         } else {
           classObject['toggle--active'] = value
-          this.changeData({ key: 'active', value })
+          // this.changeData({ key: 'active', value })
         }
       } else {
         classObject['toggle--active'] = this.active
@@ -75,6 +94,11 @@ export default {
     }
   },
   methods: {
+    // changeData({ key, value }) {
+    //   // eslint-disable-next-line no-console
+    //   console.log(this)
+    //   this[key] = value
+    // },
     changeToggle() {
       if (!this.values.length && !this.state) {
         this.active = !this.active
@@ -82,14 +106,18 @@ export default {
 
       if (this.active && this.commit) {
         this.$store.commit(this.commit.path, {
-          field: this.commit.field,
+          key: this.commit.key,
           value: this.values[0] || !this.active
         })
+
+        this.active = !this.active
       } else if (!this.active && this.commit) {
         this.$store.commit(this.commit.path, {
-          field: this.commit.field,
+          key: this.commit.key,
           value: this.values[1] || !this.active
         })
+
+        this.active = !this.active
       }
     }
   }

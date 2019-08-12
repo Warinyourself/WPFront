@@ -7,7 +7,7 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET(state, { field, value }) {
-    state[field] = value
+  SET(state, { key, value }) {
+    state[key] = value
   }
 }

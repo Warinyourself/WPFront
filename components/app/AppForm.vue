@@ -13,18 +13,17 @@ export default {
       type: String,
       required: true
     },
-    commit: Object,
-    action: Object
+    commit: {
+      type: Object,
+      default: () => Object.create(null)
+    },
+    action: {
+      type: Object,
+      default: () => Object.create(null)
+    }
   },
   provide: {
     form: 'AppForm'
-  },
-  methods: {
-    ...mapMutations('form', ['SET_FORM', 'DELETE_FORM']),
-    ...mapActions('form', ['SUBMIT_FORM']),
-    handleSubmit(e) {
-      this.SUBMIT_FORM({ name: this.name })
-    }
   },
   computed: {
     ...mapGetters('form', ['getFormByName']),
@@ -37,6 +36,13 @@ export default {
   },
   beforeDestroy() {
     this.DELETE_FORM()
+  },
+  methods: {
+    ...mapMutations('form', ['SET_FORM', 'DELETE_FORM']),
+    ...mapActions('form', ['SUBMIT_FORM']),
+    handleSubmit(e) {
+      this.SUBMIT_FORM({ name: this.name })
+    }
   }
 }
 </script>

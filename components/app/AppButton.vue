@@ -13,14 +13,26 @@ export default {
       type: String,
       default: 'classic'
     },
-    icon: String,
-    value: String,
+    value: {
+      type: String,
+      default: null
+    },
+    icon: {
+      type: String,
+      default: null
+    },
     iconsPosition: {
       type: String,
       default: 'left'
     },
-    commit: Object,
-    action: Object,
+    commit: {
+      type: Object,
+      default: () => Object.create(null)
+    },
+    action: {
+      type: Object,
+      default: () => Object.create(null)
+    },
     disabled: Boolean,
     state: {
       type: Object,
@@ -38,10 +50,10 @@ export default {
       const classObject = {}
 
       const path = this.state.path
-      const field = this.state.field
+      const key = this.state.key
 
-      if (field && path) {
-        const value = this.$store.getters[path](field)
+      if (key && path) {
+        const value = this.$store.getters[path](key)
         classObject['button--active'] = value === this.value
       }
 
@@ -53,9 +65,9 @@ export default {
   methods: {
     handleClick() {
       if (this.value && this.commit) {
-        if (this.commit.field) {
+        if (this.commit.key) {
           this.$store.commit(this.commit.path, {
-            field: this.commit.field,
+            key: this.commit.key,
             value: this.value
           })
         } else {

@@ -18,14 +18,26 @@ export default {
       type: Number,
       default: 500
     },
-    commit: Object,
-    action: Object
+    commit: {
+      type: Object,
+      default: () => Object.create(null)
+    },
+    action: {
+      type: Object,
+      default: () => Object.create(null)
+    }
   },
   data() {
     return {
       search: '',
       timeout: false
     }
+  },
+  mounted() {
+    this.SET_STATE_FORM({ key: 'searchView', items: this.$refs.search })
+  },
+  beforeDestroy() {
+    this.SET_STATE_FORM({ key: 'searchView', items: false })
   },
   methods: {
     ...mapMutations('form', ['SET_STATE_FORM']),
@@ -40,7 +52,7 @@ export default {
     },
     updateStore(e) {
       this.$store.commit(this.commit.path, {
-        field: this.commit.field,
+        key: this.commit.key,
         value: e.target.value
       })
     },
@@ -50,12 +62,6 @@ export default {
     onBlur(e) {
       this.SET_STATE_FORM({ key: 'elementFocus', items: false })
     }
-  },
-  mounted() {
-    this.SET_STATE_FORM({ key: 'searchView', items: this.$refs.search })
-  },
-  beforeDestroy() {
-    this.SET_STATE_FORM({ key: 'searchView', items: false })
   }
 }
 </script>

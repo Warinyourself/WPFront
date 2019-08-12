@@ -24,9 +24,14 @@ export default {
       type: String,
       default: 'uploads'
     },
-    commit: Object,
-    action: Object,
-    type: String,
+    commit: {
+      type: Object,
+      default: () => Object.create(null)
+    },
+    action: {
+      type: Object,
+      default: () => Object.create(null)
+    },
     validators: {
       type: Object,
       default: () => Object.create(null)
@@ -45,6 +50,17 @@ export default {
     ...mapGetters('form', ['getInputByName']),
     input() {
       return this.getInputByName({ name: this.name })
+    }
+  },
+  mounted() {
+    if (this.form) {
+      this.ADD_INPUT_IN_FORM({
+        name: this.name,
+        size: this.fileSize,
+        value: this.fileValue,
+        validators: this.validators,
+        errors: []
+      })
     }
   },
   methods: {
@@ -73,17 +89,6 @@ export default {
 
         reader.readAsDataURL(input.files[0])
       }
-    }
-  },
-  mounted() {
-    if (this.form) {
-      this.ADD_INPUT_IN_FORM({
-        name: this.name,
-        size: this.fileSize,
-        value: this.fileValue,
-        validators: this.validators,
-        errors: []
-      })
     }
   }
 }
