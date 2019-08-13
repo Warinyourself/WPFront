@@ -30,10 +30,14 @@ export default {
     })
     return { form }
   },
+  inject: ['modal'],
   computed: {
-    ...mapGetters('form', ['getFormByName']),
+    ...mapGetters('form', ['getFormByName', 'hasFormErrors']),
     form() {
       return this.getFormByName({ name: this.name })
+    },
+    hasError() {
+      return this.hasFormErrors({ name: this.name })
     }
   },
   mounted() {
@@ -43,10 +47,19 @@ export default {
     this.DELETE_FORM()
   },
   methods: {
-    ...mapMutations('form', ['SET_FORM', 'DELETE_FORM']),
     ...mapActions('form', ['SUBMIT_FORM']),
-    handleSubmit(e) {
-      this.SUBMIT_FORM({ name: this.name })
+    ...mapMutations('form', ['SET_FORM', 'DELETE_FORM']),
+    ...mapMutations('page', ['CLOSE_MODAL']),
+    async handleSubmit(e) {
+      await this.SUBMIT_FORM({ name: this.name })
+
+      //   await this.checkFormErors({ name: this.name })
+
+      //   if (!this.hasError) {
+      //     const answer = await this.getValuesFromForm({ name: this.name })
+      //     // eslint-disable-next-line no-console
+      //     console.log(answer)
+      //   }
     }
   }
 }

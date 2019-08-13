@@ -37,8 +37,8 @@ export const mutations = {
   ADD_ACTIVE_MODAL: (state, payload) => {
     state.modalWindows.push(payload)
   },
-  CLOSE_MODAL: (state, payload) => {
-    state.modalWindows.splice(state.modalWindows.indexOf(payload), 1)
+  CLOSE_MODAL: (state, { name }) => {
+    state.modalWindows.splice(state.modalWindows.indexOf(name), 1)
   },
   CHANGE_LANGUAGE: (state, { key, value }) => {
     // console.log('CHANGE_LANGUAGE', this)

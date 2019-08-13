@@ -39,6 +39,25 @@ export const getters = {
       return form.name === name
     })
   },
+  getValuesFromForm: (state, getters) => ({ name }) => {
+    const form = getters.getFormByName({ name })
+    const answer = {}
+
+    form.children.forEach((input) => {
+      answer[input.name] = input.value
+    })
+
+    return answer
+  },
+  hasFormErrors: (state, getters) => (name) => {
+    const form = getters.getFormByName(name)
+
+    return form.children
+      .map((input) => {
+        return !!input.errors.length
+      })
+      .includes(true)
+  },
   getInputByName: (state, getters) => ({ name }) => {
     return state.forms
       .map((form) => {
@@ -58,17 +77,6 @@ export const getters = {
 
     return answers.filter((answer, i) => typeof answer === 'object')
   },
-  hasFormErrors: (state, getters) => (name) => {
-    const form = getters.getFormByName(name)
-
-    // eslint-disable-next-line no-console
-    console.log(form.children)
-    return form.children
-      .map((input) => {
-        return !!input.errors.length
-      })
-      .includes(true)
-  },
   letters: (state, getters) => ({ value, options }) => {
     if (/^([a-zA-Z]|\s)+$/.test(value)) {
       return true
@@ -84,23 +92,7 @@ export const getters = {
 }
 
 export const actions = {
-  async SUBMIT_FORM({ getters, commit, dispatch }, { name }) {
-    // lowercase
-    await dispatch('checkForm', { name })
-
-    const hasErrors = getters.hasFormErrors({ name })
-
-    if (!hasErrors) {
-      const answer = await dispatch('GET_VALUES_FROM_FORM', { name })
-
-      // eslint-disable-next-line no-console
-      console.log(hasErrors, 'In VUEX', answer)
-
-      // Not required
-      // commit('DELETE_FORM', { name })
-    }
-  },
-  async checkForm({ getters, dispatch }, { name }) {
+  async checkFormErors({ getters, dispatch }, { name }) {
     const form = getters.getFormByName({ name })
 
     await Promise.all(
@@ -113,16 +105,20 @@ export const actions = {
       })
     )
   },
-  GET_VALUES_FROM_FORM({ getters }, { name }) {
-    // lowercase
-    const form = getters.getFormByName({ name })
-    const answer = {}
+  async SUBMIT_FORM({ getters, commit, dispatch }, { name, close }) {
+    await dispatch('checkFormErors', { name })
 
-    form.children.forEach((input) => {
-      answer[input.name] = input.value
-    })
+    const hasErrors = getters.hasFormErrors({ name })
 
-    return answer
+    if (!hasErrors) {
+      const answer = getters.getValuesFromForm({ name })
+
+      // eslint-disable-next-line no-console
+      console.log(hasErrors, 'In VUEX', answer, close)
+
+      // Not required
+      // commit('DELETE_FORM', { name })
+    }
   },
   CHECK_INPUT_VALIDATION({ getters, dispatch }, { name }) {
     const child = getters.getInputByName({ name })

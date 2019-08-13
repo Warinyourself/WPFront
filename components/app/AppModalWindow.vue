@@ -17,8 +17,16 @@ export default {
     },
     name: {
       type: String,
-      default: 'Classic'
+      default: 'classic'
     }
+  },
+  provide() {
+    const modal = {}
+    Object.defineProperty(modal, 'name', {
+      enumerable: true,
+      get: () => this.name
+    })
+    return { modal }
   },
   computed: {
     ...mapState('page', ['modalWindows']),
@@ -40,7 +48,7 @@ export default {
   methods: {
     ...mapMutations('page', ['CLOSE_MODAL']),
     closeMonal() {
-      this.CLOSE_MODAL(this.name)
+      this.CLOSE_MODAL({ name: this.name })
     }
   }
 }
