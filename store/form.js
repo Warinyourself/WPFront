@@ -27,10 +27,10 @@ export const mutations = {
   ADD_INPUT_IN_FORM(state, payload) {
     state.forms[state.forms.length - 1].children.push(payload)
   },
-  setInputErrors(state, { child, errors }) {
+  SET_INPUT_ERRORS(state, { child, errors }) {
     child.errors = errors
   },
-  updateInputInForm(state, { child, body }) {
+  UPDATE_INPUT_IN_FORM(state, { child, body }) {
     for (const [key, value] of Object.entries(body)) {
       child[key] = value
     }
@@ -150,12 +150,12 @@ export const actions = {
   setInputErrors({ getters, commit }, { name, errors }) {
     const child = getters.getInputByName({ name })
 
-    commit('setInputErrors', { child, errors })
+    commit('SET_INPUT_ERRORS', { child, errors })
   },
   updateInputInForm({ getters, commit, dispatch }, { name, body }) {
     const child = getters.getInputByName({ name })
 
-    commit('updateInputInForm', { child, body })
+    commit('UPDATE_INPUT_IN_FORM', { child, body })
     dispatch('checkInputValidation', { name })
   }
 }

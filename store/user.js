@@ -5,8 +5,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  CHANGE_EMAIL: (state, value) => {
-    state.email = value
+  SET_STATE_USER: (state, { key, value }) => {
+    state[key] = value
   }
 }
 
