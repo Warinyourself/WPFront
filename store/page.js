@@ -102,7 +102,7 @@ export const getters = {
 }
 
 export const actions = {
-  CANCEL_SOMETHING: ({ getters, commit, rootState }) => {
+  cancelSomething: ({ getters, commit, rootState }) => {
     const activeWindows = getters.activeWindows
     const focus = rootState.form.elementFocus
 
@@ -115,7 +115,7 @@ export const actions = {
       )
     }
   },
-  DONE_SOMETHING: ({ getters, commit }) => {
+  doneSomething: ({ getters, commit }) => {
     const activeWindows = getters.activeWindows
 
     if (activeWindows.length) {

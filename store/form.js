@@ -18,15 +18,19 @@ export const mutations = {
     })
   },
   DELETE_FORM(state, { name }) {
-    state.forms.splice(state.forms.length - 1, 1)
+    const index = state.forms.findIndex((form) => {
+      return form.name === name
+    })
+
+    state.forms.splice(index, 1)
   },
   ADD_INPUT_IN_FORM(state, payload) {
     state.forms[state.forms.length - 1].children.push(payload)
   },
-  SET_INPUT_ERRORS(state, { child, errors }) {
+  setInputErrors(state, { child, errors }) {
     child.errors = errors
   },
-  UPDATE_INPUT_IN_FORM(state, { child, body }) {
+  updateInputInForm(state, { child, body }) {
     for (const [key, value] of Object.entries(body)) {
       child[key] = value
     }
@@ -97,7 +101,7 @@ export const actions = {
 
     await Promise.all(
       form.children.map(async (input) => {
-        const error = await dispatch('CHECK_INPUT_VALIDATION', {
+        const error = await dispatch('checkInputValidation', {
           name: input.name
         })
 
@@ -105,7 +109,7 @@ export const actions = {
       })
     )
   },
-  async SUBMIT_FORM({ getters, commit, dispatch }, { name, close }) {
+  async submitForm({ getters, commit, dispatch }, { name, close }) {
     await dispatch('checkFormErors', { name })
 
     const hasErrors = getters.hasFormErrors({ name })
@@ -116,11 +120,14 @@ export const actions = {
       // eslint-disable-next-line no-console
       console.log(hasErrors, 'In VUEX', answer, close)
 
-      // Not required
-      // commit('DELETE_FORM', { name })
+      if (close) {
+        if (close.type === 'modal') {
+          this.commit('page/CLOSE_MODAL', { name: close.name }, { root: true })
+        }
+      }
     }
   },
-  CHECK_INPUT_VALIDATION({ getters, dispatch }, { name }) {
+  checkInputValidation({ getters, dispatch }, { name }) {
     const child = getters.getInputByName({ name })
 
     const errors = getters.getInputErrors({
@@ -129,26 +136,26 @@ export const actions = {
     })
 
     if (errors.length) {
-      dispatch('SET_INPUT_ERRORS', {
+      dispatch('setInputErrors', {
         name: child.name,
         errors
       })
     } else {
-      dispatch('SET_INPUT_ERRORS', {
+      dispatch('setInputErrors', {
         name: child.name,
         errors: []
       })
     }
   },
-  SET_INPUT_ERRORS({ getters, commit }, { name, errors }) {
+  setInputErrors({ getters, commit }, { name, errors }) {
     const child = getters.getInputByName({ name })
 
-    commit('SET_INPUT_ERRORS', { child, errors })
+    commit('setInputErrors', { child, errors })
   },
-  UPDATE_INPUT_IN_FORM({ getters, commit, dispatch }, { name, body }) {
+  updateInputInForm({ getters, commit, dispatch }, { name, body }) {
     const child = getters.getInputByName({ name })
 
-    commit('UPDATE_INPUT_IN_FORM', { child, body })
-    dispatch('CHECK_INPUT_VALIDATION', { name })
+    commit('updateInputInForm', { child, body })
+    dispatch('checkInputValidation', { name })
   }
 }

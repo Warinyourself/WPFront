@@ -25,7 +25,7 @@
         :commit='{path: "search/SET_STATE_SEARCH", key: "activeTab"}'
       ) {{ $t('search.recipes')}}
       AppModalWindow(name='modalFormProducts')
-        AppForm(name='formProducts')
+        AppForm(name='formProducts' close)
           h2 {{ $t('search.form.name') }}
           AppInput.w-100.mb-2(name='ProductTitle'
             :validators='{required: true, letters: true}'

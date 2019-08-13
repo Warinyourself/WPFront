@@ -64,7 +64,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('form', ['UPDATE_INPUT_IN_FORM']),
+    ...mapActions('form', ['updateInputInForm']),
     ...mapMutations('form', ['ADD_INPUT_IN_FORM']),
     handleUpload(e) {
       const input = e.target
@@ -78,7 +78,7 @@ export default {
 
         reader.onload = (e) => {
           this.fileValue = e.target.result
-          this.UPDATE_INPUT_IN_FORM({
+          this.updateInputInForm({
             name: this.name,
             body: {
               size: this.fileSize,

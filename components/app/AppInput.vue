@@ -72,7 +72,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('form', ['UPDATE_INPUT_IN_FORM']),
+    ...mapActions('form', ['updateInputInForm']),
     ...mapMutations('form', ['SET_STATE_FORM', 'ADD_INPUT_IN_FORM']),
     handleInput(e) {
       if (this.delay && this.delayType === 'debounce') {
@@ -84,7 +84,7 @@ export default {
       }
     },
     updateStore(e) {
-      this.UPDATE_INPUT_IN_FORM({
+      this.updateInputInForm({
         name: this.name,
         body: {
           value: this.value

@@ -44,15 +44,23 @@ export default {
     this.SET_FORM({ name: this.name })
   },
   beforeDestroy() {
-    this.DELETE_FORM()
+    this.DELETE_FORM({ name: this.name })
   },
   methods: {
-    ...mapActions('form', ['SUBMIT_FORM']),
+    ...mapActions('form', ['submitForm']),
     ...mapMutations('form', ['SET_FORM', 'DELETE_FORM']),
     ...mapMutations('page', ['CLOSE_MODAL']),
     async handleSubmit(e) {
-      await this.SUBMIT_FORM({ name: this.name })
+      const obj = { name: this.name }
 
+      if (Object.prototype.hasOwnProperty.call(this.$attrs, 'close')) {
+        obj.close = {
+          type: 'modal',
+          name: this.modal.name
+        }
+      }
+
+      await this.submitForm(obj)
       //   await this.checkFormErors({ name: this.name })
 
       //   if (!this.hasError) {
