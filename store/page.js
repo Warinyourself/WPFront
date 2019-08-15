@@ -41,9 +41,6 @@ export const mutations = {
     state.modalWindows.splice(state.modalWindows.indexOf(name), 1)
   },
   CHANGE_LANGUAGE: (state, { key, value }) => {
-    // console.log('CHANGE_LANGUAGE', this)
-    // console.log('CHANGE_LANGUAGE', $router)
-
     // Maybe sync this i18n
     // this.$i18n.locale = 'ru'
     state[key] = value
@@ -54,8 +51,10 @@ export const getters = {
   getStatePage: (state, getters) => (key) => {
     return state[key]
   },
-  determinePathByName: (state, getters) => (name) => {
-    // rename functions determinaKeyFori18nByTitleMenu
+  isOpenModal: (state, getters) => (name) => {
+    return state.modalWindows.includes(name)
+  },
+  determineKeyFori18nByTitleMenu: () => (name) => {
     let title = name
 
     switch (title) {
