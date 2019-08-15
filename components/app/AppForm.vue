@@ -61,13 +61,6 @@ export default {
       }
 
       await this.submitForm(obj)
-      //   await this.checkFormErors({ name: this.name })
-
-      //   if (!this.hasError) {
-      //     const answer = await this.getValuesFromForm({ name: this.name })
-      //     // eslint-disable-next-line no-console
-      //     console.log(answer)
-      //   }
     }
   }
 }
