@@ -1,12 +1,12 @@
 <template lang="pug">
   transition(name='router-animation')
-    .mobal__background(@click='closeMonal' v-if='isView')
+    .mobal__background(@click='closeMonal' v-if='isOpen')
       .modal__body.bgc-main--second(@click.stop :class='classObject')
         slot
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'AppModalWindow',
@@ -30,11 +30,9 @@ export default {
   },
   computed: {
     ...mapState('page', ['modalWindows']),
-    isView() {
-      // replace on getters with name value
-      return !!this.modalWindows.find((item) => {
-        return item === this.name
-      })
+    ...mapGetters('page', ['isOpenModal']),
+    isOpen() {
+      return this.isOpenModal(this.name)
     },
     classObject() {
       const classToggle = 'modal--' + this.type
