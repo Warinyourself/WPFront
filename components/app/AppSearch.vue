@@ -40,7 +40,7 @@ export default {
     this.SET_STATE_FORM({ key: 'searchView', items: false })
   },
   methods: {
-    ...mapMutations('form', ['SET_STATE_FORM']),
+    ...mapMutations('page/form', ['SET_STATE_FORM']),
     handleInput(e) {
       if (this.delay && this.delayType === 'debounce') {
         this.debounce(this.updateStore, e, false)

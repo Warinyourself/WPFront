@@ -11,7 +11,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'MenuHeaderBar',
   computed: {
-    ...mapGetters('page', ['determineKeyFori18nByTitleMenu'])
+    ...mapGetters('page/locales', ['determineKeyFori18nByTitleMenu'])
   },
   methods: {
     ...mapActions('user', ['logout'])

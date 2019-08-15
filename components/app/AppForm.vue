@@ -32,7 +32,7 @@ export default {
   },
   inject: ['modal'],
   computed: {
-    ...mapGetters('form', ['getFormByName', 'hasFormErrors']),
+    ...mapGetters('page/form', ['getFormByName', 'hasFormErrors']),
     form() {
       return this.getFormByName({ name: this.name })
     },
@@ -47,8 +47,8 @@ export default {
     this.DELETE_FORM({ name: this.name })
   },
   methods: {
-    ...mapActions('form', ['submitForm']),
-    ...mapMutations('form', ['SET_FORM', 'DELETE_FORM']),
+    ...mapActions('page/form', ['submitForm']),
+    ...mapMutations('page/form', ['SET_FORM', 'DELETE_FORM']),
     ...mapMutations('page', ['CLOSE_MODAL']),
     async handleSubmit(e) {
       const form = { name: this.name }
