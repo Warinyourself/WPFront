@@ -30,26 +30,32 @@
           value='modalFormProducts'
           :commit='{path: "page/ADD_ACTIVE_MODAL"}'
         )
-    .flex.mt-2
-      span {{activeTab}}
-      span {{searchInput}}
+    .flex.mt-2.slider
+      //- p {{activeTab}} {{searchInput}}
+      transition(name='slide-out-left')
+        .slider-body(v-if='activeTab === "products"' key='products')
+          p {{activeTab}} {{searchInput}} PRODUCTS
+        .slider-body(v-else-if='activeTab === "courses"' key='courses')
+          p {{activeTab}} {{searchInput}} COURSES
+        .slider-body(v-else-if='activeTab === "recipes"' key='recipes')
+          p {{activeTab}} {{searchInput}} RECIPES
 
-      AppModalWindow(name='modalFormProducts')
-              AppForm(name='formProducts' close)
-                h2 {{ $t('search.form.name') }}
-                AppInput.w-100.mb-2(name='ProductTitle'
-                  :validators='{required: true, letters: true}'
-                  :placeholder='$t("search.form.name_product")'
-                )
-                AppUpload.w-100(name='ProductUpload'
-                  type='file'
-                  accept='image/png, image/jpeg'
-                  :validators='{required: true}'
-                  :placeholder='$t("forms.upload")'
-                )
-                AppButton.p-2.mt-2.br-1.bgc-main--lightest.br-50(
-                  type='submit'
-                ) {{ $t('forms.submit')}}
+    AppModalWindow(name='modalFormProducts')
+      AppForm(name='formProducts' close)
+        h2 {{ $t('search.form.name') }}
+        AppInput.w-100.mb-2(name='ProductTitle'
+          :validators='{required: true, letters: true}'
+          :placeholder='$t("search.form.name_product")'
+        )
+        AppUpload.w-100(name='ProductUpload'
+          type='file'
+          accept='image/png, image/jpeg'
+          :validators='{required: true}'
+          :placeholder='$t("forms.upload")'
+        )
+        AppButton.p-2.mt-2.br-1.bgc-main--lightest.br-50(
+          type='submit'
+        ) {{ $t('forms.submit')}}
 </template>
 
 <script>

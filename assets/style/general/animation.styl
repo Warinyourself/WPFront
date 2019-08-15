@@ -30,10 +30,12 @@
 
 
 .slide-out-left-enter-active
-  animation slideInLeft .4s
+  animation slideInLeft .8s
+  position absolute
 
 .slide-out-left-leave-active
-  animation slideOutLeft .4s
+  animation slideOutRight .8s
+  position absolute
 
 @keyframes slideOutLeft
   to
@@ -42,5 +44,15 @@
 @keyframes slideInLeft
   from
     transform: translateX(-100%)
+  to
+    transform: translateX(0)
+
+@keyframes slideOutRight
+  to
+    transform translateX(100%)
+
+@keyframes slideInRight
+  from
+    transform: translateX(100%)
   to
     transform: translateX(0)

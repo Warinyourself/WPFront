@@ -51,16 +51,16 @@ export default {
     ...mapMutations('form', ['SET_FORM', 'DELETE_FORM']),
     ...mapMutations('page', ['CLOSE_MODAL']),
     async handleSubmit(e) {
-      const obj = { name: this.name }
+      const form = { name: this.name }
 
       if (Object.prototype.hasOwnProperty.call(this.$attrs, 'close')) {
-        obj.close = {
+        form.close = {
           type: 'modal',
           name: this.modal.name
         }
       }
 
-      await this.submitForm(obj)
+      await this.submitForm(form)
     }
   }
 }
