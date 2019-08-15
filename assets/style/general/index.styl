@@ -1,6 +1,3 @@
-size-2 = 10px
-size-1 = 5px
-
 .w-100
   width 100%
 
@@ -40,58 +37,100 @@ size-1 = 5px
   display flex
   justify-content space-between
 
+.lh-0
+  line-height 0
+
 .d-n
   display none
 
 .br-1
   border-radius size-1
 
-.p-2
-  padding size-2
+determine-size(property, direction, size)
+  if (property == 'p')
+    property = 'padding'
+  if (property == 'm')
+    property = 'margin'
 
-.px-2
-  padding-right size-2
-  padding-left size-2
+  if (direction == 't')
+    direction = 'top'
+  else if (direction == 'r')
+    direction = 'right'
+  else if (direction == 'b')
+    direction = 'bottom'
+  else if (direction == 'l')
+    direction = 'left'
 
-.py-2
-  padding-top size-2
-  padding-bottom size-2
+  if (direction == 'x')
+    size = 0 size
+    direction = false
+  if (direction == 'y')
+    size = size 0
+    direction = false
 
-.pt-2
-  padding-top size-2
+  if (direction)
+    {property}-{direction} size
+  else
+    {property} size
 
-.pr-2
-  padding-right size-2
 
-.pb-2
-  padding-bottom size-2
 
-.pl-2
-  padding-left size-2
+size = 0 5px 10px 14px 17px 23px
+directions = '' 'x' 'y' 't' 'r' 'b' 'l'
+properties = 'p' 'm'
 
-.mt-2
-  margin-top size-2
+size-2 = 10px
+size-1 = 5px
 
-.mr-2
-  margin-right size-2
+for property in properties
+  for direction in directions
+    for row in 0..5
+      .{property}{direction}-{row}
+        determine-size(property, direction, size[row])
 
-.mb-2
-  margin-bottom size-2
+// .p-2
+//   padding size-2
 
-.ml-2
-  margin-left size-2
+// .px-2
+//   padding-right size-2
+//   padding-left size-2
 
-.mt-1
-  margin-top 5px
+// .py-2
+//   padding-top size-2
+//   padding-bottom size-2
 
-.mr-1
-  margin-right 5px
+// .pt-2
+//   padding-top size-2
 
-.mb-1
-  margin-bottom 5px
+// .pr-2
+//   padding-right size-2
 
-.ml-1
-  margin-left 5px
+// .pb-2
+//   padding-bottom size-2
 
-.lh-0
-  line-height 0
+// .pl-2
+//   padding-left size-2
+
+// .mt-2
+//   margin-top size-2
+
+// .mr-2
+//   margin-right size-2
+
+// .mb-2
+//   margin-bottom size-2
+
+// .ml-2
+//   margin-left size-2
+
+// .mt-1
+//   margin-top 5px
+
+// .mr-1
+//   margin-right 5px
+
+// .mb-1
+//   margin-bottom 5px
+
+// .ml-1
+//   margin-left 5px
