@@ -3,28 +3,28 @@
   animation-delay: .2s;
   opacity: 0;
 
-.router-animation-leave-active 
+.router-animation-leave-active
   animation going .1s
 
 @keyframes going
   to
     opacity 0
 
-@keyframes coming 
+@keyframes coming
   from
     opacity 0
   to
     opacity 1
 
 
-.error-leave-active 
+.error-leave-active
   max-height 20px
   opacity 1
 
 .error-enter-active, .error-leave-active
   transition all 1s
 
-.error-enter, .error-leave-to 
+.error-enter, .error-leave-to
   opacity 0
   max-height 0px
 
@@ -32,15 +32,15 @@
 .slide-out-left-enter-active
   animation slideInLeft .4s
 
-.slide-out-left-leave-active 
+.slide-out-left-leave-active
   animation slideOutLeft .4s
 
 @keyframes slideOutLeft
-  to 
+  to
     transform translateX(-100%)
 
-@keyframes slideInLeft 
-  from 
+@keyframes slideInLeft
+  from
     transform: translateX(-100%)
-  to 
+  to
     transform: translateX(0)
