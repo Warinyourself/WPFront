@@ -7,12 +7,6 @@
 .ta-center
   text-align center
 
-.position-center
-  position absolute
-  top 50%
-  left 50%
-  transform translate(-50%, -50%)
-
 .flex
   display flex
 
@@ -43,57 +37,20 @@
 .d-n
   display none
 
-.br-1
-  border-radius size-1
-
-determine-size(property, direction, size)
-  if (property == 'p')
-    property = 'padding'
-  if (property == 'm')
-    property = 'margin'
-
-  if (direction == 't')
-    direction = 'top'
-  else if (direction == 'r')
-    direction = 'right'
-  else if (direction == 'b')
-    direction = 'bottom'
-  else if (direction == 'l')
-    direction = 'left'
-
-  if (direction == 'x')
-    size = 0 size
-    direction = false
-  if (direction == 'y')
-    size = size 0
-    direction = false
-
-  if (direction)
-    {property}-{direction} size
-  else
-    {property} size
-
-
-
-size = 0 5px 10px 14px 17px 23px
-directions = '' 'x' 'y' 't' 'r' 'b' 'l'
-properties = 'p' 'm'
-
-size-2 = 10px
-size-1 = 5px
-
-for property in properties
-  for direction in directions
-    for row in 0..5
-      .{property}{direction}-{row}
-        determine-size(property, direction, size[row])
+.position-center
+  position absolute
+  top 50%
+  left 50%
+  transform translate(-50%, -50%)
 
 @import './animation'
+@import './size'
 
 @import './blocks/container'
 @import './blocks/icon'
 @import './blocks/page'
 @import './blocks/error'
+@import './blocks/tabs'
 
 @import './fonts/highlight'
 @import './fonts/text'
