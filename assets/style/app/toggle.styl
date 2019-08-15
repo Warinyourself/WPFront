@@ -39,3 +39,24 @@
   &.toggle--active
     .icon--arrow
       transform translateY(-50%) rotate(180deg)
+
+.toggle--plus
+  height 30px
+  width 30px
+  display flex
+  align-item center
+  justify-content center
+  border-radius 20px
+  &::before, &::after
+    content ''
+    position absolute
+    display block
+    width 80%
+    height 3px
+    background white
+    border-radius 3px
+  &::after
+    transform rotate(90deg)
+  &.toggle--active
+    &::after
+      transform rotate(0deg)

@@ -31,6 +31,9 @@
           :commit='{path: "page/ADD_ACTIVE_MODAL"}'
         )
     .flex.mt-2.slider
+      AppToggle.bgc-main(
+        type='plus'
+      )
       transition(name='slide-out-left')
         .slider-body(v-if='activeTab === "products"' key='products')
           p {{activeTab}} {{searchInput}} PRODUCTS
