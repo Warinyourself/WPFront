@@ -32,7 +32,7 @@ export default {
   },
   inject: ['modal'],
   computed: {
-    ...mapGetters('form', ['getFormByName', 'hasFormErrors']),
+    ...mapGetters('page/form', ['getFormByName', 'hasFormErrors']),
     form() {
       return this.getFormByName({ name: this.name })
     },
@@ -47,27 +47,20 @@ export default {
     this.DELETE_FORM({ name: this.name })
   },
   methods: {
-    ...mapActions('form', ['submitForm']),
-    ...mapMutations('form', ['SET_FORM', 'DELETE_FORM']),
+    ...mapActions('page/form', ['submitForm']),
+    ...mapMutations('page/form', ['SET_FORM', 'DELETE_FORM']),
     ...mapMutations('page', ['CLOSE_MODAL']),
     async handleSubmit(e) {
-      const obj = { name: this.name }
+      const form = { name: this.name }
 
       if (Object.prototype.hasOwnProperty.call(this.$attrs, 'close')) {
-        obj.close = {
+        form.close = {
           type: 'modal',
           name: this.modal.name
         }
       }
 
-      await this.submitForm(obj)
-      //   await this.checkFormErors({ name: this.name })
-
-      //   if (!this.hasError) {
-      //     const answer = await this.getValuesFromForm({ name: this.name })
-      //     // eslint-disable-next-line no-console
-      //     console.log(answer)
-      //   }
+      await this.submitForm(form)
     }
   }
 }

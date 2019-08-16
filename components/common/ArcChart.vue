@@ -12,15 +12,18 @@ export default {
       data: [
         {
           name: 'Proteins',
-          value: 20
+          value: 20,
+          color: '#ff004d'
         },
         {
           name: 'Fats',
-          value: 10
+          value: 10,
+          color: '#ff5722'
         },
         {
           name: 'Calories',
-          value: 70
+          value: 70,
+          color: 'yellowgreen'
         }
       ]
     }
@@ -30,11 +33,10 @@ export default {
   },
   methods: {
     initPieChart() {
-      // const that = this
       const width = document.documentElement.clientWidth
       const height = document.documentElement.clientHeight
       const margin = 10
-      const minValue = Math.min(width, height) / 2
+      const minValue = Math.min(width, height) / 3
       const radius = minValue / 2 - margin * 2
       // const range = d3
       //   .scaleLinear()
@@ -54,20 +56,9 @@ export default {
         })
 
       const color = d3
-        .scaleOrdinal()
-        .domain(
-          this.data.map((d) => {
-            return d.name
-          })
-        )
-        .range(
-          d3
-            .quantize((t) => {
-              return d3.interpolateSpectral(t * 0.3)
-              // return d3.interpolateSpectral(t * 0.3), this.data.length
-            })
-            .reverse()
-        )
+        .scaleSequential()
+        .interpolator(d3.interpolateRgb('purple', 'orange'))
+        .domain([0, 3])
 
       const arc = d3
         .arc()
@@ -77,8 +68,6 @@ export default {
         .cornerRadius(radius * 0.1)
 
       const arcs = pie(this.data)
-      // let cl = d3.color('rgb(228, 86, 73)');
-      // cl.opacity = .8;
 
       svg
         .append('g')
@@ -86,13 +75,17 @@ export default {
         .selectAll('path')
         .data(arcs)
         .join('path')
-        .attr('fill', (d) => {
-          const opacityColor = d3.color(color(d.data.name))
-          opacityColor.opacity = 0.8
+        .attr('d', arc)
+        .attr('fill', (d, i) => {
+          let opacityColor = d3.color(color(i))
+
+          if (d.data.color) {
+            opacityColor = d.data.color
+          }
+          // opacityColor.opacity = 0.8
 
           return opacityColor
         })
-        .attr('d', arc)
       // .append("title")
       // .text(d => `${d.data.name}: ${d.data.value.toLocaleString()}`);
 
@@ -189,5 +182,3 @@ export default {
   }
 }
 </script>
-
-<style lang="stylus"></style>

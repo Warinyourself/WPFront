@@ -1,6 +1,3 @@
-size-2 = 10px
-size-1 = 5px
-
 .w-100
   width 100%
 
@@ -9,12 +6,6 @@ size-1 = 5px
 
 .ta-center
   text-align center
-
-.position-center
-  position absolute
-  top 50%
-  left 50%
-  transform translate(-50%, -50%)
 
 .flex
   display flex
@@ -40,58 +31,32 @@ size-1 = 5px
   display flex
   justify-content space-between
 
+.lh-0
+  line-height 0
+
 .d-n
   display none
 
-.br-1
-  border-radius size-1
+.position-center
+  position absolute
+  top 50%
+  left 50%
+  transform translate(-50%, -50%)
 
-.p-2
-  padding size-2
+@import './animation'
+@import './size'
 
-.px-2
-  padding-right size-2
-  padding-left size-2
+@import './blocks/container'
+@import './blocks/icon'
+@import './blocks/page'
+@import './blocks/error'
+@import './blocks/tabs'
 
-.py-2
-  padding-top size-2
-  padding-bottom size-2
+@import './fonts/highlight'
+@import './fonts/text'
+@import './fonts/fonts'
 
-.pt-2
-  padding-top size-2
+@import './theme/dark'
+@import './theme/light'
 
-.pr-2
-  padding-right size-2
-
-.pb-2
-  padding-bottom size-2
-
-.pl-2
-  padding-left size-2
-
-.mt-2
-  margin-top size-2
-
-.mr-2
-  margin-right size-2
-
-.mb-2
-  margin-bottom size-2
-
-.ml-2
-  margin-left size-2
-
-.mt-1
-  margin-top 5px
-
-.mr-1
-  margin-right 5px
-
-.mb-1
-  margin-bottom 5px
-
-.ml-1
-  margin-left 5px
-
-.lh-0
-  line-height 0
+@import './media'

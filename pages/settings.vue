@@ -5,8 +5,8 @@
               :commit='{key: "isDark", path: "page/SET_STATE_PAGE"}')
     AppToggle(class='mt-2'
               :values='["ru", "en"]'
-              :state='{ key: "language", path: "page/getStatePage"}'
-              :commit='{key: "language", path: "page/CHANGE_LANGUAGE"}')
+              :state='{ key: "language", path: "page/locales/getStatePageLocales"}'
+              :commit='{key: "language", path: "page/locales/CHANGE_LANGUAGE"}')
 </template>
 
 <script>

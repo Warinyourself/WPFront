@@ -3,7 +3,7 @@ export const strict = true
 export const state = () => ({
   loading: false,
   error: false,
-  url: ''
+  url: 'localhost:8080'
 })
 
 export const mutations = {

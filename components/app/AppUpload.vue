@@ -47,7 +47,7 @@ export default {
   },
   inject: ['form'],
   computed: {
-    ...mapGetters('form', ['getInputByName']),
+    ...mapGetters('page/form', ['getInputByName']),
     input() {
       return this.getInputByName({ name: this.name })
     }
@@ -64,8 +64,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions('form', ['updateInputInForm']),
-    ...mapMutations('form', ['ADD_INPUT_IN_FORM']),
+    ...mapActions('page/form', ['updateInputInForm']),
+    ...mapMutations('page/form', ['ADD_INPUT_IN_FORM']),
     handleUpload(e) {
       const input = e.target
 
