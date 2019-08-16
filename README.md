@@ -1,7 +1,5 @@
 # WildPrint
 
-> Specular
-
 ## Build Setup
 
 ``` bash

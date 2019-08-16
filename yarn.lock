@@ -10608,11 +10608,6 @@ vue-meta@^1.6.0:
     lodash.uniqueid "^4.0.1"
     object-assign "^4.1.1"
 
-vue-mouse-parallax@^0.9.2:
-  version "0.9.2"
-  resolved "https://registry.yarnpkg.com/vue-mouse-parallax/-/vue-mouse-parallax-0.9.2.tgz#e52bde6c6264b87a209eef67c71dd94fe07015f6"
-  integrity sha512-RPBkKEH38U2QTgtf35hBNkkDHGBp2/pvsiSRK6Udbbc90ZGqyd9wGyH5GkH2WaIO3c0YKhyZ8KV/88UzEDmGAA==
-
 vue-no-ssr@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
