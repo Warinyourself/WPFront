@@ -82,11 +82,11 @@ export default {
         classObject['toggle--active'] = this.active
       }
 
-      if (this.type === 'arrow') {
-        classObject['bgc-main'] = true
-      } else {
-        classObject['bgc-dark'] = true
-      }
+      // if (this.type === 'arrow') {
+      //   classObject['bgc-main'] = true
+      // } else {
+      //   classObject['bgc-dark'] = true
+      // }
 
       classObject[classToggle] = true
 

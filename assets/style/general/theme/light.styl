@@ -1,3 +1,22 @@
+bgc-main()
+  background-color color-background
+
+bgc-dark()
+  background-color color-main--dark
+
+bgc-main--second()
+  background-color color-background--second
+
+bgc-main--lightest()
+  background-color color-main--lightest
+
+
+color-light()
+  color color-background
+
+color-dark-link()
+  color color-main--darkest
+
 body
   background-color color-background
   color color-text
@@ -8,19 +27,19 @@ body
     stroke color-main--dark
     fill color-main--dark
   .color-light
-    color color-background
+    color-light()
   .color-dark-link
-    color color-main--darkest
+    color-dark-link() 
   .bgc-main
-    background-color color-background
+    bgc-main()
   .bgc-main--second
-    background-color color-background--second
+    bgc-main--second()
   .bgc-main--lightest
-    background-color color-main--lightest
+    bgc-main--lightest()
   .bgc-light
     background-color #0b518c
   .bgc-dark
-    background-color color-main--dark
+    bgc-dark()
   .icon-darkest
     fill color-main--darkest
     stroke color-main--darkest

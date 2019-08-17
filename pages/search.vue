@@ -7,25 +7,25 @@
       )
       .search-page__buttons.flex
         .tabs-items
-          AppButton.mr-1.p-2.br-1.bgc-main--lightest(
+          AppButton.mr-1.p-2.br-1(
             icon='products'
             value='products'
             :state='{path: "search/getStateSearch", key: "activeTab"}'
             :commit='{path: "search/SET_STATE_SEARCH", key: "activeTab"}'
           ) {{ $t('search.products')}}
-          AppButton.mr-1.p-2.br-1.bgc-main--lightest(
+          AppButton.mr-1.p-2.br-1(
             icon='cycle'
             value='courses'
             :state='{path: "search/getStateSearch", key: "activeTab"}'
             :commit='{path: "search/SET_STATE_SEARCH", key: "activeTab"}'
           ) {{ $t('search.courses')}}
-          AppButton.mr-1.p-2.br-1.bgc-main--lightest(
+          AppButton.mr-1.p-2.br-1(
             icon='recipes'
             value='recipes'
             :state='{path: "search/getStateSearch", key: "activeTab"}'
             :commit='{path: "search/SET_STATE_SEARCH", key: "activeTab"}'
           ) {{ $t('search.recipes')}}
-        AppButton.p-2.br-1.bgc-main--lightest.br-50(
+        AppButton.p-2.br-1.br-50(
           icon='plusInCircle'
           value='modalFormProducts'
           :commit='{path: "page/ADD_ACTIVE_MODAL"}'
@@ -55,7 +55,7 @@
           :validators='{required: true}'
           :placeholder='$t("forms.upload")'
         )
-        AppButton.p-2.mt-2.br-1.bgc-main--lightest.br-50(
+        AppButton.p-2.mt-2.br-1.br-50(
           type='submit'
         ) {{ $t('forms.submit')}}
 </template>
