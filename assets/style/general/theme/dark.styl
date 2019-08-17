@@ -3,25 +3,31 @@
   background-color #0d0b14
   stroke color-main--light
   fill color-main--light
+  button
+    bgc-main--lightest('dark')
+  .toggle
+    bgc--dark('dark')
+  .toggle--arrow
+    bgc-main('dark')
   .menu__link
     background-color #1d192e
-  .mobal__background
-    background rgba(0,0,0,.9)
   .icon-background
     fill @background-color
     stroke @background-color
   .bgc-main
-    background-color #36a2fd
-  .bgc-main--second
-    background-color #181526
+    bgc-main('dark')
+  .bgc-main--light
+    bgc-main--light('dark')
   .bgc-main--lightest
-    background-color #1d1930
+    bgc-main--lightest('dark')
     &.button--active
       background-color #26203f
-  .bgc-light
+  .mobal__background
+    background rgba(0,0,0,.9)
+  .bgc--light
     background-color #130f21
-  .bgc-dark
-    background-color #194a71
+  .bgc--dark
+    bgc--dark('dark')
   .color-dark-link
     color #1a6892
   .icon-darker
@@ -44,4 +50,3 @@
 
   //& .menu__icon
     //filter drop-shadow(0 0 3px rgba(0,0,0,.5))
-

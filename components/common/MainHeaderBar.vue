@@ -1,5 +1,5 @@
 <template lang="pug">
-  header.header-bar.ai-center.bgc-main--second
+  header.header-bar.ai-center.bgc-main--light
     .header-bar__title
       h2 {{ $t(determineKeyFori18nByTitleMenu($route.name)) }}
     AppAvatar.icon-3

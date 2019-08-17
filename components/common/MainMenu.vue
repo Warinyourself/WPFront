@@ -1,5 +1,5 @@
 <template lang="pug">
-  menu.menu--main.bgc-light(:class='{"menu--minimize": minimizeMenu}')
+  menu.menu--main.bgc--light(:class='{"menu--minimize": minimizeMenu}')
     ul
       NuxtLink.menu__link(v-for='(item, i) in mainMenu' :key='i' :to='{ name: item.name }')
         .menu__icon-box

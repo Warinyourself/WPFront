@@ -1,24 +1,67 @@
-bgc-main()
-  background-color color-background
+bgc(theme = '')
+  if theme == 'dark'
+    background-color #181526
+  else
+    background-color color-background
 
-bgc-dark()
-  background-color color-main--dark
+bgc--second(theme = '')
+  if theme == 'dark'
+    background-color #181526
+  else
+    background-color color-background--second
 
-bgc-main--second()
-  background-color color-background--second
+bgc--dark(theme = '')
+  if theme == 'dark'
+    background-color #194a71
+  else
+    background-color color-background--dark
 
-bgc-main--lightest()
-  background-color color-main--lightest
+
+bgc-main(theme = '')
+  if theme == 'dark'
+    background-color #36a2fd
+  else
+    background-color color-main
+
+bgc-main--dark(theme = '')
+  if theme == 'dark'
+    background-color #181526
+  else
+    background-color color-main--dark
+
+bgc-main--light(theme = '')
+  if theme == 'dark'
+    background-color #181526
+  else
+    background-color color-main--light
+
+bgc-main--lightest(theme = '')
+  if theme == 'dark'
+    background-color #1d1930
+  else
+    background-color color-main--lightest
+
+bgc-main--second(theme = '')
+  if theme == 'dark'
+    background-color #181526
+  else
+    background-color color-main--second
 
 
-color-light()
-  color color-background
+color-light(theme = '')
+  if theme == 'dark'
+    background-color #181526
+  else
+    color color-background
 
-color-dark-link()
-  color color-main--darkest
+color-dark-link(theme = '')
+  if theme == 'dark'
+    background-color #181526
+  else
+    color color-main--darkest
 
 body
-  background-color color-background
+  bgc()
   color color-text
   border-color color-main
   stroke color-main--dark
@@ -30,16 +73,24 @@ body
     color-light()
   .color-dark-link
     color-dark-link() 
+  .bgc
+    bgc()
+  .bgc--second
+    bgc--second()
   .bgc-main
     bgc-main()
+  .bgc-main--dark
+    bgc-main--dark()
   .bgc-main--second
     bgc-main--second()
+  .bgc-main--light
+    bgc-main--light()
   .bgc-main--lightest
     bgc-main--lightest()
   .bgc-light
     background-color #0b518c
-  .bgc-dark
-    bgc-dark()
+  .bgc--dark
+    bgc--dark()
   .icon-darkest
     fill color-main--darkest
     stroke color-main--darkest
