@@ -1,7 +1,7 @@
 <template lang="pug">
   transition(name='router-animation')
     .mobal__background(@click='closeMonal' v-if='isOpen')
-      .modal__body.bgc-main--second(@click.stop :class='classObject')
+      .modal__body.bgc-main--lightest(@click.stop :class='classObject')
         slot
 </template>
 
