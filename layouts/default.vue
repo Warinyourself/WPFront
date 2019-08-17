@@ -18,7 +18,8 @@ export default {
     MainHeaderBar
   },
   computed: {
-    ...mapState('page', ['minimizeMenu', 'isDark', 'language'])
+    ...mapState('page', ['minimizeMenu', 'isDark']),
+    ...mapState('page/locales', ['language'])
   },
   watch: {
     language() {
