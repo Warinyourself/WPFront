@@ -25,15 +25,14 @@
             :state='{path: "search/getStateSearch", key: "activeTab"}'
             :commit='{path: "search/SET_STATE_SEARCH", key: "activeTab"}'
           ) {{ $t('search.recipes')}}
+
         AppButton.p-2.br-1.br-50(
           icon='plusInCircle'
           value='modalFormProducts'
           :commit='{path: "page/ADD_ACTIVE_MODAL"}'
         )
+
     .flex.mt-2.slider
-      AppToggle.bgc-main(
-        type='plus'
-      )
       transition(name='slide-out-left')
         .slider-body(v-if='activeTab === "products"' key='products')
           p {{activeTab}} {{searchInput}} PRODUCTS
@@ -55,6 +54,11 @@
           :validators='{required: true}'
           :placeholder='$t("forms.upload")'
         )
+        .flex.jc-space-between.mt-2
+          h3 {{$t('forms.expand')}}
+          AppToggle.bgc-main(
+            type='plus'
+          )
         AppButton.p-2.mt-2.br-1.br-50(
           type='submit'
         ) {{ $t('forms.submit')}}

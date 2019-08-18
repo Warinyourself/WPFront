@@ -41,6 +41,7 @@
   "forms" : {
     "submit": "Submit",
     "upload": "Upload image",
+    "expand": "Expand form",
     "errors": {
       "required": "Required field",
       "letters": "Only letters"
