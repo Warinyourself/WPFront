@@ -82,12 +82,6 @@ export default {
         classObject['toggle--active'] = this.active
       }
 
-      // if (this.type === 'arrow') {
-      //   classObject['bgc-main'] = true
-      // } else {
-      //   classObject['bgc-dark'] = true
-      // }
-
       classObject[classToggle] = true
 
       return classObject
@@ -98,18 +92,18 @@ export default {
       this[key] = value
     },
     changeToggle() {
-      if (!this.values.length && !this.state) {
+      if (!this.values.length && !Object.keys(this.state).length) {
         this.active = !this.active
       }
 
-      if (this.active && this.commit) {
+      if (this.active && Object.keys(this.commit).length) {
         this.$store.commit(this.commit.path, {
           key: this.commit.key,
           value: this.values[0] || !this.active
         })
 
         this.active = !this.active
-      } else if (!this.active && this.commit) {
+      } else if (!this.active && Object.keys(this.commit).length) {
         this.$store.commit(this.commit.path, {
           key: this.commit.key,
           value: this.values[1] || !this.active
