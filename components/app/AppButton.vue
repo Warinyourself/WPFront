@@ -1,5 +1,5 @@
 <template lang="pug">
-  button.button.ai-center(@click='handleClick' :class='classObject' v-bind='$attrs' :type='this.type')
+  button.button.ai-center.bgc-main--lighter(@click='handleClick' :class='classObject' v-bind='$attrs' :type='this.type')
     AppIcon.icon-3(v-if='icon' :icon='icon')
     .button__body(:class='{"ml-2": icon}' v-if='$slots.default')
       slot.ln-0

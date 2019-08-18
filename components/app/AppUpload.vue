@@ -1,6 +1,8 @@
 <template lang="pug">
   .input.fd-column
-    .input__body.ai-center.jc-space-between
+    .input__body.ai-center.jc-space-between(
+      :class='{"input--error": input && input.errors.length}'
+    )
       .upload-title {{fileName || $attrs.placeholder}}
       label.flex-center.upload-block.pointer(:for='name')
         AppIcon.icon-3(icon='upload')

@@ -55,10 +55,14 @@
     display block
     width 80%
     height 3px
-    background white
+    bgc()
     border-radius 3px
+    transition .3s
   &::after
     transform rotate(90deg)
   &.toggle--active
+    background red
+    &::before
+      transform rotate(-45deg)
     &::after
-      transform rotate(0deg)
+      transform rotate(45deg)

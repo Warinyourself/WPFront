@@ -3,8 +3,6 @@
   background-color #0d0b14
   stroke color-main--light
   fill color-main--light
-  button
-    bgc-main--lightest('dark')
   .toggle
     bgc--dark('dark')
   .toggle--arrow
@@ -14,22 +12,28 @@
   .icon-background
     fill @background-color
     stroke @background-color
+
   .bgc-main
     bgc-main('dark')
   .bgc-main--light
     bgc-main--light('dark')
+  .bgc-main--lighter
+    bgc-main--lighter('dark')
   .bgc-main--lightest
     bgc-main--lightest('dark')
     &.button--active
       background-color #26203f
+
   .mobal__background
     background rgba(0,0,0,.9)
   .bgc--light
     background-color #130f21
   .bgc--dark
     bgc--dark('dark')
+
   .color-dark-link
     color #1a6892
+
   .icon-darker
     fill #1a6892
     stroke #1a6892
@@ -41,12 +45,3 @@
       fill #58e6ff
       stroke #58e6ff
       color #58e6ff
-
-  //.button
-    //fill #58e6ff
-    //stroke #58e6ff
-    // fill #1a6892
-    // stroke #1a6892
-
-  //& .menu__icon
-    //filter drop-shadow(0 0 3px rgba(0,0,0,.5))
