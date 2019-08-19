@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'AppModalWindow',
@@ -29,7 +29,6 @@ export default {
     return { modal }
   },
   computed: {
-    ...mapState('page', ['modalWindows']),
     ...mapGetters('page', ['isOpenModal']),
     isOpen() {
       return this.isOpenModal(this.name)
@@ -46,7 +45,7 @@ export default {
   methods: {
     ...mapMutations('page', ['CLOSE_MODAL']),
     closeMonal() {
-      this.CLOSE_MODAL({ name: this.name })
+      this.CLOSE_MODAL(this.name)
     }
   }
 }
