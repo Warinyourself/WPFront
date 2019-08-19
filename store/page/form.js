@@ -109,7 +109,7 @@ export const actions = {
       })
     )
   },
-  async submitForm({ getters, commit, dispatch }, { name, close }) {
+  async submitForm({ getters, commit, dispatch }, { name, close, func }) {
     await dispatch('checkFormErors', { name })
 
     const hasErrors = getters.hasFormErrors({ name })
@@ -118,7 +118,7 @@ export const actions = {
       const answer = getters.getValuesFromForm({ name })
 
       // eslint-disable-next-line no-console
-      console.log(hasErrors, 'In VUEX', answer, close)
+      console.log(hasErrors, 'In VUEX', func, answer, close)
 
       if (close) {
         if (close.type === 'modal') {

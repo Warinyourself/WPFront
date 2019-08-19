@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     handleClick() {
-      if (this.value && this.commit) {
+      if (this.value && Object.keys(this.commit).length) {
         if (this.commit.key) {
           this.$store.commit(this.commit.path, {
             key: this.commit.key,

@@ -74,15 +74,6 @@ export default {
     changeTab() {
       console.log('CHANGE TAB')
     }
-    // changeToggle() {
-    // this.active = !this.active;
-
-    // if (this.active && (this.commitOn || this.commit)) {
-    // this.$store.commit(this.commit.path, {type: this.commit.type, value: this.active})
-    // } else if (!this.active && (this.commitOff || this.commit)) {
-    // this.$store.commit(this.commit.path, {type: this.commit.type, value: this.active})
-    // }
-    // },
   }
 }
 </script>

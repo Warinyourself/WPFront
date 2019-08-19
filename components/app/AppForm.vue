@@ -20,6 +20,10 @@ export default {
     action: {
       type: Object,
       default: () => Object.create(null)
+    },
+    actionOff: {
+      type: Object,
+      default: () => Object.create(null)
     }
   },
   provide() {
@@ -58,6 +62,10 @@ export default {
           type: 'modal',
           name: this.modal.name
         }
+      }
+
+      if (Object.keys(this.actionOff).length) {
+        form.func = this.actionOff
       }
 
       await this.submitForm(form)

@@ -42,7 +42,7 @@
           p {{activeTab}} {{searchInput}} RECIPES
 
     AppModalWindow(name='modalFormProducts')
-      AppForm(name='formProducts' close)
+      AppForm(name='formProducts' close :actionOff='{path: "search/createProduct"}')
         h2 {{ $t('search.form.name') }}
         AppInput.w-100.mb-2(name='ProductTitle'
           :validators='{required: true, letters: true}'
