@@ -3,15 +3,16 @@
     .input__body.ai-center.jc-space-between(
       :class='{"input--error": input && input.errors.length}'
     )
-      .upload-title {{fileName || $attrs.placeholder}}
-      label.flex-center.upload-block.pointer(:for='name')
-        AppIcon.icon-3(icon='upload')
+      label.flex.w-100.ai-center.jc-space-between.pointer(:for='name')
+        .upload-title {{fileName || $attrs.placeholder}}
+        .flex-center.upload-block
+          AppIcon.icon-3(icon='upload')
+        .highlight.highlight__line--bottom
       input.d-n(:id='name'
             v-bind='$attrs'
             ref='upload'
             type='file'
             @change='handleUpload')
-      .highlight.highlight__line--bottom
     .error-block.mt-2(v-if='input')
      .error-blocks(v-for='(error, i) in input.errors' :key='i') {{ $t(error.pathText) }}
 </template>

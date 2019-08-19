@@ -1,7 +1,8 @@
 export const state = () => ({
   isDark: false,
   minimizeMenu: false,
-  modalWindows: []
+  modalWindows: [],
+  expandBlocks: []
 })
 
 export const mutations = {
@@ -11,11 +12,17 @@ export const mutations = {
   TOGGLE_MENU: (state) => {
     state.minimizeMenu = !state.minimizeMenu
   },
-  ADD_ACTIVE_MODAL: (state, payload) => {
-    state.modalWindows.push(payload)
+  ADD_MODAL: (state, name) => {
+    state.modalWindows.push(name)
   },
-  CLOSE_MODAL: (state, { name }) => {
+  CLOSE_MODAL: (state, name) => {
     state.modalWindows.splice(state.modalWindows.indexOf(name), 1)
+  },
+  ADD_EXPAND_BLOCK: (state, name) => {
+    state.expandBlocks.push(name)
+  },
+  CLOSE_EXPAND_BLOCK: (state, name) => {
+    state.expandBlocks.splice(state.modalWindows.indexOf(name), 1)
   }
 }
 
@@ -26,18 +33,11 @@ export const getters = {
   isOpenModal: (state, getters) => (name) => {
     return state.modalWindows.includes(name)
   },
+  isExpandBlock: (state, getters) => (name) => {
+    return state.expandBlocks.includes(name)
+  },
   activeWindows: (state, rootState) => {
     const activeWindows = []
-
-    // Structure
-    //   name (store value)
-    //   cancelParams
-    //     field (commit name)
-    //     value (commit value)
-
-    // first step is over modal windows
-
-    // second step is focus elements
 
     return activeWindows
   }

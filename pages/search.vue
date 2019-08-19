@@ -29,7 +29,7 @@
         AppButton.p-2.br-1.br-50(
           icon='plusInCircle'
           value='modalFormProducts'
-          :commit='{path: "page/ADD_ACTIVE_MODAL"}'
+          :commit='{path: "page/ADD_MODAL"}'
         )
 
     .flex.mt-2.slider
@@ -44,20 +44,28 @@
     AppModalWindow(name='modalFormProducts')
       AppForm(name='formProducts' close)
         h2 {{ $t('search.form.name') }}
-        AppInput.w-100.mb-2(name='ProductTitle'
-          :validators='{required: true, letters: true}'
-          :placeholder='$t("search.form.name_product")'
-        )
-        AppUpload.w-100(name='ProductUpload'
-          type='file'
-          accept='image/png, image/jpeg'
-          :validators='{required: true}'
-          :placeholder='$t("forms.upload")'
-        )
+        .flex
+          AppInput.w-100.md6.mr-2(name='ProductTitle'
+            :validators='{required: true, letters: true}'
+            :placeholder='$t("search.form.name_product")'
+          )
+          AppUpload.w-100.md6(name='ProductUpload'
+            type='file'
+            accept='image/png, image/jpeg'
+            :validators='{required: true}'
+            :placeholder='$t("forms.upload")'
+          )
         .flex.jc-space-between.mt-2
-          h3 {{$t('forms.expand')}}
           AppToggle.bgc-main(
             type='plus'
+            :commit='{path: "page/ADD_EXPAND_BLOCK", value: "formProducts"}'
+          )
+        AppExpand(
+          name='formProducts'
+        )
+          AppInput.w-100.md6.mr-2(name='Description'
+            :validators='{required: true, letters: true}'
+            :placeholder='$t("search.form.name_product")'
           )
         AppButton.p-2.mt-2.br-1.br-50(
           type='submit'

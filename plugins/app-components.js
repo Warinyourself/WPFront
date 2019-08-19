@@ -7,6 +7,7 @@ import AppInput from '@/components/app/AppInput'
 import AppAvatar from '@/components/app/AppAvatar'
 import AppSearch from '@/components/app/AppSearch'
 import AppToggle from '@/components/app/AppToggle'
+import AppExpand from '@/components/app/AppExpand'
 import AppButton from '@/components/app/AppButton'
 import AppUpload from '@/components/app/AppUpload'
 import AppIconDefs from '@/components/app/AppIconDefs'
@@ -19,6 +20,7 @@ Vue.component('AppInput', AppInput)
 Vue.component('AppAvatar', AppAvatar)
 Vue.component('AppSearch', AppSearch)
 Vue.component('AppToggle', AppToggle)
+Vue.component('AppExpand', AppExpand)
 Vue.component('AppButton', AppButton)
 Vue.component('AppUpload', AppUpload)
 Vue.component('AppIconDefs', AppIconDefs)

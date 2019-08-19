@@ -5,7 +5,7 @@
     AppButton.p-2.br-1(
         icon='love'
         value='Classic'
-        :commit='{path: "page/ADD_ACTIVE_MODAL"}'
+        :commit='{path: "page/ADD_MODAL"}'
       ) {{ $t('search.recipes')}}
 </template>
 
