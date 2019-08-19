@@ -1,3 +1,10 @@
+// Create after mixin - media-query('md', width)
+@media (min-width: 960px)
+  for i in 1..12
+    .md{i}
+        width ((100 / 12) * i)%
+
+
 @media screen and (max-width: 700px)
   .wrapper
     display flex
