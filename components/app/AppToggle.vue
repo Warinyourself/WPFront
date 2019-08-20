@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'AppToggle',
   props: {
@@ -88,6 +90,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['globalCommit', 'globalAction']),
     changeData({ key, value }) {
       this[key] = value
     },
@@ -97,17 +100,31 @@ export default {
       }
 
       if (this.active && Object.keys(this.commit).length) {
-        this.$store.commit(this.commit.path, {
-          key: this.commit.key,
-          value: this.values[0] || !this.active
-        })
+        this.globalCommit(
+          Object.assign(this.commit, {
+            value: this.commit.value || this.values[0] || !this.active,
+            internalState: !this.active
+          })
+        )
+
+        // this.$store.commit(this.commit.path, {
+        //   key: this.commit.key,
+        //   value: this.values[0] || !this.active
+        // })
 
         this.active = !this.active
       } else if (!this.active && Object.keys(this.commit).length) {
-        this.$store.commit(this.commit.path, {
-          key: this.commit.key,
-          value: this.values[1] || !this.active
-        })
+        this.globalCommit(
+          Object.assign(this.commit, {
+            value: this.commit.value || this.values[1] || !this.active,
+            internalState: !this.active
+          })
+        )
+
+        // this.$store.commit(this.commit.path, {
+        //   key: this.commit.key,
+        //   value: this.values[1] || !this.active
+        // })
 
         this.active = !this.active
       }
