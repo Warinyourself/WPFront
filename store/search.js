@@ -15,4 +15,9 @@ export const getters = {
   }
 }
 
-export const actions = {}
+export const actions = {
+  createProduct({ state }) {
+    // eslint-disable-next-line no-console
+    console.log(state)
+  }
+}
