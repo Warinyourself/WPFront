@@ -6,7 +6,7 @@ WORKDIR /usr/src/front
 RUN apk update && apk upgrade && apk add git
 
 COPY . /usr/src/front/
-RUN yarn install
+RUN yarn
 
 # build necessary, even if no static files are needed,
 # since it builds the server as well
