@@ -79,28 +79,17 @@ export default {
       this[key] = value
     },
     changeToggle() {
-      // eslint-disable-next-line no-console
-      // console.log('Toggle vale', this.active)
-
-      // if (!this.values.length && !Object.keys(this.state).length) {
-      //   this.active = !this.active
-      // }
       this.active = !this.active
 
-      if (this.active && Object.keys(this.commit).length) {
-        this.globalCommit(
-          Object.assign(this.commit, {
-            value: this.commit.value || this.values[0] || !this.active,
-            internalState: this.active
-          })
-        )
-      } else if (!this.active && Object.keys(this.commit).length) {
-        this.globalCommit(
-          Object.assign(this.commit, {
-            value: this.commit.value || this.values[1] || !this.active,
-            internalState: this.active
-          })
-        )
+      if (Object.keys(this.commit).length) {
+        const objectCommit = Object.assign(Object.assign({}, this.commit), {
+          value:
+            this.commit.value ||
+            this.values[Number(this.active)] ||
+            this.active,
+          internalState: this.active
+        })
+        this.globalCommit(objectCommit)
       }
     }
   }
