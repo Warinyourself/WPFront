@@ -24,8 +24,19 @@ export const mutations = {
 
     state.forms.splice(index, 1)
   },
-  ADD_INPUT_IN_FORM(state, payload) {
-    state.forms[state.forms.length - 1].children.push(payload)
+  ADD_INPUT_IN_FORM(state, inputObject) {
+    state.forms[state.forms.length - 1].children.push(inputObject)
+  },
+  DELETE_INPUT_FROM_FORM(state, { name, formName }) {
+    const formChildren = state.forms.find((form) => {
+      return form.name === formName
+    }).children
+
+    const childIndex = formChildren.findIndex((child) => {
+      return child.name === name
+    })
+
+    formChildren.splice(childIndex, 1)
   },
   SET_INPUT_ERRORS(state, { child, errors }) {
     child.errors = errors
@@ -118,7 +129,7 @@ export const actions = {
       const answer = getters.getValuesFromForm({ name })
 
       // eslint-disable-next-line no-console
-      console.log(hasErrors, 'In VUEX', func, answer, close)
+      console.log(func, answer, close)
 
       if (close) {
         if (close.type === 'modal') {

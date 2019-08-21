@@ -47,7 +47,7 @@ export default {
   mounted() {
     this.SET_FORM({ name: this.name })
   },
-  beforeDestroy() {
+  destroyed() {
     this.DELETE_FORM({ name: this.name })
   },
   methods: {

@@ -1,6 +1,7 @@
 <template lang="pug">
-  .expand-block(v-if='isOpen')
-    slot
+  transition(name='grow')
+    .expand-block(v-if='isOpen')
+      slot
 </template>
 
 <script>

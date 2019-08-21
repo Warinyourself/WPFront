@@ -71,9 +71,21 @@ export default {
       })
     }
   },
+  beforeDestroy() {
+    if (this.form) {
+      this.DELETE_INPUT_FROM_FORM({
+        name: this.name,
+        formName: this.form.name
+      })
+    }
+  },
   methods: {
     ...mapActions('page/form', ['updateInputInForm']),
-    ...mapMutations('page/form', ['SET_STATE_FORM', 'ADD_INPUT_IN_FORM']),
+    ...mapMutations('page/form', [
+      'SET_STATE_FORM',
+      'ADD_INPUT_IN_FORM',
+      'DELETE_INPUT_FROM_FORM'
+    ]),
     handleInput(e) {
       if (this.delay && this.delayType === 'debounce') {
         this.debounce(this.updateStore, e, false)

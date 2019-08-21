@@ -15,8 +15,6 @@ export const getters = {
   determineObject: (state, getters) => (object) => {
     const { key, value } = object
 
-    // eslint-disable-next-line no-console
-    // console.log(value, key, object)
     if (key === undefined) {
       return value
     } else {
@@ -29,8 +27,6 @@ export const getters = {
     } else if (structure) {
       switch (structure) {
         case 'EXPAND_BLOCK':
-          // eslint-disable-next-line no-console
-          console.log('EXPAND BLOCK', internalState)
           if (internalState) {
             return 'page/ADD_EXPAND_BLOCK'
           } else {
@@ -46,27 +42,14 @@ export const getters = {
 
 export const actions = {
   globalCommit({ commit }, object) {
-    const { key, value } = object
     const property = getters.determineObject()(object)
     const path = getters.determinePath()(object)
-
-    // eslint-disable-next-line no-console
-    console.log(
-      `value: ${object}
-      path :${path},
-      key: ${key},
-      value: ${value},
-      property: ${property}`
-    )
 
     commit(path, property, { root: true })
   },
   globalAction({ dispatch }, object) {
-    const { path, key, value } = object
-    const property = getters('determineObject')()
-
-    // eslint-disable-next-line no-console
-    console.log(path, key, value)
+    const property = getters.determineObject()(object)
+    const path = getters.determinePath()(object)
 
     dispatch(path, property, { root: true })
   }
