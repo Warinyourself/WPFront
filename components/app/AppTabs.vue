@@ -19,23 +19,7 @@ export default {
       type: Object,
       default: () => Object.create(null)
     },
-    commitOn: {
-      type: Object,
-      default: () => Object.create(null)
-    },
-    commitOff: {
-      type: Object,
-      default: () => Object.create(null)
-    },
     action: {
-      type: Object,
-      default: () => Object.create(null)
-    },
-    actionOn: {
-      type: Object,
-      default: () => Object.create(null)
-    },
-    actionOff: {
       type: Object,
       default: () => Object.create(null)
     },

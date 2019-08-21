@@ -16,20 +16,22 @@ export const getters = {
     const { key, value } = object
 
     // eslint-disable-next-line no-console
-    console.log(value, key, object)
+    // console.log(value, key, object)
     if (key === undefined) {
       return value
     } else {
-      return value
+      return object
     }
   },
-  determinePath: (state, getters) => ({ path, structure, value }) => {
+  determinePath: (state, getters) => ({ path, structure, internalState }) => {
     if (path !== undefined) {
       return path
     } else if (structure) {
       switch (structure) {
         case 'EXPAND_BLOCK':
-          if (value) {
+          // eslint-disable-next-line no-console
+          console.log('EXPAND BLOCK', internalState)
+          if (internalState) {
             return 'page/ADD_EXPAND_BLOCK'
           } else {
             return 'page/CLOSE_EXPAND_BLOCK'
