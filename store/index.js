@@ -13,35 +13,43 @@ export const mutations = {
 }
 export const getters = {
   determineObject: (state, getters) => (object) => {
-    const { path, key, value } = object
-    const answer = {}
+    const { key, value } = object
 
-    if (key) {
-      answer.key = key
-    } else {
+    if (key === undefined) {
       return value
+    } else {
+      return object
+    }
+  },
+  determinePath: (state, getters) => ({ path, structure, internalState }) => {
+    if (path !== undefined) {
+      return path
+    } else if (structure) {
+      switch (structure) {
+        case 'EXPAND_BLOCK':
+          if (internalState) {
+            return 'page/ADD_EXPAND_BLOCK'
+          } else {
+            return 'page/CLOSE_EXPAND_BLOCK'
+          }
+      }
     }
 
-    return { path, value }
+    // eslint-disable-next-line no-console
+    console.error('FETERMINE PATH OR STRUCTURE')
   }
 }
 
 export const actions = {
-  globalCommit({ state, commit }, object) {
-    const { path, key, value } = object
-    const property = getters('determineObject')()
-
-    // eslint-disable-next-line no-console
-    console.log(path, key, value)
+  globalCommit({ commit }, object) {
+    const property = getters.determineObject()(object)
+    const path = getters.determinePath()(object)
 
     commit(path, property, { root: true })
   },
   globalAction({ dispatch }, object) {
-    const { path, key, value } = object
-    const property = getters('determineObject')()
-
-    // eslint-disable-next-line no-console
-    console.log(path, key, value)
+    const property = getters.determineObject()(object)
+    const path = getters.determinePath()(object)
 
     dispatch(path, property, { root: true })
   }

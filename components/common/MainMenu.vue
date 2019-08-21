@@ -8,12 +8,12 @@
     .menu__footer
       AppToggle(
         :values='["ru", "en"]'
-        :state='{ key: "language", path: "page/locales/getStatePageLocales"}'
+        :state='{key: "language", path: "page/locales/getStatePageLocales"}'
         :commit='{key: "language", path: "page/locales/CHANGE_LANGUAGE"}'
       )
       AppToggle(
         :icons='["sun", "moon"]'
-        :state='{ key: "isDark", path: "page/getStatePage"}'
+        :state='{key: "isDark", path: "page/getStatePage"}'
         :commit='{key: "isDark", path: "page/SET_STATE_PAGE"}'
       )
       AppToggle(

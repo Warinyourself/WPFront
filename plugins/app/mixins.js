@@ -2,11 +2,6 @@ import Vue from 'vue'
 
 Vue.mixin({
   methods: {
-    // changeData({ key, value }) {
-    //   // eslint-disable-next-line no-console
-    //   console.log(this)
-    //   this[key] = value
-    // },
     debounce(func, values, immediate) {
       const later = () => {
         this.timeout = false

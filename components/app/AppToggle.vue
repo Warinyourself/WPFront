@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'AppToggle',
   props: {
@@ -24,23 +26,7 @@ export default {
       type: Object,
       default: () => Object.create(null)
     },
-    commitOn: {
-      type: Object,
-      default: () => Object.create(null)
-    },
-    commitOff: {
-      type: Object,
-      default: () => Object.create(null)
-    },
     action: {
-      type: Object,
-      default: () => Object.create(null)
-    },
-    actionOn: {
-      type: Object,
-      default: () => Object.create(null)
-    },
-    actionOff: {
       type: Object,
       default: () => Object.create(null)
     },
@@ -88,28 +74,22 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['globalCommit', 'globalAction']),
     changeData({ key, value }) {
       this[key] = value
     },
     changeToggle() {
-      if (!this.values.length && !Object.keys(this.state).length) {
-        this.active = !this.active
-      }
+      this.active = !this.active
 
-      if (this.active && Object.keys(this.commit).length) {
-        this.$store.commit(this.commit.path, {
-          key: this.commit.key,
-          value: this.values[0] || !this.active
+      if (Object.keys(this.commit).length) {
+        const objectCommit = Object.assign(Object.assign({}, this.commit), {
+          value:
+            this.commit.value ||
+            this.values[Number(this.active)] ||
+            this.active,
+          internalState: this.active
         })
-
-        this.active = !this.active
-      } else if (!this.active && Object.keys(this.commit).length) {
-        this.$store.commit(this.commit.path, {
-          key: this.commit.key,
-          value: this.values[1] || !this.active
-        })
-
-        this.active = !this.active
+        this.globalCommit(objectCommit)
       }
     }
   }

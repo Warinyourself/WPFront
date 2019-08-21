@@ -58,7 +58,7 @@
         .flex.jc-space-between.mt-2
           AppToggle.bgc-main(
             type='plus'
-            :commit='{path: "page/ADD_EXPAND_BLOCK", value: "formProducts"}'
+            :commit='{structure: "EXPAND_BLOCK", value: "formProducts"}'
           )
         AppExpand(
           name='formProducts'
