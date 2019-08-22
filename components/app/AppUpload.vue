@@ -58,11 +58,14 @@ export default {
   mounted() {
     if (this.form) {
       this.ADD_INPUT_IN_FORM({
-        name: this.name,
-        size: this.fileSize,
-        value: this.fileValue,
-        validators: this.validators,
-        errors: []
+        formName: this.form.name,
+        input: {
+          name: this.name,
+          value: this.fileValue,
+          size: this.fileSize,
+          validators: this.validators,
+          errors: []
+        }
       })
     }
   },

@@ -16,8 +16,7 @@ export const getters = {
 }
 
 export const actions = {
-  createProduct({ state }) {
-    // eslint-disable-next-line no-console
-    console.log(state)
+  createProduct({ state }, data) {
+    return data
   }
 }

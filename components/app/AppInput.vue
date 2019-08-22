@@ -64,10 +64,13 @@ export default {
   mounted() {
     if (this.form) {
       this.ADD_INPUT_IN_FORM({
-        name: this.name,
-        value: this.value,
-        validators: this.validators,
-        errors: []
+        formName: this.form.name,
+        input: {
+          name: this.name,
+          value: this.value,
+          validators: this.validators,
+          errors: []
+        }
       })
     }
   },

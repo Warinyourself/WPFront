@@ -45,12 +45,11 @@
       AppForm(name='formProducts' close :actionOff='{path: "search/createProduct"}')
         h2 {{ $t('search.form.name') }}
         .flex
-          AppInput.w-100.md6.mr-2(name='ProductTitle'
+          AppInput.w-100.md6.mr-2(name='title'
             :validators='{required: true, letters: true}'
             :placeholder='$t("search.form.name_product")'
           )
-          AppUpload.w-100.md6(name='ProductUpload'
-            type='file'
+          AppUpload.w-100.md6(name='img'
             accept='image/png, image/jpeg'
             :validators='{required: true}'
             :placeholder='$t("forms.upload")'

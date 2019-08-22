@@ -24,8 +24,12 @@ export const mutations = {
 
     state.forms.splice(index, 1)
   },
-  ADD_INPUT_IN_FORM(state, inputObject) {
-    state.forms[state.forms.length - 1].children.push(inputObject)
+  ADD_INPUT_IN_FORM(state, { formName, input }) {
+    const form = state.forms.find((form) => {
+      return form.name === formName
+    })
+
+    form.children.push(input)
   },
   DELETE_INPUT_FROM_FORM(state, { name, formName }) {
     const formChildren = state.forms.find((form) => {
@@ -126,10 +130,11 @@ export const actions = {
     const hasErrors = getters.hasFormErrors({ name })
 
     if (!hasErrors) {
-      const answer = getters.getValuesFromForm({ name })
+      const values = getters.getValuesFromForm({ name })
+      const response = await dispatch(func.path, values, { root: true })
 
       // eslint-disable-next-line no-console
-      console.log(func, answer, close)
+      console.log(func, response, values)
 
       if (close) {
         if (close.type === 'modal') {
