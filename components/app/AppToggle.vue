@@ -75,9 +75,6 @@ export default {
   },
   methods: {
     ...mapActions(['globalCommit', 'globalAction']),
-    changeData({ key, value }) {
-      this[key] = value
-    },
     changeToggle() {
       this.active = !this.active
 

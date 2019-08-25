@@ -46,8 +46,8 @@ export default {
   },
   computed: {
     classObject() {
-      const classToggle = 'button--' + this.type
       const classObject = {}
+      const classToggle = 'button--' + this.type
 
       const path = this.state.path
       const key = this.state.key

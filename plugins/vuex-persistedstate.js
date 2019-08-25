@@ -4,7 +4,12 @@ export default ({ store }) => {
   window.onNuxtReady(() => {
     createPersistedState({
       key: 'vuex',
-      paths: ['page.isDark', 'page.minimizeMenu', 'page.language']
+      paths: [
+        'page.isDark',
+        'page.minimizeMenu',
+        'page.language',
+        'search.activeTab'
+      ]
     })(store)
   })
 }

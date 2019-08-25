@@ -3,6 +3,7 @@ import Vue from 'vue'
 import AppIcon from '@/components/app/AppIcon'
 import AppForm from '@/components/app/AppForm'
 import AppTabs from '@/components/app/AppTabs'
+import AppTabsItem from '@/components/app/AppTabsItem'
 import AppInput from '@/components/app/AppInput'
 import AppAvatar from '@/components/app/AppAvatar'
 import AppSearch from '@/components/app/AppSearch'
@@ -16,6 +17,7 @@ import AppModalWindow from '@/components/app/AppModalWindow'
 Vue.component('AppIcon', AppIcon)
 Vue.component('AppForm', AppForm)
 Vue.component('AppTabs', AppTabs)
+Vue.component('AppTabsItem', AppTabsItem)
 Vue.component('AppInput', AppInput)
 Vue.component('AppAvatar', AppAvatar)
 Vue.component('AppSearch', AppSearch)

@@ -1,6 +1,7 @@
 export const state = () => ({
   searchInput: '',
-  activeTab: 'products'
+  activeTab: 'products',
+  products: []
 })
 
 export const mutations = {
@@ -16,6 +17,11 @@ export const getters = {
 }
 
 export const actions = {
+  async getProducts({ state, commit }) {
+    const response = await this.$axios.get('/products')
+
+    commit('SET_STATE_SEARCH', { key: 'products', value: response.data })
+  },
   createProduct({ state }, data) {
     return data
   }
