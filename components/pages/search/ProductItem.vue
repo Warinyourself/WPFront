@@ -5,6 +5,7 @@
     .block
       h5.product-block__title.fs-3 {{product.name}}
       .product-block__description.text--additional.mt-1 {{product.description}}
+      NuxtLink(:to='{name: "search-product-id", params: {id: product.id}}') Link {{product.id}}
 </template>
 
 <script>

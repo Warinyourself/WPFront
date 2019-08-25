@@ -14,17 +14,17 @@
             :commit='{path: "search/SET_STATE_SEARCH", key: "activeTab"}'
           ) {{ $t('search.products')}}
           AppButton.mr-1.p-2.br-1(
-            icon='cycle'
-            value='courses'
-            :state='{path: "search/getStateSearch", key: "activeTab"}'
-            :commit='{path: "search/SET_STATE_SEARCH", key: "activeTab"}'
-          ) {{ $t('search.courses')}}
-          AppButton.mr-1.p-2.br-1(
             icon='recipes'
             value='recipes'
             :state='{path: "search/getStateSearch", key: "activeTab"}'
             :commit='{path: "search/SET_STATE_SEARCH", key: "activeTab"}'
           ) {{ $t('search.recipes')}}
+          AppButton.mr-1.p-2.br-1(
+            icon='cycle'
+            value='courses'
+            :state='{path: "search/getStateSearch", key: "activeTab"}'
+            :commit='{path: "search/SET_STATE_SEARCH", key: "activeTab"}'
+          ) {{ $t('search.courses')}}
 
         AppButton.p-2.br-1.br-50(
           icon='plusInCircle'
@@ -32,9 +32,9 @@
           :commit='{path: "page/ADD_MODAL"}'
         )
 
-    AppTabs(:state='$store.state.search.activeTab')
+    AppTabs(:state='activeTab')
       AppTabsItem(
-        :state='$store.state.search.activeTab'
+        :state='activeTab'
         :action='{path: "search/getProducts"}'
         value='products'
       )
@@ -44,13 +44,13 @@
           :product='product'
         )
       AppTabsItem(
-        :state='$store.state.search.activeTab'
-        value='courses'
-      ) courses
-      AppTabsItem(
-        :state='$store.state.search.activeTab'
+        :state='activeTab'
         value='recipes'
       ) recipes
+      AppTabsItem(
+        :state='activeTab'
+        value='courses'
+      ) courses
 
     AppModalWindow(name='modalFormProducts')
       AppForm(name='formProducts' close :actionOff='{path: "search/createProduct"}')
@@ -93,11 +93,11 @@ import ProductItem from '@/components/pages/search/ProductItem.vue'
 
 export default {
   name: 'SearchPage',
-  computed: {
-    ...mapState('search', ['activeTab', 'searchInput'])
-  },
   components: {
     ProductItem
+  },
+  computed: {
+    ...mapState('search', ['activeTab'])
   }
 }
 </script>
