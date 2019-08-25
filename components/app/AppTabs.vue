@@ -1,20 +1,13 @@
 <template lang="pug">
-  .tabs.ai-center.bgc-dark(@changeTab='changeTab' :class='classObject' )
-    slot
+  .tabs
+    .tabs-items(ref='body' :style='`transform: translateX(-${(width || 1000) * index}px)`')
+      slot
 </template>
 
 <script>
 export default {
-  name: 'AppToggle',
+  name: 'AppTabs',
   props: {
-    type: {
-      type: String,
-      default: 'classic'
-    },
-    icons: {
-      type: Array,
-      default: () => ['', '']
-    },
     commit: {
       type: Object,
       default: () => Object.create(null)
@@ -24,40 +17,29 @@ export default {
       default: () => Object.create(null)
     },
     state: {
-      type: Object,
-      default: () => Object.create(null)
+      type: String,
+      default: 'products'
     }
   },
   data() {
     return {
-      active: false
+      width: 0
     }
   },
   computed: {
-    classObject() {
-      const classToggle = 'toggle--' + this.type
-      const classObject = {}
-
-      const path = this.state.path
-      const type = this.state.type
-
-      if (type && path) {
-        const value = this.$store.getters[path](type)
-        classObject['toggle--active'] = value
-        this.changeData({ key: 'active', value })
-      } else {
-        classObject['toggle--active'] = this.active
-      }
-
-      classObject[classToggle] = true
-
-      return classObject
+    index() {
+      return this.items.indexOf(this.state)
+    },
+    items() {
+      return this.$slots.default.map((tab) => {
+        return tab.componentOptions.propsData.value
+      })
     }
   },
-  methods: {
-    changeTab() {
-      // Mutations Change tab
-    }
+  updated() {
+    setTimeout(() => {
+      this.width = this.$refs.body.offsetWidth
+    }, 0)
   }
 }
 </script>

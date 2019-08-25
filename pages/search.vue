@@ -32,14 +32,25 @@
           :commit='{path: "page/ADD_MODAL"}'
         )
 
-    .flex.mt-2.slider
-      transition(name='slide-out-left')
-        .slider-body(v-if='activeTab === "products"' key='products')
-          p {{activeTab}} {{searchInput}} PRODUCTS
-        .slider-body(v-else-if='activeTab === "courses"' key='courses')
-          p {{activeTab}} {{searchInput}} COURSES
-        .slider-body(v-else-if='activeTab === "recipes"' key='recipes')
-          p {{activeTab}} {{searchInput}} RECIPES
+    AppTabs(:state='$store.state.search.activeTab')
+      AppTabsItem(
+        :state='$store.state.search.activeTab'
+        :action='{path: "search/getProducts"}'
+        value='products'
+      )
+        ProductItem.mt-1(
+          v-for='(product, i) in $store.state.search.products'
+          :key='i'
+          :product='product'
+        )
+      AppTabsItem(
+        :state='$store.state.search.activeTab'
+        value='courses'
+      ) courses
+      AppTabsItem(
+        :state='$store.state.search.activeTab'
+        value='recipes'
+      ) recipes
 
     AppModalWindow(name='modalFormProducts')
       AppForm(name='formProducts' close :actionOff='{path: "search/createProduct"}')
@@ -49,10 +60,14 @@
             :validators='{required: true, letters: true}'
             :placeholder='$t("search.form.name_product")'
           )
-          AppUpload.w-100.md6(name='img'
+          AppUpload.w-100.md6(name='image'
             accept='image/png, image/jpeg'
             :validators='{required: true}'
             :placeholder='$t("forms.upload")'
+          )
+          AppInput.w-100.md6.mr-2(name='description'
+            :validators='{required: true, letters: true}'
+            :placeholder='$t("search.form.name_product")'
           )
         .flex.jc-space-between.mt-2
           AppToggle.bgc-main(
@@ -62,10 +77,11 @@
         AppExpand(
           name='formProducts'
         )
-          AppInput.w-100.md6.mr-2(name='Description'
-            :validators='{required: true, letters: true}'
+          AppInput.w-100.md6.mr-2(name='calories'
+            :validators='{}'
             :placeholder='$t("search.form.name_product")'
           )
+
         AppButton.p-2.mt-2.br-1.br-50(
           type='submit'
         ) {{ $t('forms.submit')}}
@@ -73,11 +89,15 @@
 
 <script>
 import { mapState } from 'vuex'
+import ProductItem from '@/components/pages/search/ProductItem.vue'
 
 export default {
   name: 'SearchPage',
   computed: {
     ...mapState('search', ['activeTab', 'searchInput'])
+  },
+  components: {
+    ProductItem
   }
 }
 </script>
