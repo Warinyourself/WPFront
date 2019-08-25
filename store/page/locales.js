@@ -18,32 +18,23 @@ export const getters = {
     return state[key]
   },
   determineKeyFori18nByTitleMenu: () => (name) => {
-    let title = name
-
-    switch (title) {
+    switch (name) {
       case 'index':
-        title = 'menu.main'
-        break
+        return 'menu.main'
       case 'profile':
-        title = 'menu.profile'
-        break
+        return 'menu.profile'
       case 'statistics':
-        title = 'menu.statistics'
-        break
+        return 'menu.statistics'
       case 'search':
-        title = 'menu.search'
-        break
+        return 'menu.search'
       case 'schedule':
-        title = 'menu.schedule'
-        break
+        return 'menu.schedule'
       case 'news':
-        title = 'menu.news'
-        break
+        return 'menu.news'
       case 'settings':
-        title = 'menu.settings'
-        break
+        return 'menu.settings'
+      default:
+        return 'route.unknow'
     }
-
-    return title
   }
 }

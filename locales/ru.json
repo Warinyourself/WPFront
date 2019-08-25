@@ -8,6 +8,10 @@
     "statistics": "Статистика",
     "settings": "Настройки"
   },
+  "routing": {
+    "product": "Продукт",
+    "unknow": "Неизвестный путь"
+  },
   "login": {
     "title": "Поле входа",
     "username": "Логин",
