@@ -53,34 +53,7 @@
       ) courses
 
     AppModalWindow(name='modalFormProducts')
-      AppForm(name='formProducts' close :actionOff='{path: "search/createProduct"}')
-        h2 {{ $t('search.form.name') }}
-        .flex
-          AppInput.w-100.md6.mr-2(name='title'
-            :validators='{required: true, letters: true}'
-            :placeholder='$t("search.form.name_product")'
-          )
-          AppUpload.w-100.md6(name='image'
-            accept='image/png, image/jpeg'
-            :validators='{required: true}'
-            :placeholder='$t("forms.upload")'
-          )
-          AppInput.w-100.md6.mr-2(name='description'
-            :validators='{required: true, letters: true}'
-            :placeholder='$t("search.form.name_product")'
-          )
-        .flex.jc-space-between.mt-2
-          AppToggle.bgc-main(
-            type='plus'
-            :commit='{structure: "EXPAND_BLOCK", value: "formProducts"}'
-          )
-        AppExpand(
-          name='formProducts'
-        )
-          AppInput.w-100.md6.mr-2(name='calories'
-            :validators='{}'
-            :placeholder='$t("search.form.name_product")'
-          )
+      CreateProductForm
 
         AppButton.p-2.mt-2.br-1.br-50(
           type='submit'
@@ -90,11 +63,13 @@
 <script>
 import { mapState } from 'vuex'
 import ProductItem from '@/components/pages/search/ProductItem.vue'
+import CreateProductForm from '@/components/common/forms/CreateProductForm.vue'
 
 export default {
   name: 'SearchPage',
   components: {
-    ProductItem
+    ProductItem,
+    CreateProductForm
   },
   computed: {
     ...mapState('search', ['activeTab'])
