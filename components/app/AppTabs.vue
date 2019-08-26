@@ -37,9 +37,11 @@ export default {
     }
   },
   updated() {
-    setTimeout(() => {
-      this.width = this.$refs.body.offsetWidth
-    }, 0)
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.width = this.$refs.body.offsetWidth
+      }, 100)
+    })
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template lang="pug">
-  .input.fd-column
+  .input.input--upload.fd-column
     .input__body.ai-center.jc-space-between(
       :class='{"input--error": input && input.errors.length}'
     )
