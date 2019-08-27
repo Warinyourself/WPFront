@@ -3,13 +3,18 @@
     text-indent 10px
   .highlight__line--bottom
     width calc(100% - 20px)
+  .input--error
+    .upload-block
+      background color-error
+      svg
+        fill-main--lightest('dark')
+        stroke-main--lightest('dark')
 
 .upload-title
   max-width calc(100% - 50px)
   white-space nowrap
   overflow hidden
   text-overflow ellipsis
-
 
 .upload-block
   background color-main--dark

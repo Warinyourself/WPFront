@@ -41,6 +41,17 @@ bgc-main--lightest(theme = '')
   else
     background-color color-main--lightest
 
+fill-main--lightest(theme = '')
+  if theme == 'dark'
+    fill #1d1930
+  else
+    fill color-main--lightest
+
+stroke-main--lightest(theme = '')
+  if theme == 'dark'
+    stroke #1d1930
+  else
+    stroke color-main--lightest
 
 color-light(theme = '')
   if theme == 'dark'
