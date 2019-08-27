@@ -14,7 +14,8 @@ export default {
     ...mapGetters('page/locales', ['determineKeyFori18nByTitleMenu'])
   },
   methods: {
-    ...mapActions('user', ['logout'])
+    ...mapActions('user', ['logout']),
+    ...mapActions('page/locales', ['determineKeyFori18nByRouting'])
   }
 }
 </script>

@@ -21,11 +21,6 @@ export default {
     ...mapState('page', ['minimizeMenu', 'isDark']),
     ...mapState('page/locales', ['language'])
   },
-  watch: {
-    language() {
-      this.$i18n.locale = this.language
-    }
-  },
   mounted() {
     if (process.browser) {
       window.addEventListener('keyup', this.handleKeyUp, { passive: false })

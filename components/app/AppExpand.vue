@@ -28,14 +28,14 @@ export default {
       active: false
     }
   },
-  destroyed() {
-    this.closeBlock()
-  },
   computed: {
     ...mapGetters('page', ['isExpandBlock']),
     isOpen() {
       return this.isExpandBlock(this.name)
     }
+  },
+  destroyed() {
+    this.closeBlock()
   },
   methods: {
     ...mapMutations('page', ['CLOSE_EXPAND_BLOCK']),

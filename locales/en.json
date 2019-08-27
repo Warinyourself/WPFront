@@ -10,7 +10,7 @@
   },
   "route": {
     "product": "Product",
-    "unknow": "Unknow route"
+    "unknow": "{route}"
   },
   "login": {
     "title": "Login field",

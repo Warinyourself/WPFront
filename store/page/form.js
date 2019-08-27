@@ -144,7 +144,7 @@ export const actions = {
 
       if (close) {
         if (close.type === 'modal') {
-          this.commit('page/CLOSE_MODAL', close.name, { root: true })
+          commit('page/CLOSE_MODAL', close.name, { root: true })
         }
       }
     }

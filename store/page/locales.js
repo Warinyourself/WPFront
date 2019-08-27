@@ -1,14 +1,22 @@
 export const state = () => ({
-  language: 'en'
+  language: 'en',
+  routing: {
+    index: 'menu.main',
+    profile: 'menu.profile',
+    statistics: 'menu.statistics',
+    search: 'menu.search',
+    schedule: 'menu.schedule',
+    news: 'menu.news',
+    settings: 'menu.settings'
+  }
 })
 
 export const mutations = {
-  SET_STATE_PAGE_LOCALES: (state, { key, value }) => {
+  SET_STATE_PAGE_LOCALES(state, { key, value }) {
     state[key] = value
   },
-  CHANGE_LANGUAGE: (state, { key, value }) => {
-    // Maybe sync this i18n
-    // this.$i18n.locale = 'ru'
+  CHANGE_LANGUAGE(state, { key, value }) {
+    this.app.i18n.locale = value
     state[key] = value
   }
 }
@@ -17,24 +25,13 @@ export const getters = {
   getStatePageLocales: (state, getters) => (key) => {
     return state[key]
   },
-  determineKeyFori18nByTitleMenu: () => (name) => {
-    switch (name) {
-      case 'index':
-        return 'menu.main'
-      case 'profile':
-        return 'menu.profile'
-      case 'statistics':
-        return 'menu.statistics'
-      case 'search':
-        return 'menu.search'
-      case 'schedule':
-        return 'menu.schedule'
-      case 'news':
-        return 'menu.news'
-      case 'settings':
-        return 'menu.settings'
-      default:
-        return 'route.unknow'
-    }
+  determineKeyFori18nByTitleMenu: ({ routing }) => (name) => {
+    return routing[name] || 'route.unknow'
+  }
+}
+
+export const actions = {
+  determineKeyFori18nByRouting({ state }, { name }) {
+    return state.routing[name] || 'route.unknow'
   }
 }
