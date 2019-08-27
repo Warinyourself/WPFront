@@ -29,7 +29,7 @@
     )
       AppInput.w-100.md6.sm12.mr-2(
         name='cost'
-        :validators='{}'
+        :validators='{number: true}'
         :placeholder='$t("search.form.cost")'
       )
     AppButton.p-2.mt-2.br-1.br-50(

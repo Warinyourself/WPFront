@@ -8,7 +8,7 @@
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
-  name: 'AppExpand1337',
+  name: 'AppExpand',
   props: {
     name: {
       type: String,
@@ -28,6 +28,9 @@ export default {
       active: false
     }
   },
+  destroyed() {
+    this.closeBlock()
+  },
   computed: {
     ...mapGetters('page', ['isExpandBlock']),
     isOpen() {
@@ -36,7 +39,7 @@ export default {
   },
   methods: {
     ...mapMutations('page', ['CLOSE_EXPAND_BLOCK']),
-    closeMonal() {
+    closeBlock() {
       this.CLOSE_EXPAND_BLOCK(this.name)
     }
   }

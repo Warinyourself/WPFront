@@ -54,10 +54,6 @@
 
     AppModalWindow(name='modalFormProducts')
       CreateProductForm
-
-        AppButton.p-2.mt-2.br-1.br-50(
-          type='submit'
-        ) {{ $t('forms.submit')}}
 </template>
 
 <script>
