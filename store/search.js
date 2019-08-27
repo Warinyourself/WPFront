@@ -47,6 +47,8 @@ export const actions = {
     return product
   },
   createProduct({ state }, data) {
+    // eslint-disable-next-line no-console
+    console.log(data, 'FORM STATE')
     return data
   }
 }

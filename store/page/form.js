@@ -68,8 +68,8 @@ export const getters = {
 
     return answer
   },
-  hasFormErrors: (state, getters) => (name) => {
-    const form = getters.getFormByName(name)
+  hasFormErrors: (state, getters) => ({ name }) => {
+    const form = getters.getFormByName({ name })
 
     return form.children
       .map((input) => {
@@ -103,7 +103,7 @@ export const getters = {
     return { pathText: 'forms.errors.letters' }
   },
   required: (state, getters) => ({ value, options }) => {
-    if (value) {
+    if (value || !options) {
       return true
     }
     return { pathText: 'forms.errors.required' }
@@ -134,7 +134,7 @@ export const actions = {
       const response = await dispatch(func.path, values, { root: true })
 
       // eslint-disable-next-line no-console
-      console.log(func, response, values)
+      console.log(response, values)
 
       if (close) {
         if (close.type === 'modal') {

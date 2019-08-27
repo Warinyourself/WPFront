@@ -1,32 +1,40 @@
 <template lang="pug">
-  AppForm(name='formProducts' close :actionOff='{path: "search/createProduct"}')
-    h2 {{ $t('search.form.name') }}
-    .flex.flex-wrap
-      AppInput.w-100.md6.sm12.mt-1(name='title'
+  AppForm.form(name='formProducts' close :actionOff='{path: "search/createProduct"}')
+    h2 {{ $t('search.form.title') }}
+    .flex.flex-wrap.ai-center
+      AppInput.w-100.md6.sm6.mt-1(
+        name='name'
         :validators='{required: true, letters: true}'
-        :placeholder='$t("search.form.name_product")'
+        :placeholder='$t("search.form.name")'
       )
-      AppUpload.w-100.md6.sm12.mt-1(name='image'
+      AppUpload.w-100.md6.sm6.mt-1(
+        name='image'
         accept='image/png, image/jpeg'
-        :validators='{required: true}'
+        :validators='{required: false}'
         :placeholder='$t("forms.upload")'
       )
-      AppInput.w-100.md6.sm12.mt-1(name='description'
+      AppInput.w-100.md10.sm11.mt-1(
+        name='description'
         :validators='{required: true, letters: true}'
-        :placeholder='$t("search.form.name_product")'
+        :placeholder='$t("search.form.description")'
       )
-    .flex.jc-space-between.mt-2
-      AppToggle.bgc-main(
-        type='plus'
-        :commit='{structure: "EXPAND_BLOCK", value: "formProducts"}'
-      )
+      .flex.md1.flex-center
+        AppToggle.bgc-main(
+          type='plus'
+          :commit='{structure: "EXPAND_BLOCK", value: "formProducts"}'
+        )
+
     AppExpand(
       name='formProducts'
     )
-      AppInput.w-100.md6.mr-2(name='calories'
+      AppInput.w-100.md6.sm12.mr-2(
+        name='cost'
         :validators='{}'
-        :placeholder='$t("search.form.name_product")'
+        :placeholder='$t("search.form.cost")'
       )
+    AppButton.p-2.mt-2.br-1.br-50(
+      type='submit'
+    ) {{ $t('forms.submit')}}
 </template>
 
 <script>

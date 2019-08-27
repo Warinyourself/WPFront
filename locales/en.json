@@ -24,9 +24,10 @@
     "courses": "Сourses",
     "recipes": "Recipes",
     "form": {
-      "name": "Create product",
-      "name_product": "Product name",
-      "description": "Product description",
+      "title": "Create product",
+      "name": "Name",
+      "description": "Description",
+      "cost": "Cost",
       "body": "Base text",
       "calories": "Calories",
       "carbohydrates": "Carbohydrates",
