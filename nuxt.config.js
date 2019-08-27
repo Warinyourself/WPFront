@@ -37,6 +37,7 @@ export default {
     '~/plugins/app/mixins.js',
     '~/plugins/app/methods.js',
     '~/plugins/app/components.js',
+    '~/plugins/app/directives.js',
     { src: '~plugins/vuex-router-sync.js', ssr: false },
     { src: '~/plugins/vuex-persistedstate.js', ssr: false }
   ],
