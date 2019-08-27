@@ -107,6 +107,12 @@ export const getters = {
       return true
     }
     return { pathText: 'forms.errors.required' }
+  },
+  number: (state, getters) => ({ value, options }) => {
+    if (/^\d{0,}$/.test(value)) {
+      return true
+    }
+    return { pathText: 'forms.errors.number' }
   }
 }
 

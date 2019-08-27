@@ -49,7 +49,8 @@
     "expand": "Expand form",
     "errors": {
       "required": "Required field",
-      "letters": "Only letters"
+      "letters": "Only letters",
+      "number": "Only numbers"
     }
   }
 }
