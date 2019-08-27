@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'AppButton',
   props: {
@@ -25,18 +27,17 @@ export default {
       type: String,
       default: 'left'
     },
-    commit: {
-      type: Object,
-      default: () => Object.create(null)
+    disabled: {
+      type: Boolean,
+      default: null
     },
-    action: {
-      type: Object,
-      default: () => Object.create(null)
+    actions: {
+      type: Array,
+      default: () => []
     },
-    disabled: Boolean,
     state: {
-      type: Object,
-      default: () => Object.create(null)
+      type: String,
+      default: null
     }
   },
   data() {
@@ -49,12 +50,8 @@ export default {
       const classObject = {}
       const classToggle = 'button--' + this.type
 
-      const path = this.state.path
-      const key = this.state.key
-
-      if (key && path) {
-        const value = this.$store.getters[path](key)
-        classObject['button--active'] = value === this.value
+      if (this.state !== null) {
+        classObject['button--active'] = this.state === this.value
       }
 
       classObject[classToggle] = true
@@ -63,17 +60,17 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['globalDistributor']),
     handleClick() {
-      if (this.value && Object.keys(this.commit).length) {
-        if (this.commit.key) {
-          this.$store.commit(this.commit.path, {
-            key: this.commit.key,
-            value: this.value
+      this.globalDistributor(
+        this.actions
+          .filter((action) => {
+            return action.on === 'click'
           })
-        } else {
-          this.$store.commit(this.commit.path, this.value)
-        }
-      }
+          .map((action) => {
+            return Object.assign({ value: this.value }, action)
+          })
+      )
     }
   }
 }

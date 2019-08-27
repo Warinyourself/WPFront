@@ -4,21 +4,21 @@
       NuxtLink.menu__link(v-for='(item, i) in mainMenu' :key='i' :to='{ name: item.name }')
         .menu__icon-box
           AppIcon.menu__icon.icon-3.icon-darker(:icon='item.icon')
-        //- h4.color-dark-link {{ $t(determineKeyFori18nByTitleMenu(item.name)) }}
+        h4.color-dark-link {{ $t(determineKeyFori18nByTitleMenu(item.name)) }}
     .menu__footer
       AppToggle(
         :values='["ru", "en"]'
-        :state='{key: "language", path: "page/locales/getStatePageLocales"}'
+        :state='language'
         :commit='{key: "language", path: "page/locales/CHANGE_LANGUAGE"}'
       )
       AppToggle(
         :icons='["sun", "moon"]'
-        :state='{key: "isDark", path: "page/getStatePage"}'
+        :state='isDark'
         :commit='{key: "isDark", path: "page/SET_STATE_PAGE"}'
       )
       AppToggle(
         type='arrow'
-        :state='{key: "minimizeMenu", path: "page/getStatePage"}'
+        :state='minimizeMenu'
         :commit='{key: "minimizeMenu", path: "page/SET_STATE_PAGE"}'
       )
 </template>
@@ -29,8 +29,9 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
   name: 'MenuMenu',
   computed: {
-    ...mapState('page', ['minimizeMenu', 'mainMenu']),
+    ...mapState('page', ['minimizeMenu', 'isDark', 'mainMenu']),
     ...mapState('page/structure', ['mainMenu']),
+    ...mapState('page/locales', ['language']),
     ...mapGetters('page/locales', ['determineKeyFori18nByTitleMenu'])
   },
   methods: {

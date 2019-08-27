@@ -12,13 +12,20 @@ export const mutations = {
   }
 }
 export const getters = {
-  determineObject: (state, getters) => (object) => {
+  determineProperty: (state, getters) => (object) => {
     const { key, value } = object
 
     if (key === undefined) {
       return value
     } else {
-      return object
+      const uselessValues = ['on', 'path', 'type']
+      const objectProperty = Object.assign({}, object)
+
+      uselessValues.forEach((useless) => {
+        delete objectProperty[useless]
+      })
+
+      return objectProperty
     }
   },
   determinePath: (state, getters) => ({ path, structure, internalState }) => {
@@ -34,21 +41,31 @@ export const getters = {
           }
       }
     }
-
     // eslint-disable-next-line no-console
-    console.error('FETERMINE PATH OR STRUCTURE')
+    console.error('DETERMINE PATH OR STRUCTURE ERROR')
   }
 }
 
 export const actions = {
+  async globalDistributor({ dispatch }, functions) {
+    await Promise.all(
+      functions.map((funcObject) => {
+        if (funcObject.type === 'commit') {
+          return dispatch('globalCommit', funcObject)
+        } else {
+          return dispatch('globalAction', funcObject)
+        }
+      })
+    )
+  },
   globalCommit({ commit }, object) {
-    const property = getters.determineObject()(object)
+    const property = getters.determineProperty()(object)
     const path = getters.determinePath()(object)
 
     commit(path, property, { root: true })
   },
   globalAction({ dispatch }, object) {
-    const property = getters.determineObject()(object)
+    const property = getters.determineProperty()(object)
     const path = getters.determinePath()(object)
 
     dispatch(path, property, { root: true })

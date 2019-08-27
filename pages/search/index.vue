@@ -10,20 +10,41 @@
           AppButton.mr-1.p-2.br-1(
             icon='products'
             value='products'
-            :state='{path: "search/getStateSearch", key: "activeTab"}'
-            :commit='{path: "search/SET_STATE_SEARCH", key: "activeTab"}'
+            :state='activeTab'
+            :actions=`[
+              {
+                type: "commit",
+                path: "search/SET_STATE_SEARCH",
+                key: "activeTab",
+                on: "click"
+              }
+            ]`
           ) {{ $t('search.products')}}
           AppButton.mr-1.p-2.br-1(
             icon='recipes'
             value='recipes'
-            :state='{path: "search/getStateSearch", key: "activeTab"}'
-            :commit='{path: "search/SET_STATE_SEARCH", key: "activeTab"}'
+            :state='activeTab'
+            :actions=`[
+              {
+                type: "commit",
+                path: "search/SET_STATE_SEARCH",
+                key: "activeTab",
+                on: "click"
+              }
+            ]`
           ) {{ $t('search.recipes')}}
           AppButton.mr-1.p-2.br-1(
             icon='cycle'
             value='courses'
-            :state='{path: "search/getStateSearch", key: "activeTab"}'
-            :commit='{path: "search/SET_STATE_SEARCH", key: "activeTab"}'
+            :state='activeTab'
+            :actions=`[
+              {
+                type: "commit",
+                path: "search/SET_STATE_SEARCH",
+                key: "activeTab",
+                on: "click"
+              }
+            ]`
           ) {{ $t('search.courses')}}
 
         AppButton.p-2.br-1.br-50(

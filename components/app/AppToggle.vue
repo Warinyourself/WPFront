@@ -22,19 +22,19 @@ export default {
       type: Array,
       default: () => ['', '']
     },
-    commit: {
-      type: Object,
-      default: () => Object.create(null)
-    },
-    action: {
-      type: Object,
-      default: () => Object.create(null)
-    },
     values: {
       type: Array,
       default: () => []
     },
     state: {
+      type: String,
+      default: null
+    },
+    commit: {
+      type: Object,
+      default: () => Object.create(null)
+    },
+    action: {
       type: Object,
       default: () => Object.create(null)
     }
@@ -49,11 +49,8 @@ export default {
       const classToggle = 'toggle--' + this.type
       const classObject = {}
 
-      const path = this.state.path
-      const key = this.state.key
-
-      if (key && path) {
-        let value = this.$store.getters[path](key)
+      if (this.state !== null) {
+        let value = this.state
 
         if (this.values.length) {
           value = this.values[0] !== value
@@ -86,6 +83,7 @@ export default {
             this.active,
           internalState: this.active
         })
+
         this.globalCommit(objectCommit)
       }
     }
