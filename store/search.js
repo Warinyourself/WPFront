@@ -51,5 +51,8 @@ export const actions = {
     console.log(data, 'FORM STATE')
     return data
   },
-  deleteProduct({ state }, id) {}
+  deleteProduct({ state }, id) {
+    // eslint-disable-next-line no-console
+    console.log(id, 'DELETE PRODUCT FORM STATE')
+  }
 }

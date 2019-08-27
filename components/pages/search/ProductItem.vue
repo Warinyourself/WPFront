@@ -5,7 +5,16 @@
     .block
       h5.product-block__title.fs-3 {{product.name}}
       .product-block__description.text--additional.mt-1 {{product.description}}
-      //- AppButton.mt-1 Delete Link
+      AppButton.mt-1(
+        :actions=`[
+          {
+            type: 'action',
+            path: "search/deleteProduct",
+            on: "click",
+            value: product.id
+          }
+        ]`
+      ) Delete Link
       NuxtLink(:to='{name: "search-product-id", params: {id: product.id}}') Link to {{product.id}}
 </template>
 
