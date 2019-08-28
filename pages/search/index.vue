@@ -46,14 +46,25 @@
               }
             ]`
           ) {{ $t('search.courses')}}
-
+        AppButton.p-2.br-1.br-50.mr-1(
+          icon='filter'
+          iconSize='2'
+          :value='activeTab'
+          :actions=`[
+            {
+              type: "commit",
+              path: "page/EXPAND_BLOCK",
+              on: "click"
+            }
+          ]`
+        )
         AppButton.p-2.br-1.br-50(
           icon='plusInCircle'
           value='modalFormProducts'
           :actions=`[
             {
               type: "commit",
-              path: "page/ADD_MODAL",
+              path: "page/OPEN_MODAL",
               on: "click"
             }
           ]`

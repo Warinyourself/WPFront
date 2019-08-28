@@ -35,7 +35,7 @@ export const getters = {
       switch (structure) {
         case 'EXPAND_BLOCK':
           if (internalState) {
-            return 'page/ADD_EXPAND_BLOCK'
+            return 'page/EXPAND_BLOCK'
           } else {
             return 'page/CLOSE_EXPAND_BLOCK'
           }

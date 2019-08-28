@@ -57,6 +57,7 @@ export default {
     async handleSubmit(e) {
       const form = { name: this.name }
 
+      // Maybe after add option structure values
       if (Object.prototype.hasOwnProperty.call(this.$attrs, 'close')) {
         form.close = {
           type: 'modal',

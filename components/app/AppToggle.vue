@@ -34,9 +34,9 @@ export default {
       type: Object,
       default: () => Object.create(null)
     },
-    action: {
-      type: Object,
-      default: () => Object.create(null)
+    actions: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
@@ -71,21 +71,23 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['globalCommit', 'globalAction']),
+    ...mapActions(['globalDistributor']),
     changeToggle() {
       this.active = !this.active
 
-      if (Object.keys(this.commit).length) {
-        const objectCommit = Object.assign(Object.assign({}, this.commit), {
-          value:
-            this.commit.value ||
-            this.values[Number(this.active)] ||
-            this.active,
-          internalState: this.active
-        })
-
-        this.globalCommit(objectCommit)
-      }
+      this.globalDistributor(
+        this.actions
+          .filter((action) => {
+            return action.on === 'change'
+          })
+          .map((action) => {
+            const object = {
+              value: this.values[Number(this.active)] || this.active,
+              internalState: this.active
+            }
+            return Object.assign(object, action)
+          })
+      )
     }
   }
 }

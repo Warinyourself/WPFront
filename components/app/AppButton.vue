@@ -1,6 +1,6 @@
 <template lang="pug">
   button.button.ai-center.bgc-main--lighter(@click='handleClick' :class='classObject' v-bind='$attrs' :type='this.type')
-    AppIcon.icon-3(v-if='icon' :icon='icon')
+    AppIcon(v-if='icon' :icon='icon' :class='[`icon-${iconSize}`]')
     .button__body(:class='{"ml-2": icon}' v-if='$slots.default')
       slot.ln-0
 </template>
@@ -23,6 +23,10 @@ export default {
       type: String,
       default: null
     },
+    iconSize: {
+      type: [String, Number],
+      default: 3
+    },
     iconsPosition: {
       type: String,
       default: 'left'
@@ -31,13 +35,13 @@ export default {
       type: Boolean,
       default: null
     },
-    actions: {
-      type: Array,
-      default: () => []
-    },
     state: {
       type: String,
       default: null
+    },
+    actions: {
+      type: Array,
+      default: () => []
     }
   },
   data() {

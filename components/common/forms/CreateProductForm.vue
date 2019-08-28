@@ -21,7 +21,14 @@
       .flex.md1.flex-center
         AppToggle.bgc-main(
           type='plus'
-          :commit='{structure: "EXPAND_BLOCK", value: "formProducts"}'
+          :actions=`[
+            {
+              type: "commit",
+              structure: "EXPAND_BLOCK",
+              value: "formProducts",
+              on: "change"
+            }
+          ]`
         )
 
     AppExpand(

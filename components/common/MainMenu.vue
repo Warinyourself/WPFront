@@ -9,17 +9,38 @@
       AppToggle(
         :values='["ru", "en"]'
         :state='language'
-        :commit='{key: "language", path: "page/locales/CHANGE_LANGUAGE"}'
+        :actions=`[
+          {
+            type: "commit",
+            path: "page/locales/CHANGE_LANGUAGE",
+            key: "language",
+            on: "change"
+          }
+        ]`
       )
       AppToggle(
         :icons='["sun", "moon"]'
         :state='isDark'
-        :commit='{key: "isDark", path: "page/SET_STATE_PAGE"}'
+        :actions=`[
+          {
+            type: "commit",
+            path: "page/SET_STATE_PAGE",
+            key: "isDark",
+            on: "change"
+          }
+        ]`
       )
       AppToggle(
         type='arrow'
         :state='minimizeMenu'
-        :commit='{key: "minimizeMenu", path: "page/SET_STATE_PAGE"}'
+        :actions=`[
+          {
+            type: "commit",
+            path: "page/SET_STATE_PAGE",
+            key: "minimizeMenu",
+            on: "change"
+          }
+        ]`
       )
 </template>
 

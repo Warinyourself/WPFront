@@ -12,13 +12,13 @@ export const mutations = {
   TOGGLE_MENU: (state) => {
     state.minimizeMenu = !state.minimizeMenu
   },
-  ADD_MODAL: (state, name) => {
+  OPEN_MODAL: (state, name) => {
     state.modalWindows.push(name)
   },
   CLOSE_MODAL: (state, name) => {
     state.modalWindows.splice(state.modalWindows.indexOf(name), 1)
   },
-  ADD_EXPAND_BLOCK: (state, name) => {
+  EXPAND_BLOCK: (state, name) => {
     state.expandBlocks.push(name)
   },
   CLOSE_EXPAND_BLOCK: (state, name) => {
