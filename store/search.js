@@ -34,25 +34,30 @@ export const actions = {
     let product = getters.getProduct(id)
 
     if (product === undefined) {
-      const answer = await this.$axios.get('/products', {
+      const response = await this.$axios.get('/products', {
         params: {
           id: id
         }
       })
 
-      product = answer.data[0]
+      product = response.data[0]
       commit('ADD_PRODUCT', product)
     }
 
     return product
   },
-  createProduct({ state }, data) {
+  async createProduct({ state }, product) {
     // eslint-disable-next-line no-console
-    console.log(data, 'FORM STATE')
-    return data
+    console.log(product, 'FORM STATE')
+    const response = await this.$axios.post('/products/create', product)
+
+    return response
   },
-  deleteProduct({ state }, id) {
+  async deleteProduct({ state, dispatch }, id) {
     // eslint-disable-next-line no-console
     console.log(id, 'DELETE PRODUCT FORM STATE')
+    await this.$axios.post('/products/delete', { id })
+
+    dispatch('getProducts')
   }
 }

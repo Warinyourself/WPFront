@@ -50,7 +50,13 @@
         AppButton.p-2.br-1.br-50(
           icon='plusInCircle'
           value='modalFormProducts'
-          :commit='{path: "page/ADD_MODAL"}'
+          :actions=`[
+            {
+              type: "commit",
+              path: "page/ADD_MODAL",
+              on: "click"
+            }
+          ]`
         )
 
     AppTabs(:state='activeTab')
