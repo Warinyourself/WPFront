@@ -27,7 +27,7 @@ export default {
       default: () => []
     },
     state: {
-      type: String,
+      type: [Boolean, String],
       default: null
     },
     commit: {
