@@ -1,5 +1,18 @@
 <template lang="pug">
-  AppForm.form(name='formProducts' close :actionOff='{path: "search/createProduct"}')
+  AppForm.form(
+    name='formProducts'
+    close
+    :actions=`[
+      {
+        path: "search/createProduct",
+        on: "submit"
+      },
+      {
+        path: "search/getProducts",
+        on: "submit"
+      },
+    ]`
+  )
     h2 {{ $t('search.form.title') }}
     .flex.flex-wrap.ai-center
       AppInput.w-100.md6.sm6.mt-1(

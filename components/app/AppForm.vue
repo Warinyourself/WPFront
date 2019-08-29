@@ -13,17 +13,9 @@ export default {
       type: String,
       required: true
     },
-    commit: {
-      type: Object,
-      default: () => Object.create(null)
-    },
-    action: {
-      type: Object,
-      default: () => Object.create(null)
-    },
-    actionOff: {
-      type: Object,
-      default: () => Object.create(null)
+    actions: {
+      type: Array,
+      default: () => []
     }
   },
   provide() {
@@ -65,9 +57,9 @@ export default {
         }
       }
 
-      if (Object.keys(this.actionOff).length) {
-        form.func = this.actionOff
-      }
+      form.functions = this.actions.filter((func) => {
+        return func.on === 'submit'
+      })
 
       await this.submitForm(form)
     }

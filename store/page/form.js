@@ -130,14 +130,20 @@ export const actions = {
       })
     )
   },
-  async submitForm({ getters, commit, dispatch }, { name, close, func }) {
+  async submitForm({ getters, commit, dispatch }, { name, close, functions }) {
     await dispatch('checkFormErors', { name })
 
     const hasErrors = getters.hasFormErrors({ name })
 
     if (!hasErrors) {
       const values = getters.getValuesFromForm({ name })
-      const response = await dispatch(func.path, values, { root: true })
+      functions = functions.map((func) => {
+        return Object.assign({ value: values }, func)
+      })
+
+      const response = await dispatch('globalDistributor', functions, {
+        root: true
+      })
 
       // eslint-disable-next-line no-console
       console.log(response, values)
