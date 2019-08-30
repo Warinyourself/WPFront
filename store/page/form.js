@@ -13,7 +13,7 @@ export const mutations = {
   },
   SET_FORM(state, { name }) {
     state.forms.push({
-      name: name,
+      name,
       children: []
     })
   },

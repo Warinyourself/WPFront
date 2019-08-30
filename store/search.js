@@ -36,7 +36,7 @@ export const actions = {
     if (product === undefined) {
       const response = await this.$axios.get('/products', {
         params: {
-          id: id
+          id
         }
       })
 
