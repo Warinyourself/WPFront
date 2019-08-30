@@ -17,7 +17,8 @@ module.exports = {
   plugins: [
     'prettier'
   ],
-  // add your custom rules here
+  // add your custom rules here (https://eslint.org/docs/user-guide/configuring#configuring-rules)
   rules: {
+    "space-before-function-paren": "off",
   }
 }
