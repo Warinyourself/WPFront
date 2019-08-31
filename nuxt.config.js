@@ -31,13 +31,13 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '~/plugins/vue-meta.js',
-    '~/plugins/axios.js',
-    '~/plugins/i18n.js',
-    '~/plugins/app/mixins.js',
-    '~/plugins/app/methods.js',
-    '~/plugins/app/components.js',
-    '~/plugins/app/directives.js',
+    { src: '~/plugins/vue-meta.js' },
+    { src: '~/plugins/axios.js' },
+    { src: '~/plugins/i18n.js' },
+    { src: '~/plugins/app/mixins.js' },
+    { src: '~/plugins/app/methods.js' },
+    { src: '~/plugins/app/components.js' },
+    { src: '~/plugins/app/directives.js' },
     { src: '~plugins/vuex-router-sync.js', ssr: false },
     { src: '~/plugins/vuex-persistedstate.js', ssr: false }
   ],
@@ -45,8 +45,15 @@ export default {
   modules: [
     '@nuxtjs/axios', // https://axios.nuxtjs.org/extend
     '@nuxtjs/pwa',
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxt/typescript-build'
   ],
+
+  typescript: {
+    typeCheck: true,
+    ignoreNotFoundWarnings: true
+  },
+
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
