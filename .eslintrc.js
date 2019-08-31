@@ -20,5 +20,6 @@ module.exports = {
   // add your custom rules here (https://eslint.org/docs/user-guide/configuring#configuring-rules)
   rules: {
     "space-before-function-paren": "off",
+    "no-console": "warn"
   }
 }
