@@ -9,7 +9,7 @@
         :actions=`[
           {
             type: 'action',
-            path: "search/deleteProduct",
+            path: "search/product/deleteProduct",
             on: "click",
             value: product.id
           }

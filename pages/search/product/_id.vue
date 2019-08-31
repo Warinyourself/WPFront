@@ -20,7 +20,7 @@ export default {
     this.product = await this.getProduct(this.$route.params.id)
   },
   methods: {
-    ...mapActions('search', ['getProduct'])
+    ...mapActions('search/product', ['getProduct'])
   }
 }
 </script>

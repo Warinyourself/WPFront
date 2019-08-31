@@ -4,11 +4,11 @@
     close
     :actions=`[
       {
-        path: "search/createProduct",
+        path: "search/product/createProduct",
         on: "submit"
       },
       {
-        path: "search/getProducts",
+        path: "search/product/getProducts",
         on: "submit"
       },
     ]`

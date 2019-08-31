@@ -60,11 +60,10 @@
         )
         AppButton.p-2.br-1.br-50(
           icon='plusInCircle'
-          value='modalFormProducts'
           :actions=`[
             {
-              type: "commit",
-              path: "page/OPEN_MODAL",
+              type: "action",
+              path: "search/determineActionByTab",
               on: "click"
             }
           ]`
@@ -73,11 +72,11 @@
     AppTabs(:state='activeTab')
       AppTabsItem(
         :state='activeTab'
-        :action='{path: "search/getProducts"}'
+        :action='{path: "search/product/getProducts"}'
         value='products'
       )
         ProductItem.mt-1(
-          v-for='(product, i) in $store.state.search.products'
+          v-for='(product, i) in products'
           :key='i'
           :product='product'
         )
@@ -106,7 +105,8 @@ export default {
     CreateProductForm
   },
   computed: {
-    ...mapState('search', ['activeTab'])
+    ...mapState('search', ['activeTab']),
+    ...mapState('search/product', ['products'])
   }
 }
 </script>
