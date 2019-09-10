@@ -1,6 +1,6 @@
 .dark-theme
   color #f4faff
-  background-color #0d0b14
+  bgc('dark')
   stroke color-main--light
   fill color-main--light
   .toggle
@@ -13,6 +13,8 @@
     fill @background-color
     stroke @background-color
 
+  .bgc
+    bgc('dark')
   .bgc-main
     bgc-main('dark')
   .bgc-main--light
@@ -31,9 +33,9 @@
   .bgc--dark
     bgc--dark('dark')
 
+
   .color-dark-link
     color #1a6892
-
   .icon-darker
     fill #1a6892
     stroke #1a6892
