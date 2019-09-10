@@ -20,7 +20,7 @@
         :validators='{required: true, letters: true}'
         :placeholder='$t("search.form.name")'
       )
-      AppUpload.w-100.md6.sm6.mt-1(
+      AppInputUpload.w-100.md6.sm6.mt-1(
         name='image'
         accept='image/png, image/jpeg'
         :validators='{required: false}'
