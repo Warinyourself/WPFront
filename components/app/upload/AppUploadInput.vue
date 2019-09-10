@@ -5,7 +5,7 @@
     )
       label.flex.w-100.ai-center.jc-space-between.pointer(:for='name')
         .upload-title {{fileName || $attrs.placeholder}}
-        .flex-center.upload-block
+        .flex-center.input__upload-block-icon
           AppIcon.icon-3(icon='upload')
         .highlight.highlight__line--bottom
       input.d-n(:id='name'
@@ -21,7 +21,7 @@
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
-  name: 'AppUpload',
+  name: 'AppUploadInput',
   props: {
     name: {
       type: String,
