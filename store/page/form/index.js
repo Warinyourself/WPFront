@@ -54,6 +54,7 @@ export const mutations = {
 
 export const getters = {
   getFormByName: (state, getters) => ({ name }) => {
+    console.log('GET FORM NAME', name)
     return state.forms.find((form) => {
       return form.name === name
     })

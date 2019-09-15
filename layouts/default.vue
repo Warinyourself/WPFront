@@ -4,7 +4,7 @@
     MainMenu
     .page-content(:class='{"open-menu--margin": !minimizeMenu}')
       MainHeaderBar
-      Nuxt.main-content
+      Nuxt
 </template>
 
 <script>

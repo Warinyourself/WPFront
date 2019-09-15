@@ -15,8 +15,8 @@ export default {
       default: 'images'
     },
     multiple: {
-      type: String,
-      default: 'multiple'
+      type: Boolean,
+      default: false
     }
   },
   computed: {
