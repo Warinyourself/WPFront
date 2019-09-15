@@ -1,14 +1,16 @@
 <template lang="pug">
   .input.fd-column
     .input__body(:class='{"input--error": input && input.errors.length}')
-      input(v-bind='$attrs'
+      input(
+            v-bind='$attrs'
             ref='input'
             :type='type'
             v-model='value'
             @input='handleInput'
             @focus='onFocus'
-            @blur='onBlur')
-      .highlight.highlight__line--bottom
+            @blur='onBlur'
+      )
+      .highlight(:class='[`highlight__line--${highlightLine.position}`]')
     transition(name='error')
       .error-block(v-if='input && input.errors.length') {{ $t(input.errors[0].pathText) }}
 </template>
@@ -46,6 +48,10 @@ export default {
     validators: {
       type: Object,
       default: () => Object.create(null)
+    },
+    highlightLine: {
+      type: Object,
+      default: () => Object.create({ position: 'left' })
     }
   },
   data() {
