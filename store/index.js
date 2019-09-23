@@ -42,13 +42,13 @@ export const getters = {
       }
     }
     // eslint-disable-next-line no-console
-    console.error('DETERMINE PATH OR STRUCTURE ERROR')
+    console.error('DETERMINE PATH OR STRUCTURE')
   }
 }
 
 export const actions = {
   async globalDistributor({ dispatch }, functions) {
-    await Promise.all(
+    const answer = await Promise.all(
       functions.map((funcObject) => {
         if (funcObject.type === 'commit') {
           return dispatch('globalCommit', funcObject)
@@ -57,17 +57,21 @@ export const actions = {
         }
       })
     )
-  },
-  globalCommit({ commit }, object) {
-    const property = getters.determineProperty()(object)
-    const path = getters.determinePath()(object)
 
-    commit(path, property, { root: true })
+    return answer
   },
-  globalAction({ dispatch }, object) {
-    const property = getters.determineProperty()(object)
+  async globalCommit({ commit }, object) {
     const path = getters.determinePath()(object)
+    const property = getters.determineProperty()(object)
+    const answer = await commit(path, property, { root: true })
 
-    dispatch(path, property, { root: true })
+    return answer
+  },
+  async globalAction({ dispatch }, object) {
+    const path = getters.determinePath()(object)
+    const property = getters.determineProperty()(object)
+    const answer = await dispatch(path, property, { root: true })
+
+    return answer
   }
 }

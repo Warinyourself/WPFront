@@ -53,14 +53,13 @@ export const mutations = {
 }
 
 export const getters = {
-  getFormByName: (state, getters) => ({ name }) => {
-    console.log('GET FORM NAME', name)
+  getFormByName: (state, getters) => (name) => {
     return state.forms.find((form) => {
       return form.name === name
     })
   },
-  getValuesFromForm: (state, getters) => ({ name }) => {
-    const form = getters.getFormByName({ name })
+  getValuesFromForm: (state, getters) => (name) => {
+    const form = getters.getFormByName(name)
     const answer = {}
 
     form.children.forEach((input) => {
@@ -70,7 +69,7 @@ export const getters = {
     return answer
   },
   hasFormErrors: (state, getters) => ({ name }) => {
-    const form = getters.getFormByName({ name })
+    const form = getters.getFormByName(name)
 
     return form.children
       .map((input) => {
@@ -119,7 +118,7 @@ export const getters = {
 
 export const actions = {
   async checkFormErors({ getters, dispatch }, { name }) {
-    const form = getters.getFormByName({ name })
+    const form = getters.getFormByName(name)
 
     await Promise.all(
       form.children.map(async (input) => {
@@ -131,13 +130,13 @@ export const actions = {
       })
     )
   },
-  async submitForm({ getters, commit, dispatch }, { name, close, functions }) {
+  async submitForm({ getters, commit, dispatch }, { name, functions }) {
     await dispatch('checkFormErors', { name })
 
     const hasErrors = getters.hasFormErrors({ name })
 
     if (!hasErrors) {
-      const values = getters.getValuesFromForm({ name })
+      const values = getters.getValuesFromForm(name)
       functions = functions.map((func) => {
         return Object.assign({ value: values }, func)
       })
@@ -146,14 +145,7 @@ export const actions = {
         root: true
       })
 
-      // eslint-disable-next-line no-console
       console.log(response, values)
-
-      if (close) {
-        if (close.type === 'modal') {
-          commit('page/CLOSE_MODAL', close.name, { root: true })
-        }
-      }
     }
   },
   checkInputValidation({ getters, dispatch }, { name }) {

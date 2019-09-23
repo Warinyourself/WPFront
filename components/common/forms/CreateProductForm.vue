@@ -1,7 +1,6 @@
 <template lang="pug">
   AppForm.form(
     name='formProducts'
-    close
     :actions=`[
       {
         path: "search/product/createProduct",
