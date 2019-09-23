@@ -26,14 +26,13 @@ export default {
     })
     return { form }
   },
-  inject: ['modal'],
   computed: {
     ...mapGetters('page/form', ['getFormByName', 'hasFormErrors']),
     form() {
-      return this.getFormByName({ name: this.name })
+      return this.getFormByName(this.name)
     },
     hasError() {
-      return this.hasFormErrors({ name: this.name })
+      return this.hasFormErrors(this.name)
     }
   },
   mounted() {
@@ -45,16 +44,11 @@ export default {
   methods: {
     ...mapActions('page/form', ['submitForm']),
     ...mapMutations('page/form', ['SET_FORM', 'DELETE_FORM']),
-    ...mapMutations('page', ['CLOSE_MODAL']),
     async handleSubmit(e) {
       const form = { name: this.name }
 
-      // Maybe after add option structure values
       if (Object.prototype.hasOwnProperty.call(this.$attrs, 'close')) {
-        form.close = {
-          type: 'modal',
-          name: this.modal.name
-        }
+        this.$emit('closeModal')
       }
 
       form.functions = this.actions.filter((func) => {

@@ -11,16 +11,18 @@ export const mutations = {
 }
 
 export const actions = {
-  async login(state, { email, password }) {
-    const answer = await this.$axios.post('/login', { email, password })
+  async login({ rootGetters }) {
+    const values = rootGetters['page/form/getValuesFromForm']('login')
+    const answer = await this.$axios.post('/login', values)
 
-    localStorage.setItem('token', answer.data.token)
-    this.$router.push({ name: 'index' })
+    // localStorage.setItem('token', answer.data.token)
+    // this.$router.push({ name: 'index' })
+
+    return answer
   },
   async create(state, { password, email }) {
     const answer = await this.$axios.post('/create-user', { email, password })
 
-    // eslint-disable-next-line no-console
     console.log(answer.data)
   },
   logout() {
@@ -41,7 +43,6 @@ export const actions = {
       headers: { 'x-access-token': localStorage.getItem('token') }
     })
 
-    // eslint-disable-next-line no-console
     console.log(answer)
   }
 }

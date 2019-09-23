@@ -2,14 +2,31 @@
   .one-page
     .circe-gradient
     .clip-wave
-      Wave(:amount='5')
+      Wave
       .animation-cube
-    form.form--login.position-center(@submit.prevent )
-      h1.ta-center {{ $t('login.title') }}
-      input.w-100.ta-center(:placeholder='$t("login.username")' type='email' v-model='email' required)
-      input.w-100.ta-center(:placeholder='$t("login.password")' v-model='password' type='password' required)
-      button.button--login.ta-center(type='primary' @click='loginUser') {{ $t('login.login') }}
-      button.button--another-step.ta-center(type='primary')  {{ $t('login.create_new_user') }}
+    AppForm.position-center(
+      :actions=`[
+        {
+          path: "user/login",
+          on: "submit"
+        },
+      ]`
+      name='login'
+    )
+      AppInput.w-100.md12.sm12.mt-1(
+        name='username'
+        :validators='{required: true}'
+        :placeholder='$t("login.username")'
+      )
+      AppInput.w-100.md12.sm12.mt-1(
+        name='password'
+        type='password'
+        :validators='{required: true}'
+        :placeholder='$t("login.password")'
+      )
+      AppButton.p-2.mt-2.br-1.br-50(
+        type='submit'
+      ) {{ $t('login.login')}}
 </template>
 
 <script>
@@ -30,14 +47,10 @@ export default {
   methods: {
     ...mapActions('user', ['login', 'create']),
     async loginUser() {
-      const payload = { email: this.email, password: this.password }
-
-      await this.login(payload)
+      await this.login({ email: this.email, password: this.password })
     },
     async createUser() {
-      const payload = { email: this.email, password: this.password }
-
-      await this.create(payload)
+      await this.create({ email: this.email, password: this.password })
     }
   }
 }
