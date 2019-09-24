@@ -51,7 +51,11 @@
     "errors": {
       "required": "Обязательное поле",
       "letters": "Только буквы",
-      "number": "Только цифры"
+      "number": "Только цифры",
+      "already_exist": "Уже существует",
+      "dont_exist": "Не существует",
+      "wrong_password": "Неверный пароль",
+      "wrong_email": "Неверный email"
     }
   }
 }

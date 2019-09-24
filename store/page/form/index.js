@@ -42,6 +42,9 @@ export const mutations = {
 
     formChildren.splice(childIndex, 1)
   },
+  SET_INPUT_ERROR(state, { child, error }) {
+    child.errors.push(error)
+  },
   SET_INPUT_ERRORS(state, { child, errors }) {
     child.errors = errors
   },
@@ -119,8 +122,7 @@ export const getters = {
 export const actions = {
   async checkFormErors({ getters, dispatch }, { name }) {
     const form = getters.getFormByName(name)
-
-    await Promise.all(
+    const answer = await Promise.all(
       form.children.map(async (input) => {
         const error = await dispatch('checkInputValidation', {
           name: input.name
@@ -129,11 +131,14 @@ export const actions = {
         return error
       })
     )
+
+    return answer
   },
   async submitForm({ getters, commit, dispatch }, { name, functions }) {
-    await dispatch('checkFormErors', { name })
+    const val = await dispatch('checkFormErors', { name })
 
     const hasErrors = getters.hasFormErrors({ name })
+    console.log(val, hasErrors)
 
     if (!hasErrors) {
       const values = getters.getValuesFromForm(name)
@@ -145,7 +150,15 @@ export const actions = {
         root: true
       })
 
-      console.log(response, values)
+      response.forEach((answer) => {
+        if (answer) {
+          Object.keys(answer).forEach((inputName) => {
+            const child = getters.getInputByName({ name: inputName })
+
+            commit('SET_INPUT_ERROR', { child, error: answer[inputName] })
+          })
+        }
+      })
     }
   },
   checkInputValidation({ getters, dispatch }, { name }) {

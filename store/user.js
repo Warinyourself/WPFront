@@ -13,12 +13,22 @@ export const mutations = {
 export const actions = {
   async login({ rootGetters }) {
     const values = rootGetters['page/form/getValuesFromForm']('login')
-    const answer = await this.$axios.post('/login', values)
+    let answer
 
-    // localStorage.setItem('token', answer.data.token)
-    // this.$router.push({ name: 'index' })
+    try {
+      answer = await this.$axios.post('/login', values)
+    } catch (error) {
+      // In future notification up
+      console.error(error, answer)
+    }
 
-    return answer
+    if (answer.data.access_token) {
+      localStorage.setItem('token', answer.data.access_token)
+      // this.$router.push({ name: 'index' })
+      console.log('PUSH TO INDEX')
+    } else {
+      return answer.data
+    }
   },
   async create(state, { password, email }) {
     const answer = await this.$axios.post('/create-user', { email, password })

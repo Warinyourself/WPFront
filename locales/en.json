@@ -50,7 +50,11 @@
     "errors": {
       "required": "Required field",
       "letters": "Only letters",
-      "number": "Only numbers"
+      "number": "Only numbers",
+      "already_exist": "Already exist",
+      "dont_exist": "Dont exist",
+      "wrong_password": "Wrong password",
+      "wrong_email": "Wrong email"
     }
   }
 }

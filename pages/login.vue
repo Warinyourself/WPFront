@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import Wave from '@/components/common/Wave'
 
 export default {
@@ -43,15 +42,6 @@ export default {
       password: 'test'
     }
   },
-  layout: 'none',
-  methods: {
-    ...mapActions('user', ['login', 'create']),
-    async loginUser() {
-      await this.login({ email: this.email, password: this.password })
-    },
-    async createUser() {
-      await this.create({ email: this.email, password: this.password })
-    }
-  }
+  layout: 'none'
 }
 </script>
