@@ -11,7 +11,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async login({ rootGetters }) {
+  async login({ commit, rootGetters }) {
     const values = rootGetters['page/form/getValuesFromForm']('login')
     let answer
 
@@ -24,7 +24,11 @@ export const actions = {
 
     if (answer.data.access_token) {
       localStorage.setItem('token', answer.data.access_token)
-      // this.$router.push({ name: 'index' })
+      commit('SET_STATE_USER', {
+        key: 'token',
+        value: 'answer.data.access_token'
+      })
+      this.$router.push({ name: 'index' })
       console.log('PUSH TO INDEX')
     } else {
       return answer.data

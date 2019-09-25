@@ -1,8 +1,6 @@
 export default {
   mode: 'universal',
-  /*
-   ** Headers of the page
-   */
+
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -23,13 +21,12 @@ export default {
   // name: 'router-animation',
   // },
 
-  /*
-   ** Global CSS
-   */
+  // router: {
+  //   middleware: ['auth'],
+  // },
+
   css: ['@/assets/style/index.styl'],
-  /*
-   ** Plugins to load before mounting the App
-   */
+
   plugins: [
     { src: '~/plugins/vue-meta.js' },
     { src: '~/plugins/axios.js' },
@@ -44,6 +41,7 @@ export default {
 
   modules: [
     '@nuxtjs/axios', // https://axios.nuxtjs.org/extend
+    // '@nuxtjs/auth',
     '@nuxtjs/pwa',
     '@nuxtjs/eslint-module',
     '@nuxt/typescript-build'
@@ -62,6 +60,20 @@ export default {
     baseURL: 'http://localhost:8080/'
   },
 
+  // auth: {
+  //   strategies: {
+  //     local: {
+  //       endpoints: {
+  //         login: { url: '/user/login', method: 'post', propertyName: 'token' },
+  //         logout: { url: '/user/logout', method: 'post' },
+  //         user: { url: '/user/', method: 'get', propertyName: 'user' }
+  //       },
+  //       // tokenRequired: true,
+  //       // tokenType: 'bearer'
+  //     },
+  //   }
+  // },
+
   manifest: {
     name: 'WP',
     display: 'standalone',
@@ -69,13 +81,7 @@ export default {
     theme_color: '#150d28'
   },
 
-  /*
-   ** Build configuration
-   */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
     extend(config, ctx) {
       if (ctx.isDev) {
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'

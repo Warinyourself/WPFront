@@ -43,7 +43,7 @@ export const mutations = {
     formChildren.splice(childIndex, 1)
   },
   SET_INPUT_ERROR(state, { child, error }) {
-    child.errors.push(error)
+    child.errors = [...child.errors, error]
   },
   SET_INPUT_ERRORS(state, { child, errors }) {
     child.errors = errors
@@ -57,6 +57,7 @@ export const mutations = {
 
 export const getters = {
   getFormByName: (state, getters) => (name) => {
+    // console.log(state.forms, 'FORM FROM STATE')
     return state.forms.find((form) => {
       return form.name === name
     })
@@ -74,11 +75,14 @@ export const getters = {
   hasFormErrors: (state, getters) => ({ name }) => {
     const form = getters.getFormByName(name)
 
-    return form.children
+    const arr = form.children
       .map((input) => {
-        return !!input.errors.length
+        return input.errors[0]
       })
-      .includes(true)
+      .filter(Boolean)
+    console.log(arr, form.children, 'GET FROM FROM GETTER')
+
+    return !!arr.length
   },
   getInputByName: (state, getters) => ({ name }) => {
     return state.forms
@@ -138,7 +142,7 @@ export const actions = {
     const val = await dispatch('checkFormErors', { name })
 
     const hasErrors = getters.hasFormErrors({ name })
-    console.log(val, hasErrors)
+    console.log('Has error', val, hasErrors)
 
     if (!hasErrors) {
       const values = getters.getValuesFromForm(name)

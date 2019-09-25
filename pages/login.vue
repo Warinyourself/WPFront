@@ -36,6 +36,7 @@ export default {
   components: {
     Wave
   },
+  auth: false,
   data() {
     return {
       email: 'start@gmail.com',
