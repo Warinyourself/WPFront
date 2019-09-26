@@ -1,6 +1,6 @@
 <template lang="pug">
-  div.container
-    button(@click='checkAuth') Check
+  .container
+    h1 I don't know what in shoutd be too
 </template>
 
 <script>
@@ -8,8 +8,11 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'MainPage',
+  mounted() {
+    this.getMe()
+  },
   methods: {
-    ...mapActions('user', ['checkAuth'])
+    ...mapActions('user', ['getMe'])
   }
 }
 </script>

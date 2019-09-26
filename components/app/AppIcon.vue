@@ -96,16 +96,17 @@
     />
   </svg>
 
-  <!-- <svg
+  <svg
     v-else-if="icon === 'exit'"
     xmlns="http://www.w3.org/2000/svg"
     style="isolation:isolate"
-    viewBox="0 1 40 40">
+    viewBox="0 1 40 40"
+  >
     <path
-    d="M20 38H5l-2-2V6l2-2h15a2 2 0 0 0 0-3H5C2 1 0 3 0 6v30c0 3 2 5 5 5h15a2 2 0 0 0 0-3zm20-18L29 10h-2v2l7 7H15l-2 2 2 2h19l-7 7a2 2 0 0 0 1 3l1-1 11-10a2 2 0 0 0 0-2z"
-    fill-rule="evenodd"
-  />
-  </svg>-->
+      d="M20 38H5l-2-2V6l2-2h15a2 2 0 0 0 0-3H5C2 1 0 3 0 6v30c0 3 2 5 5 5h15a2 2 0 0 0 0-3zm20-18L29 10h-2v2l7 7H15l-2 2 2 2h19l-7 7a2 2 0 0 0 1 3l1-1 11-10a2 2 0 0 0 0-2z"
+      fill-rule="evenodd"
+    />
+  </svg>
 
   <svg
     v-else-if="icon === 'filter'"

@@ -28,9 +28,10 @@ export default {
   css: ['@/assets/style/index.styl'],
 
   plugins: [
-    { src: '~/plugins/vue-meta.js' },
-    { src: '~/plugins/axios.js' },
     { src: '~/plugins/i18n.js' },
+    { src: '~/plugins/auth.js' },
+    { src: '~/plugins/axios.js' },
+    { src: '~/plugins/vue-meta.js' },
     { src: '~/plugins/app/mixins.js' },
     { src: '~/plugins/app/methods.js' },
     { src: '~/plugins/app/components.js' },
@@ -41,7 +42,7 @@ export default {
 
   modules: [
     '@nuxtjs/axios', // https://axios.nuxtjs.org/extend
-    // '@nuxtjs/auth',
+    '@nuxtjs/auth',
     '@nuxtjs/pwa',
     '@nuxtjs/eslint-module',
     '@nuxt/typescript-build'
@@ -60,19 +61,23 @@ export default {
     baseURL: 'http://localhost:8080/'
   },
 
-  // auth: {
-  //   strategies: {
-  //     local: {
-  //       endpoints: {
-  //         login: { url: '/user/login', method: 'post', propertyName: 'token' },
-  //         logout: { url: '/user/logout', method: 'post' },
-  //         user: { url: '/user/', method: 'get', propertyName: 'user' }
-  //       },
-  //       // tokenRequired: true,
-  //       // tokenType: 'bearer'
-  //     },
-  //   }
-  // },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/login',
+            method: 'post',
+            propertyName: 'access_token'
+          },
+          logout: { url: '/logout', method: 'post' },
+          user: { url: '/me', method: 'get' }
+        },
+        tokenRequired: true,
+        tokenType: 'bearer'
+      }
+    }
+  },
 
   manifest: {
     name: 'WP',
