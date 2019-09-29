@@ -21,9 +21,9 @@ export default {
   // name: 'router-animation',
   // },
 
-  // router: {
-  //   middleware: ['auth'],
-  // },
+  router: {
+    middleware: ['auth']
+  },
 
   css: ['@/assets/style/index.styl'],
 
@@ -62,16 +62,26 @@ export default {
   },
 
   auth: {
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      user: '/login',
+      callback: '/login'
+    },
     strategies: {
       local: {
         endpoints: {
           login: {
-            url: '/login',
+            url: 'login',
             method: 'post',
             propertyName: 'access_token'
           },
-          logout: { url: '/logout', method: 'post' },
-          user: { url: '/me', method: 'get' }
+          user: {
+            url: 'me',
+            method: 'get',
+            propertyName: 'data'
+          },
+          logout: false
         },
         tokenRequired: true,
         tokenType: 'bearer'
