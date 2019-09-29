@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.container.search-page
+  .container.search-page
     .search-page__header.ai-center.flex
       AppSearch.search-page__search.mr-1(
         :delay='1000'

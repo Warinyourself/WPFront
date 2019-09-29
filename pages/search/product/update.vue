@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.container.search-page
+  .container.search-page
     h2 Update product {{ product }}
 </template>
 
