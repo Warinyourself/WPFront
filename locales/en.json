@@ -12,13 +12,6 @@
     "product": "Product",
     "unknow": "{route}"
   },
-  "login": {
-    "title": "Login field",
-    "username": "Username",
-    "password": "Password",
-    "login": "Login",
-    "create_new_user": "Create new user"
-  },
   "search": {
     "products": "Products",
     "courses": "Сourses",
@@ -35,21 +28,40 @@
       "fats": "Fats"
     }
   },
-  "home": {
-    "title": "Welcome",
-    "introduction": "This is an introduction in English."
-  },
-  "about": {
-    "title": "About",
-    "introduction": "This page is made to give you more informations."
+  "pages": {
+    "about": {
+      "title": "About",
+      "introduction": "This page is made to give you more informations."
+    },
+    "home": {
+      "title": "Welcome",
+      "introduction": "This is an introduction in English."
+    }
   },
   "forms" : {
-    "submit": "Submit",
-    "upload": "Upload image",
-    "expand": "Expand form",
+    "buttons": {
+      "submit": "Submit",
+      "expand": "Expand form",
+      "login": "Login",
+      "sign_up": "Sign up",
+      "create_new_user": "Create new user"
+    },
+    "placeholders": {
+      "username": "Username",
+      "username_or_email": "Username or email",
+      "email": "Email",
+      "password": "Password",
+      "name": "Name",
+      "middle_name": "Middle name",
+      "surname": "Surname",
+      "upload": "Upload image",
+      "weight": "Weight",
+      "age": "Age"
+    },
     "errors": {
       "required": "Required field",
       "letters": "Only letters",
+      "email": "Not valid email",
       "number": "Only numbers",
       "already_exist": "Already exist",
       "dont_exist": "Dont exist",
