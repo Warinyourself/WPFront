@@ -1,9 +1,10 @@
-.highlight
+.highlight__line
   background color-main--dark
   color color-main--dark
+  transition .3s
 
-input:focus ~ .highlight__line--bottom
-  filter: drop-shadow(0 0 3px currentColor)
+input:focus ~ .highlight__line
+  filter drop-shadow(0 0 3px currentColor)
 
 .highlight__line--bottom
   width 100%

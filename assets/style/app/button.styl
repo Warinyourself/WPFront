@@ -7,12 +7,18 @@ button
   cursor pointer
   display block
 
+.button
+  background #41d1fb
+
 .button--classic
   cursor pointer
   &.button--active
     fill #0e1543
     transition .3s
     color #0e1543
+  &:disabled
+    opacity .6
+    cursor none
 
 .button--login
   margin 10px auto
