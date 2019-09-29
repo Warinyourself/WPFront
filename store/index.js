@@ -1,11 +1,5 @@
 export const strict = true
 
-export const state = () => ({
-  loading: false,
-  error: false,
-  url: 'localhost:8080'
-})
-
 export const mutations = {
   SET_STATE(state, { key, value }) {
     state[key] = value
@@ -39,6 +33,8 @@ export const getters = {
           } else {
             return 'page/CLOSE_EXPAND_BLOCK'
           }
+        case 'ROUTER_PUSH':
+          return 'page/pushRoute'
       }
     }
     // eslint-disable-next-line no-console

@@ -66,5 +66,8 @@ export const actions = {
         activeWindows[activeWindows.length - 1].doneParams
       )
     }
+  },
+  pushRoute({ state }, property) {
+    this.$router.push(property)
   }
 }
