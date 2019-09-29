@@ -18,8 +18,7 @@ export default {
     MainHeaderBar
   },
   computed: {
-    ...mapState('page', ['minimizeMenu', 'isDark']),
-    ...mapState('page/locales', ['language'])
+    ...mapState('page', ['minimizeMenu', 'isDark'])
   },
   mounted() {
     if (process.browser) {
