@@ -12,32 +12,37 @@ export const mutations = {
 
 export const actions = {
   async login({ commit, rootGetters }) {
-    const values = rootGetters['page/form/getValuesFromForm']('login')
+    const data = rootGetters['page/form/getValuesFromForm']('login')
     let answer
 
     try {
-      // answer = await this.$axios.post('/login', values)
-      console.log(this.$auth)
-      await this.$auth.loginWith('local', {
-        data: values
-      })
+      answer = await this.$auth.loginWith('local', { data })
     } catch (error) {
       // In future notification up
       console.error(error, answer)
     }
 
-    return answer.data
+    if (answer.data.access_token) {
+      localStorage.setItem('token', answer.data.access_token)
+      commit('SET_STATE_USER', {
+        key: 'token',
+        value: 'answer.data.access_token'
+      })
+      this.$router.push({ name: 'index' })
+      console.log('PUSH TO INDEX')
+    } else {
+      return answer.data
+    }
   },
   async create(state, { password, email }) {
     const answer = await this.$axios.post('/user/create', { email, password })
 
     console.log(answer.data)
   },
-  logout() {
+  async logout() {
     console.log('LOG OUT')
-    localStorage.removeItem('token')
-
-    this.$router.push({ name: 'login' })
+    await this.$auth.logout()
+    // this.$router.push({ name: 'login' })
   },
   updateLocalStorage(state, payload) {
     const user = Object.assign(
