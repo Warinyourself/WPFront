@@ -1,6 +1,11 @@
 <template lang="pug">
-  .toggle.ai-center(@click='changeToggle' :class='classObject')
-    AppIcon.toggle__icon.icon-1.icon-darkest(v-if='type === "arrow"' icon='arrow')
+  .toggle.ai-center(
+    :class='classObject'
+    @click='changeToggle'
+    v-on='$listeners'
+    v-bind='$attrs'
+  )
+    AppIcon.toggle__icon.icon-1.icon-darkest(v-if='modifier === "arrow"' icon='arrow')
     AppIcon.toggle__icon.icon-1.icon-darkest(v-if='icons && icons[0]' :icon='icons[0]')
     span.toggle__text(v-if='values && values[0]') {{values[0]}}
     .toggle__item.bgc-main
@@ -14,7 +19,7 @@ import { mapActions } from 'vuex'
 export default {
   name: 'AppToggle',
   props: {
-    type: {
+    modifier: {
       type: String,
       default: 'classic'
     },
@@ -46,7 +51,7 @@ export default {
   },
   computed: {
     classObject() {
-      const classToggle = 'toggle--' + this.type
+      const classToggle = 'toggle--' + this.modifier
       const classObject = {}
 
       if (this.state !== null) {

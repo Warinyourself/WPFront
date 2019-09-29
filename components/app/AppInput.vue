@@ -2,15 +2,15 @@
   .input.fd-column
     .input__body(:class='{"input--error": input && input.errors.length}')
       input(
-            v-bind='$attrs'
-            ref='input'
-            :type='type'
-            v-model='value'
+            v-on='$listeners'
             @input='handleInput'
             @focus='onFocus'
             @blur='onBlur'
+            v-model='value'
+            v-bind='$attrs'
+            ref='input'
       )
-      .highlight(:class='[`highlight__line--${highlightLine.position}`]')
+      .highlight__line(:class='[`highlight__line--${highlightLine.position}`]')
     transition(name='error')
       .error-block(v-if='input && input.errors.length') {{ $t(input.errors[0].pathText) }}
 </template>
@@ -25,7 +25,7 @@ export default {
       type: String,
       default: 'input'
     },
-    type: {
+    modifier: {
       type: String,
       default: 'text'
     },

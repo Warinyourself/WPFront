@@ -1,5 +1,10 @@
 <template lang="pug">
-  button.button.ai-center.bgc-main--lighter(@click='handleClick' :class='classObject' v-bind='$attrs' :type='this.type')
+  button.button.ai-center(
+    :class='classObject'
+    @click='handleClick'
+    v-on='$listeners'
+    v-bind='$attrs'
+  )
     AppIcon(v-if='icon' :icon='icon' :class='[`icon-${iconSize}`]')
     .button__body(:class='{"ml-2": icon}' v-if='$slots.default')
       slot.ln-0
@@ -11,7 +16,7 @@ import { mapActions } from 'vuex'
 export default {
   name: 'AppButton',
   props: {
-    type: {
+    modifier: {
       type: String,
       default: 'classic'
     },
@@ -31,10 +36,6 @@ export default {
       type: String,
       default: 'left'
     },
-    disabled: {
-      type: Boolean,
-      default: null
-    },
     state: {
       type: String,
       default: null
@@ -52,7 +53,7 @@ export default {
   computed: {
     classObject() {
       const classObject = {}
-      const classToggle = 'button--' + this.type
+      const classToggle = 'button--' + this.modifier
 
       if (this.state !== null) {
         classObject['button--active'] = this.state === this.value
