@@ -57,7 +57,6 @@ export const mutations = {
 
 export const getters = {
   getFormByName: (state, getters) => (name) => {
-    // console.log(state.forms, 'FORM FROM STATE')
     return state.forms.find((form) => {
       return form.name === name
     })
@@ -72,19 +71,21 @@ export const getters = {
 
     return answer
   },
-  hasFormErrors: (state, getters) => ({ name }) => {
+  hasFormErrors: (state, getters) => (name) => {
     const form = getters.getFormByName(name)
+    let arr = []
 
-    const arr = form.children
-      .map((input) => {
-        return input.errors[0]
-      })
-      .filter(Boolean)
-    console.log(arr, form.children, 'GET FROM FROM GETTER')
+    if (form) {
+      arr = form.children
+        .map((input) => {
+          return !!getters.getInputErrors(input.value, input.validators).length
+        })
+        .filter(Boolean)
+    }
 
     return !!arr.length
   },
-  getInputByName: (state, getters) => ({ name }) => {
+  getInputByName: (state, getters) => (name) => {
     return state.forms
       .map((form) => {
         return form.children
@@ -94,28 +95,35 @@ export const getters = {
         return child.name === name
       })
   },
-  getInputErrors: (state, getters) => ({ value, validators }) => {
+  getInputErrors: (state, getters) => (value, validators) => {
     const answers = []
 
     for (const [key, options] of Object.entries(validators)) {
-      answers.push(getters[key]({ value, options }))
+      answers.push(getters[key](value, options))
     }
 
     return answers.filter((answer, i) => typeof answer === 'object')
   },
-  letters: (state, getters) => ({ value, options }) => {
+  email: (state, getters) => (value, options) => {
+    const emailRex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    if (emailRex.test(value)) {
+      return true
+    }
+    return { pathText: 'forms.errors.email' }
+  },
+  letters: (state, getters) => (value, options) => {
     if (/^([a-zA-Z]|\s)+$/.test(value)) {
       return true
     }
     return { pathText: 'forms.errors.letters' }
   },
-  required: (state, getters) => ({ value, options }) => {
+  required: (state, getters) => (value, options) => {
     if (value || !options) {
       return true
     }
     return { pathText: 'forms.errors.required' }
   },
-  number: (state, getters) => ({ value, options }) => {
+  number: (state, getters) => (value, options) => {
     if (/^\d{0,}$/.test(value)) {
       return true
     }
@@ -141,7 +149,7 @@ export const actions = {
   async submitForm({ getters, commit, dispatch }, { name, functions }) {
     const val = await dispatch('checkFormErors', { name })
 
-    const hasErrors = getters.hasFormErrors({ name })
+    const hasErrors = getters.hasFormErrors(name)
     console.log('Has error', val, hasErrors)
 
     if (!hasErrors) {
@@ -157,7 +165,7 @@ export const actions = {
       response.forEach((answer) => {
         if (answer) {
           Object.keys(answer).forEach((inputName) => {
-            const child = getters.getInputByName({ name: inputName })
+            const child = getters.getInputByName(inputName)
 
             commit('SET_INPUT_ERROR', { child, error: answer[inputName] })
           })
@@ -166,12 +174,9 @@ export const actions = {
     }
   },
   checkInputValidation({ getters, dispatch }, { name }) {
-    const child = getters.getInputByName({ name })
+    const child = getters.getInputByName(name)
 
-    const errors = getters.getInputErrors({
-      value: child.value,
-      validators: child.validators
-    })
+    const errors = getters.getInputErrors(child.value, child.validators)
 
     if (errors.length) {
       dispatch('setInputErrors', {
@@ -186,12 +191,12 @@ export const actions = {
     }
   },
   setInputErrors({ getters, commit }, { name, errors }) {
-    const child = getters.getInputByName({ name })
+    const child = getters.getInputByName(name)
 
     commit('SET_INPUT_ERRORS', { child, errors })
   },
   updateInputInForm({ getters, commit, dispatch }, { name, body }) {
-    const child = getters.getInputByName({ name })
+    const child = getters.getInputByName(name)
 
     commit('UPDATE_INPUT_IN_FORM', { child, body })
     dispatch('checkInputValidation', { name })

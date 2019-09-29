@@ -52,7 +52,7 @@ export default {
   computed: {
     ...mapGetters('page/form', ['getInputByName']),
     input() {
-      return this.getInputByName({ name: this.name })
+      return this.getInputByName(this.name)
     }
   },
   mounted() {
