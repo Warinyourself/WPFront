@@ -13,26 +13,18 @@ export const mutations = {
 export const actions = {
   async login({ commit, rootGetters }) {
     const data = rootGetters['page/form/getValuesFromForm']('login')
-    let answer
+    let answer = { data: false }
 
     try {
       answer = await this.$auth.loginWith('local', { data })
+      console.log('PUSH TO INDEX AFTER AUTH', answer)
+      this.$router.push({ name: 'index' })
     } catch (error) {
-      // In future notification up
+      // TODO In future set up notification on errors
       console.error(error, answer)
     }
 
-    if (answer.data.access_token) {
-      localStorage.setItem('token', answer.data.access_token)
-      commit('SET_STATE_USER', {
-        key: 'token',
-        value: 'answer.data.access_token'
-      })
-      this.$router.push({ name: 'index' })
-      console.log('PUSH TO INDEX')
-    } else {
-      return answer.data
-    }
+    return answer.data
   },
   async create(state, { password, email }) {
     const answer = await this.$axios.post('/user/create', { email, password })
@@ -40,9 +32,7 @@ export const actions = {
     console.log(answer.data)
   },
   async logout() {
-    console.log('LOG OUT')
     await this.$auth.logout()
-    // this.$router.push({ name: 'login' })
   },
   updateLocalStorage(state, payload) {
     const user = Object.assign(
