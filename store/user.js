@@ -1,5 +1,6 @@
 export const state = () => ({
   email: '',
+  surname: '',
   token: '',
   status: 'Offline'
 })
@@ -12,27 +13,35 @@ export const mutations = {
 
 export const actions = {
   async login({ commit, rootGetters }) {
-    const data = rootGetters['page/form/getValuesFromForm']('login')
-    let answer = { data: false }
+    const values = rootGetters['page/form/getValuesFromForm']('login')
+    let answer
 
     try {
-      answer = await this.$auth.loginWith('local', { data })
-      console.log('PUSH TO INDEX AFTER AUTH', answer)
-      this.$router.push({ name: 'index' })
+      answer = await this.$axios.$post('/login', values)
     } catch (error) {
-      // TODO In future set up notification on errors
+      // In future notification up
       console.error(error, answer)
     }
 
-    return answer.data
+    if (answer.access_token) {
+      localStorage.setItem('token', answer.access_token)
+      commit('SET_STATE_USER', {
+        key: 'token',
+        value: answer.access_token
+      })
+      this.$router.push({ name: 'index' })
+    } else {
+      return answer
+    }
   },
-  async create(state, { password, email }) {
+  async create(store, { password, email }) {
     const answer = await this.$axios.post('/user/create', { email, password })
 
     console.log(answer.data)
   },
-  async logout() {
-    await this.$auth.logout()
+  logout({ commit }) {
+    this.$router.push({ name: 'login' })
+    commit('SET_STATE_USER', { value: '', key: 'token' })
   },
   updateLocalStorage(state, payload) {
     const user = Object.assign(
@@ -43,9 +52,7 @@ export const actions = {
     localStorage.setItem('user', JSON.stringify(user))
   },
   async getMe() {
-    const answer = await this.$axios.get('/me', {
-      headers: { Authorization: localStorage.getItem('token') }
-    })
+    const answer = await this.$axios.$get('/me')
 
     console.log(answer)
   }

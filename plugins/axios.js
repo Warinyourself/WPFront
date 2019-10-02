@@ -1,5 +1,8 @@
-export default ({ $axios, redirect }) => {
+export default ({ $axios, redirect, store }) => {
   $axios.onRequest((config) => {
+    if (store.state.user.token) {
+      config.headers.Authorization = 'Bearer ' + store.state.user.token
+    }
     // eslint-disable-next-line no-console
     console.log('Making request to ' + config.url)
   })

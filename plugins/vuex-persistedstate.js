@@ -5,6 +5,7 @@ export default ({ store }) => {
     createPersistedState({
       key: 'vuex',
       paths: [
+        'user.token',
         'page.isDark',
         'page.minimizeMenu',
         'page.language',
