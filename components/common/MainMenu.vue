@@ -4,7 +4,7 @@
       NuxtLink.menu__link(v-for='(item, i) in mainMenu' :key='i' :to='{ name: item.name }')
         .menu__icon-box
           AppIcon.menu__icon.icon-3.icon-darker(:icon='item.icon')
-        h4.color-dark-link {{ $t(determineKeyFori18nByTitleMenu(item.name)) }}
+        h4.color-dark-link {{ $t(item.pathText) }}
     .menu__footer
       AppToggle(
         :values='["ru", "en"]'
@@ -45,15 +45,14 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'MenuMenu',
   computed: {
     ...mapState('page', ['minimizeMenu', 'isDark', 'mainMenu']),
     ...mapState('page/structure', ['mainMenu']),
-    ...mapState('page/locales', ['language']),
-    ...mapGetters('page/locales', ['determineKeyFori18nByTitleMenu'])
+    ...mapState('page/locales', ['language'])
   }
 }
 </script>

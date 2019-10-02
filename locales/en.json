@@ -1,13 +1,4 @@
 {
-  "menu": {
-    "profile": "Home",
-    "main": "Main",
-    "articles": "Articles",
-    "search": "Search",
-    "schedule": "Schedule",
-    "statistics": "Statistics",
-    "settings": "Settings"
-  },
   "route": {
     "product": "Product",
     "unknow": "{route}"

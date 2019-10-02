@@ -1,7 +1,7 @@
 <template lang="pug">
   header.header-bar.ai-center.bgc-main--light
     .header-bar__title
-      h2.fs-4 {{ $t(determineKeyFori18nByTitleMenu($route.name)) }}
+      h2.fs-4 {{ $t(determineKeyFori18nByTitleRoute($route.name)) }}
     AppButton.mt-1(
       :actions=`[
         {
@@ -16,16 +16,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'MenuHeaderBar',
   computed: {
-    ...mapGetters('page/locales', ['determineKeyFori18nByTitleMenu'])
-  },
-  methods: {
-    ...mapActions('user', ['logout']),
-    ...mapActions('page/locales', ['determineKeyFori18nByRouting'])
+    ...mapGetters('page/locales', ['determineKeyFori18nByTitleRoute'])
   }
 }
 </script>

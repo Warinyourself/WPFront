@@ -1,13 +1,13 @@
 export const state = () => ({
   language: 'en',
   routing: {
-    index: 'menu.main',
-    profile: 'menu.profile',
-    statistics: 'menu.statistics',
-    search: 'menu.search',
-    schedule: 'menu.schedule',
-    articles: 'menu.articles',
-    settings: 'menu.settings'
+    index: 'pages.index.title',
+    profile: 'pages.profile.title',
+    statistics: 'pages.statistics.title',
+    search: 'pages.search.title',
+    schedule: 'pages.schedule.title',
+    articles: 'pages.articles.title',
+    settings: 'pages.settings.title'
   }
 })
 
@@ -25,13 +25,7 @@ export const getters = {
   getStatePageLocales: (state, getters) => (key) => {
     return state[key]
   },
-  determineKeyFori18nByTitleMenu: ({ routing }) => (name) => {
+  determineKeyFori18nByTitleRoute: ({ routing }) => (name) => {
     return routing[name] || 'route.unknow'
-  }
-}
-
-export const actions = {
-  determineKeyFori18nByRouting({ state }, { name }) {
-    return state.routing[name] || 'route.unknow'
   }
 }

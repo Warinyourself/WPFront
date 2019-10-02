@@ -1,13 +1,4 @@
 {
-  "menu": {
-    "profile": "Профиль",
-    "main": "Главная",
-    "articles": "Статьи",
-    "search": "Поиск",
-    "schedule": "Расписание",
-    "statistics": "Статистика",
-    "settings": "Настройки"
-  },
   "routing": {
     "product": "Продукт",
     "unknow": "Неизвестный путь"
