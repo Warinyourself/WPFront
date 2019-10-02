@@ -1,8 +1,7 @@
 export const state = () => ({
-  email: '',
-  surname: '',
   token: '',
-  status: 'Offline'
+  status: 'Offline',
+  user: {}
 })
 
 export const mutations = {
@@ -51,9 +50,10 @@ export const actions = {
 
     localStorage.setItem('user', JSON.stringify(user))
   },
-  async getMe() {
+  async getMe({ commit }) {
     const answer = await this.$axios.$get('/me')
 
+    commit('SET_STATE_USER', { key: 'user', value: answer })
     console.log(answer)
   }
 }
