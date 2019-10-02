@@ -6,7 +6,7 @@ export const state = () => ({
     statistics: 'menu.statistics',
     search: 'menu.search',
     schedule: 'menu.schedule',
-    news: 'menu.news',
+    articles: 'menu.articles',
     settings: 'menu.settings'
   }
 })

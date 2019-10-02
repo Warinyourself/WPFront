@@ -1,7 +1,7 @@
 export const state = () => ({
   mainMenu: [
     {
-      name: 'news',
+      name: 'articles',
       icon: 'events'
     },
     {
