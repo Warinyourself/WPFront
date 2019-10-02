@@ -100,6 +100,11 @@ import CreateProductForm from '@/components/common/forms/CreateProductForm.vue'
 
 export default {
   name: 'SearchPage',
+  metaInfo() {
+    return {
+      title: this.$t('pages.search.title')
+    }
+  },
   components: {
     ProductItem,
     CreateProductForm

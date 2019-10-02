@@ -29,6 +29,11 @@
 
 <script>
 export default {
-  name: 'MainPage'
+  name: 'SettingsPage',
+  metaInfo() {
+    return {
+      title: this.$t('pages.settings.title')
+    }
+  }
 }
 </script>

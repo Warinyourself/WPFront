@@ -98,6 +98,11 @@ export default {
   components: {
     Wave
   },
+  metaInfo() {
+    return {
+      title: this.$t('pages.join.title')
+    }
+  },
   auth: false,
   layout: 'none',
   computed: {

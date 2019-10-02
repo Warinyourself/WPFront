@@ -31,7 +31,7 @@
         ]`
       )
       AppToggle(
-        type='arrow'
+        modifier='arrow'
         :state='minimizeMenu'
         :actions=`[
           {
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'MenuMenu',
@@ -54,9 +54,6 @@ export default {
     ...mapState('page/structure', ['mainMenu']),
     ...mapState('page/locales', ['language']),
     ...mapGetters('page/locales', ['determineKeyFori18nByTitleMenu'])
-  },
-  methods: {
-    ...mapActions('user', ['logout'])
   }
 }
 </script>

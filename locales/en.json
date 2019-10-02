@@ -2,7 +2,7 @@
   "menu": {
     "profile": "Home",
     "main": "Main",
-    "news": "News",
+    "articles": "Articles",
     "search": "Search",
     "schedule": "Schedule",
     "statistics": "Statistics",
@@ -36,13 +36,44 @@
     "home": {
       "title": "Welcome",
       "introduction": "This is an introduction in English."
+    },
+    "login": {
+      "title": "Sign in"
+    },
+    "join": {
+      "title": "Join"
+    },
+    "profile": {
+      "title": "Profile"
+    },
+    "index": {
+      "title": "Main page"
+    },
+    "articles": {
+      "title": "Articles"
+    },
+    "schedule": {
+      "title": "Schedule"
+    },
+    "settings": {
+      "title": "Settings"
+    },
+    "statistics": {
+      "title": "Statistics"
+    },
+    "search": {
+      "title": "Search"
+    },
+    "product": {
+      "title": "Product",
+      "create": "Create product"
     }
   },
   "forms" : {
     "buttons": {
       "submit": "Submit",
       "expand": "Expand form",
-      "login": "Login",
+      "login": "Sign in",
       "sign_up": "Sign up",
       "create_new_user": "Create new user"
     },

@@ -1,9 +1,23 @@
 <template lang="pug">
-  div.container
+  .container
+
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: 'MainPage'
+  name: 'ProfilePage',
+  metaInfo() {
+    return {
+      title: this.$t('pages.profile.title')
+    }
+  },
+  mounted() {
+    this.getMe()
+  },
+  methods: {
+    ...mapActions('user', ['getMe'])
+  }
 }
 </script>

@@ -2,7 +2,7 @@
   "menu": {
     "profile": "Профиль",
     "main": "Главная",
-    "news": "События",
+    "articles": "Статьи",
     "search": "Поиск",
     "schedule": "Расписание",
     "statistics": "Статистика",
@@ -37,6 +37,37 @@
     "about": {
       "title": "Тайтле",
       "introduction": "Страница для дополнительной информации."
+    },
+    "login": {
+      "title": "Вход"
+    },
+    "join": {
+      "title": "Регистрация"
+    },
+    "profile": {
+      "title": "Профиль"
+    },
+    "index": {
+      "title": "Главная страница"
+    },
+    "articles": {
+      "title": "Статьи"
+    },
+    "schedule": {
+      "title": "Рассписание"
+    },
+    "settings": {
+      "title": "Настройки"
+    },
+    "statistics": {
+      "title": "Стратистика"
+    },
+    "search": {
+      "title": "Поиск"
+    },
+    "product": {
+      "title": "Продукт",
+      "create": "Create product"
     }
   },
   "forms" : {

@@ -10,6 +10,11 @@ export default {
   name: 'SchedulePage',
   components: {
     ArcChart
+  },
+  metaInfo() {
+    return {
+      title: this.$t('pages.statistics.title')
+    }
   }
 }
 </script>

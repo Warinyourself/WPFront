@@ -74,6 +74,11 @@ export default {
       password: 'test'
     }
   },
+  metaInfo() {
+    return {
+      title: this.$t('pages.login.title')
+    }
+  },
   computed: {
     ...mapState('page', ['isDark']),
     ...mapState('page/locales', ['language'])

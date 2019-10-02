@@ -17,6 +17,11 @@
 
 <script>
 export default {
-  name: 'SchedulePage'
+  name: 'SchedulePage',
+  metaInfo() {
+    return {
+      title: this.$t('pages.schedule.title')
+    }
+  }
 }
 </script>

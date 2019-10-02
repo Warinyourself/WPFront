@@ -1,18 +1,15 @@
 <template lang="pug">
   .container
-    h1 I don't know what in shoutd be too
+    h1 Not yet
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
 export default {
   name: 'MainPage',
-  mounted() {
-    this.getMe()
-  },
-  methods: {
-    ...mapActions('user', ['getMe'])
+  metaInfo() {
+    return {
+      title: this.$t('pages.index.title')
+    }
   }
 }
 </script>
