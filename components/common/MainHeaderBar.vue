@@ -1,5 +1,5 @@
 <template lang="pug">
-  header.header-bar.ai-center.bgc-main--light
+  header.header-bar.ai-center
     .header-bar__title
       h2.fs-4 {{ $t(determineKeyFori18nByTitleRoute($route.name)) }}
     AppButton.mt-1(
