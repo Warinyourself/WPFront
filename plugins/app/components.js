@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 import AppIcon from '@/components/app/AppIcon'
 import AppForm from '@/components/app/AppForm'
+import AppMenu from '@/components/app/AppMenu'
 import AppTabs from '@/components/app/AppTabs'
 import AppTabsItem from '@/components/app/AppTabsItem'
 import AppInput from '@/components/app/AppInput'
@@ -17,6 +18,7 @@ import AppUploadBox from '@/components/app/upload/AppUploadBox'
 
 Vue.component('AppIcon', AppIcon)
 Vue.component('AppForm', AppForm)
+Vue.component('AppMenu', AppMenu)
 Vue.component('AppTabs', AppTabs)
 Vue.component('AppTabsItem', AppTabsItem)
 Vue.component('AppInput', AppInput)

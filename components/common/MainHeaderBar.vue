@@ -2,17 +2,47 @@
   header.header-bar.ai-center
     .header-bar__title
       h2.fs-4 {{ $t(determineKeyFori18nByTitleRoute($route.name)) }}
-    AppButton.mt-1(
-      :actions=`[
-        {
-          type: 'action',
-          path: "user/logout",
-          on: "click"
-        }
-      ]`
-      icon='exit'
-    )
-    AppAvatar.icon-3
+    AppMenu
+      AppAvatar.icon-3
+      template(v-slot:body)
+        AppButton(
+          modifier='menu'
+          iconSize='2'
+          :actions=`[
+            {
+              type: 'action',
+              structure: 'ROUTER_PUSH',
+              value: 'favorites',
+              on: 'click'
+            }
+          ]`
+          icon='favorites'
+        ) {{ $t('pages.favorites.title') }}
+        AppButton(
+          modifier='menu'
+          iconSize='2'
+          :actions=`[
+            {
+              type: 'action',
+              structure: 'ROUTER_PUSH',
+              value: 'settings',
+              on: 'click'
+            }
+          ]`
+          icon='settings'
+        ) {{ $t('pages.settings.title') }}
+        AppButton(
+          modifier='menu'
+          iconSize='2'
+          :actions=`[
+            {
+              type: 'action',
+              path: 'user/logout',
+              on: 'click'
+            }
+          ]`
+          icon='exit'
+        )  {{ $t('forms.buttons.logout') }}
 </template>
 
 <script>

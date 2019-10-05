@@ -1,13 +1,13 @@
 <template lang="pug">
-  button.button.ai-center(
+  button.button(
     :class='classObject'
     @click='handleClick'
     v-on='$listeners'
     v-bind='$attrs'
   )
-    AppIcon(v-if='icon' :icon='icon' :class='[`icon-${iconSize}`]')
+    AppIcon.button__icon(v-if='icon' :icon='icon' :class='[`icon-${iconSize}`]')
     .button__body(:class='{"ml-2": icon}' v-if='$slots.default')
-      slot.ln-0
+      slot
 </template>
 
 <script>

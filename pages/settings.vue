@@ -25,6 +25,18 @@
         }
       ]`
     )
+    AppButton.mt-2(
+      iconSize='2'
+      :actions=`[
+        {
+          type: 'action',
+          structure: "ROUTER_PUSH",
+          value: "home",
+          on: "click"
+        }
+      ]`
+      icon='settings'
+    ) Push route home
 </template>
 
 <script>

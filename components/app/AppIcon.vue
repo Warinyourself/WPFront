@@ -83,6 +83,18 @@
   </svg>
 
   <svg
+    v-else-if="icon === 'favorites'"
+    width="15"
+    height="23"
+    viewBox="0 0 15 23"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M14 0H1C0.447715 0 0 0.447716 0 1V21.8C0 22.6586 1.01068 23.118 1.65753 22.5534L6.18493 18.6022C6.93836 17.9447 8.06164 17.9447 8.81507 18.6022L13.3425 22.5534C13.9893 23.118 15 22.6586 15 21.8V1C15 0.447715 14.5523 0 14 0Z"
+    />
+  </svg>
+
+  <svg
     v-else-if="icon === 'view'"
     xmlns="http://www.w3.org/2000/svg"
     style="isolation:isolate"

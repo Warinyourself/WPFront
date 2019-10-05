@@ -14,11 +14,17 @@ export default {
     id: {
       type: Number,
       default: null
+    },
+    disabled: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {
     goToUser() {
-      this.$router.push({ name: 'profile' })
+      if (!this.disabled) {
+        this.$router.push({ name: 'profile' })
+      }
     }
   }
 }
