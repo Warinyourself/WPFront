@@ -40,6 +40,10 @@
       "title": "Order",
       "introduction": "A place where contain your products or courses to need buy."
     },
+    "favorites": {
+      "title": "Favorites",
+      "introduction": "A place whith your favorites products&recipes&courses."
+    },
     "search": {
       "title": "Search"
     },
@@ -77,6 +81,7 @@
       "submit": "Submit",
       "expand": "Expand form",
       "login": "Sign in",
+      "logout": "Log out",
       "sign_up": "Sign up",
       "create_new_user": "Create new user"
     },

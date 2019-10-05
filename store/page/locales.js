@@ -9,6 +9,7 @@ export const state = () => ({
     home: 'pages.home.title',
     kitchen: 'pages.kitchen.title',
     order: 'pages.order.title',
+    favorites: 'pages.favorites.title',
     schedule: 'pages.schedule.title',
     articles: 'pages.articles.title',
     settings: 'pages.settings.title'
