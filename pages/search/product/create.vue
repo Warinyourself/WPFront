@@ -1,7 +1,7 @@
 <template lang="pug">
-  .container.search-page
+  .container.container--no-padding
     HeaderImageUpload
-    CreateProductForm
+    CreateProductForm.p-2
 </template>
 
 <script>

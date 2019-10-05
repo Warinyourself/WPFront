@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.container
+  .container
     .container__body
       .news-block(v-for='(article, i) in news')
         .news-block__info
@@ -7,7 +7,7 @@
             h3.news-block__title {{ article.title }}
             .news-block__date {{ article.date }}
           .space-between
-            .tags-block
+            .tags-blocks
               .tag-block(v-for='(tag, i) in article.tags') {{tag}}
             .news-block__views.ai-center
               AppIcon.icon-2.mr-2(icon='view')

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.container
+  .container
     ArcChart
 </template>
 

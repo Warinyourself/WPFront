@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.container
+  .container
     AppToggle(
       :icons='["sun", "moon"]'
       :state='$store.state.page.isDark'
