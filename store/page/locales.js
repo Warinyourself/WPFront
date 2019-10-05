@@ -5,6 +5,10 @@ export const state = () => ({
     profile: 'pages.profile.title',
     statistics: 'pages.statistics.title',
     search: 'pages.search.title',
+    courses: 'pages.courses.title',
+    home: 'pages.home.title',
+    kitchen: 'pages.kitchen.title',
+    order: 'pages.order.title',
     schedule: 'pages.schedule.title',
     articles: 'pages.articles.title',
     settings: 'pages.settings.title'

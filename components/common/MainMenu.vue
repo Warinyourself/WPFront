@@ -4,7 +4,7 @@
       NuxtLink.menu__link(v-for='(item, i) in mainMenu' :key='i' :to='{ name: item.name }')
         .menu__icon-box
           AppIcon.menu__icon.icon-3.icon-darker(:icon='item.icon')
-        h4.color-dark-link {{ $t(item.pathText) }}
+        h4 {{ $t(item.pathText) }}
     .menu__footer
       AppToggle(
         :values='["ru", "en"]'

@@ -1,14 +1,19 @@
 export const state = () => ({
   mainMenu: [
     {
-      name: 'articles',
-      pathText: 'pages.articles.title',
-      icon: 'events'
+      name: 'home',
+      pathText: 'pages.home.title',
+      icon: 'home'
     },
     {
-      name: 'schedule',
-      pathText: 'pages.schedule.title',
-      icon: 'schedule'
+      name: 'courses',
+      pathText: 'pages.courses.title',
+      icon: 'courses'
+    },
+    {
+      name: 'kitchen',
+      pathText: 'pages.kitchen.title',
+      icon: 'recipes'
     },
     {
       name: 'search',
@@ -16,14 +21,9 @@ export const state = () => ({
       icon: 'search'
     },
     {
-      name: 'statistics',
-      pathText: 'pages.statistics.title',
-      icon: 'statistics'
-    },
-    {
-      name: 'settings',
-      pathText: 'pages.settings.title',
-      icon: 'settings'
+      name: 'order',
+      pathText: 'pages.order.title',
+      icon: 'order'
     }
   ]
 })

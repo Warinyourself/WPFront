@@ -21,12 +21,27 @@
   },
   "pages": {
     "about": {
-      "title": "About",
+      "title": "About (maybe useless)",
       "introduction": "This page is made to give you more informations."
     },
     "home": {
-      "title": "Welcome",
+      "title": "Home",
       "introduction": "This is an introduction in English."
+    },
+    "kitchen": {
+      "title": "Kitchen",
+      "introduction": "A place where you can see your daily ration."
+    },
+    "courses": {
+      "title": "Courses",
+      "introduction": "A place where you can generate your course on month by your options."
+    },
+    "order": {
+      "title": "Order",
+      "introduction": "A place where contain your products or courses to need buy."
+    },
+    "search": {
+      "title": "Search"
     },
     "login": {
       "title": "Sign in"
@@ -51,9 +66,6 @@
     },
     "statistics": {
       "title": "Statistics"
-    },
-    "search": {
-      "title": "Search"
     },
     "product": {
       "title": "Product",
