@@ -28,7 +28,7 @@ export default {
     },
     delay: {
       type: Number,
-      default: 500
+      default: 0
     },
     isCloseAfterClick: {
       type: Boolean,
@@ -41,7 +41,7 @@ export default {
   },
   data() {
     return {
-      isActive: true,
+      isActive: false,
       timeOutDelay: null
     }
   },
