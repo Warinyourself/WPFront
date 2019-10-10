@@ -2,7 +2,7 @@
   .product-block.p-2(v-if='product')
     .product-block__image.mr-2(:style='`background-image: ${product.image ? product.image : "none"}`')
       AppIcon.w-100.h-100(v-if='!product.image' icon='products')
-    .block
+    div
       h5.product-block__title.fs-3 {{product.name}}
       .product-block__description.text--additional.mt-1 {{product.description}}
       AppButton.mt-1.mb-2(

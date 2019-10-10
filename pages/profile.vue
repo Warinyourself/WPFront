@@ -1,10 +1,27 @@
 <template lang="pug">
-  .container
-    h2 User #[span {{ user.name }} {{ user.middle_name }} {{ user.surname }}]
-    h2 Username&Email: #[span {{ user.username }}&{{ user.email }}]
-    h3 Age&Weight: #[span {{ user.age }}&{{ user.weight }}]
-    h4 Status&Description: #[span {{ user.status }}&{{ user.description }}]
-
+  .profile.container
+    .profile__info.flex
+      .profile__avatar.mr-2
+      .profile__body.fd-column
+        h2 {{ user.username }}
+        p.m-0.f-11auto {{ user.description }}
+        p.m-0 Y.O. {{ user.age }} 🎂
+    .mt-5
+      h3.mb-2 Goals 🌟
+      .flex
+        .block.bgc-main--light
+            h5 Goals title
+    .mt-5
+      h3.mb-2 Favorites 💕
+      .flex
+        .block.favorite-block.bgc-main--light
+          .favorite-block__info
+            h5 Favorite
+    .mt-5
+      h3.mb-2 Achievements 🎉
+      .flex
+        .block.bgc-main--light.br-50
+          h5 ACHIVE
 </template>
 
 <script>
@@ -28,3 +45,16 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.block
+  padding 15px
+  border-radius 4px
+  overflow hidden
+
+.profile__avatar
+  width 150px
+  height 150px
+  background rgba(0, 0, 0, .5)
+  border-radius 50%
+</style>
