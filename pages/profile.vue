@@ -20,12 +20,16 @@
     .mt-5
       h3.mb-2 Achievements 🎉
       .flex
-        .block.bgc-main--light.br-50
-          h5 ACHIVE
+        ArticleBlock(
+          :data=`{
+            title: 'Update'
+          }`
+        )
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import ArticleBlock from '@/components/common/user/ArchiveBlock'
 
 export default {
   name: 'ProfilePage',
@@ -34,11 +38,14 @@ export default {
       title: this.$t('pages.profile.title')
     }
   },
-  mounted() {
-    this.getMe()
+  components: {
+    ArticleBlock
   },
   computed: {
     ...mapState('user', ['user'])
+  },
+  mounted() {
+    this.getMe()
   },
   methods: {
     ...mapActions('user', ['getMe'])
