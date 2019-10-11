@@ -6,8 +6,9 @@
   )
     .menu__item
       slot
-    transition(name='router-animation')
+    transition(:name='animationName')
       .menu__body(
+        :style='convertObjectToCSS(styleComponent)'
         @click='closeAfterClick'
         v-if='isActive'
       )
@@ -15,8 +16,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'AppAvatar',
+  name: 'AppMenu',
   props: {
     modifier: {
       type: String,
@@ -29,6 +32,14 @@ export default {
     delay: {
       type: Number,
       default: 0
+    },
+    animationName: {
+      type: String,
+      default: 'router-animation'
+    },
+    styleComponent: {
+      type: Object,
+      default: () => Object.create(null)
     },
     isCloseAfterClick: {
       type: Boolean,
@@ -44,6 +55,9 @@ export default {
       isActive: false,
       timeOutDelay: null
     }
+  },
+  computed: {
+    ...mapGetters('page', ['convertObjectToCSS'])
   },
   methods: {
     onMouseLeave(event) {
@@ -82,10 +96,13 @@ export default {
   box-shadow 0 0 5px rgba(0, 0, 0, .3)
   border 1px solid main-color
   border-radius 4px
+  overflow hidden
   background white
   position absolute
   z-index 3
-  bottom 0
-  left 0
-  transform translate(-100%, 100%)
+  & > *
+    width 100%
+    border-radius 0
+    &:hover
+      background #ede8ff
 </style>

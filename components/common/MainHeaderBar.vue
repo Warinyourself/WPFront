@@ -2,7 +2,14 @@
   header.header-bar.ai-center
     .header-bar__title
       h2.fs-4 {{ $t(determineKeyFori18nByTitleRoute($route.name)) }}
-    AppMenu(:delay='250')
+    AppMenu(
+      :delay='250'
+      :styleComponent=`{
+        transform: 'translate(0%, calc(100% + 15px))',
+        right: '-5px',
+        bottom: 0
+      }`
+    )
       AppAvatar.icon-3
       template(v-slot:body)
         AppButton(
