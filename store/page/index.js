@@ -39,6 +39,14 @@ export const getters = {
     console.log(widthScreen, heightScreen, width, height, x, y)
     return widthScreen
   },
+  convertObjectToCSS: (state, getters) => (object) => {
+    return Object.entries(object).reduce(
+      (styleString, [propName, propValue]) => {
+        return `${styleString}${propName}:${propValue};`
+      },
+      ''
+    )
+  },
   isOpenModal: (state, getters) => (name) => {
     return state.modalWindows.includes(name)
   },
