@@ -30,6 +30,15 @@ export const getters = {
   getStatePage: (state, getters) => (key) => {
     return state[key]
   },
+  getOptimalPosition: (state, getters) => (position) => {
+    const { width, height, x, y } = position
+    const [widthScreen, heightScreen] = [
+      document.documentElement.offsetWidth,
+      document.documentElement.offsetHeight
+    ]
+    console.log(widthScreen, heightScreen, width, height, x, y)
+    return widthScreen
+  },
   isOpenModal: (state, getters) => (name) => {
     return state.modalWindows.includes(name)
   },
