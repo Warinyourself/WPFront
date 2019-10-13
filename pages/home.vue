@@ -7,10 +7,17 @@
 <script>
 export default {
   name: 'HomePage',
+  auth: true,
+  meta: {
+    auth: false
+  },
   metaInfo() {
     return {
       title: this.$t('pages.home.title')
     }
+  },
+  mounted() {
+    console.log(this.options)
   }
 }
 </script>

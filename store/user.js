@@ -1,7 +1,8 @@
 export const state = () => ({
   token: '',
   status: 'Offline',
-  user: {}
+  user: {},
+  isLogin: false
 })
 
 export const mutations = {
@@ -11,7 +12,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async login({ commit, rootGetters }) {
+  async login({ commit, dispatch, rootGetters }) {
     const values = rootGetters['page/form/getValuesFromForm']('login')
     let answer
 
@@ -28,6 +29,7 @@ export const actions = {
         key: 'token',
         value: answer.access_token
       })
+      await dispatch('getMe')
       this.$router.push({ name: 'index' })
     } else {
       return answer
@@ -54,6 +56,6 @@ export const actions = {
     const answer = await this.$axios.$get('/me')
 
     commit('SET_STATE_USER', { key: 'user', value: answer })
-    console.log(answer)
+    commit('SET_STATE_USER', { key: 'isLogin', value: true })
   }
 }
