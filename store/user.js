@@ -1,3 +1,6 @@
+// import cookies from 'js-cookie'
+// import { parse as parseCookie, serialize as serializeCookie } from 'cookie'
+
 export const state = () => ({
   token: '',
   status: 'Offline',
@@ -29,6 +32,9 @@ export const actions = {
         key: 'token',
         value: answer.access_token
       })
+
+      window.$nuxt.$cookies.set('token', answer.access_token)
+
       await dispatch('getMe')
       this.$router.push({ name: 'index' })
     } else {

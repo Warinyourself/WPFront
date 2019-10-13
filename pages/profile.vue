@@ -2,8 +2,13 @@
   .profile.container
     .profile__info.flex
       .profile__avatar.mr-2
-      .profile__body.fd-column
-        h2 {{ user.username }}
+      .profile__body.fd-column.w-100
+        .profile__header.jc-space-between
+          h2 {{ user.username }}
+          AppButton.p-1(
+            icon='settings'
+            :iconSize='2'
+          )
         p.m-0.f-11auto {{ user.description }}
         p.m-0 Y.O. {{ user.age }} 🎂
     .mt-5
@@ -60,6 +65,7 @@ export default {
   overflow hidden
 
 .profile__avatar
+  flex-shrink 0
   width 150px
   height 150px
   background rgba(0, 0, 0, .5)

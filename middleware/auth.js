@@ -1,4 +1,4 @@
-export default function({ store, route, redirect }) {
+export default function({ app, store, route, redirect }) {
   const needAuthorization = route.meta.map((meta) => {
     if (typeof meta.auth !== 'undefined') {
       return meta.auth
@@ -8,7 +8,7 @@ export default function({ store, route, redirect }) {
 
   const user = store.state.user.user
   const isEmptyUser = !Object.keys(user).length
-  const token = store.state.user.token
+  const token = app.context.app.$cookies.get('token')
 
   if (isEmptyUser && !!token) {
     store.dispatch('user/getMe')

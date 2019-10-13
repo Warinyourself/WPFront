@@ -42,6 +42,7 @@ export default {
   modules: [
     '@nuxtjs/axios', // https://axios.nuxtjs.org/extend
     '@nuxtjs/pwa',
+    'cookie-universal-nuxt',
     '@nuxtjs/eslint-module',
     '@nuxt/typescript-build'
   ],
