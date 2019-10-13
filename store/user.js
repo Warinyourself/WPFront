@@ -1,7 +1,8 @@
 export const state = () => ({
   token: '',
   status: 'Offline',
-  user: {}
+  user: {},
+  isLogin: false
 })
 
 export const mutations = {
@@ -54,6 +55,6 @@ export const actions = {
     const answer = await this.$axios.$get('/me')
 
     commit('SET_STATE_USER', { key: 'user', value: answer })
-    console.log(answer)
+    commit('SET_STATE_USER', { key: 'isLogin', value: true })
   }
 }

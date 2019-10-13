@@ -66,7 +66,9 @@ export default {
   components: {
     Wave
   },
-  auth: false,
+  meta: {
+    auth: false
+  },
   layout: 'none',
   data() {
     return {
