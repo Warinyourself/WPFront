@@ -3,6 +3,7 @@ export const state = () => ({
   routing: {
     index: 'pages.index.title',
     profile: 'pages.profile.title',
+    'profile-edit': 'pages.profile_edit.title',
     statistics: 'pages.statistics.title',
     search: 'pages.search.title',
     courses: 'pages.courses.title',

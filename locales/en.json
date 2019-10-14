@@ -56,6 +56,10 @@
     "profile": {
       "title": "Profile"
     },
+    "profile_edit": {
+      "title": "Edit profile",
+      "introduction": "Here you will can edit your data."
+    },
     "index": {
       "title": "Main page"
     },

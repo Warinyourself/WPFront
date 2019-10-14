@@ -6,6 +6,14 @@
         .profile__header.jc-space-between
           h2 {{ user.username }}
           AppButton.p-1(
+            :actions=`[
+              {
+                type: 'action',
+                structure: 'ROUTER_PUSH',
+                value: '/profile/edit',
+                on: 'click'
+              }
+            ]`
             icon='settings'
             :iconSize='2'
           )
@@ -25,7 +33,7 @@
     .mt-5
       h3.mb-2 Achievements 🎉
       .flex
-        ArticleBlock(
+        ArchiveBlock(
           :data=`{
             title: 'Update'
           }`
@@ -34,7 +42,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import ArticleBlock from '@/components/common/user/ArchiveBlock'
+import ArchiveBlock from '@/components/common/user/ArchiveBlock'
 
 export default {
   name: 'ProfilePage',
@@ -44,7 +52,7 @@ export default {
     }
   },
   components: {
-    ArticleBlock
+    ArchiveBlock
   },
   computed: {
     ...mapState('user', ['user'])
@@ -58,7 +66,7 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 .block
   padding 15px
   border-radius 4px
