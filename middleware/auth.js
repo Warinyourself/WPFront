@@ -10,7 +10,7 @@ export default function({ app, store, route, redirect }) {
   const isEmptyUser = !Object.keys(user).length
   const token = app.context.app.$cookies.get('token')
 
-  if (isEmptyUser && !!token) {
+  if (isEmptyUser && !!token && needAuthorization) {
     store.dispatch('user/getMe')
   } else if (isEmptyUser && needAuthorization) {
     redirect('/login')
