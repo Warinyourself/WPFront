@@ -147,10 +147,12 @@ export const actions = {
     return answer
   },
   async submitForm({ getters, commit, dispatch }, { name, functions }) {
-    const val = await dispatch('checkFormErors', { name })
+    const errors = await dispatch('checkFormErors', { name })
+    if (errors.length) {
+      console.log('Form has errors', errors)
+    }
 
     const hasErrors = getters.hasFormErrors(name)
-    console.log('Has error', val, hasErrors)
 
     if (!hasErrors) {
       const values = getters.getValuesFromForm(name)
