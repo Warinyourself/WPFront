@@ -1,7 +1,6 @@
 <template lang="pug">
   .container
-    h1 Here home page
-    p {{ $t('pages.home.introduction') }}
+    h4 {{ $t('pages.home.introduction') }}
 </template>
 
 <script>
@@ -15,9 +14,6 @@ export default {
     return {
       title: this.$t('pages.home.title')
     }
-  },
-  mounted() {
-    console.log(this.options)
   }
 }
 </script>

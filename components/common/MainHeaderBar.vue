@@ -19,7 +19,7 @@
             {
               type: 'action',
               structure: 'ROUTER_PUSH',
-              value: 'profile',
+              value: '/profile',
               on: 'click'
             }
           ]`
@@ -32,7 +32,7 @@
             {
               type: 'action',
               structure: 'ROUTER_PUSH',
-              value: 'favorites',
+              value: '/favorites',
               on: 'click'
             }
           ]`
@@ -45,7 +45,7 @@
             {
               type: 'action',
               structure: 'ROUTER_PUSH',
-              value: 'settings',
+              value: '/settings',
               on: 'click'
             }
           ]`

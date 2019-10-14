@@ -43,11 +43,11 @@
       //-   :validators='{required: true}'
       //-   :placeholder='$t("forms.placeholders.weight")'
       //- )
-      //- AppInput.w-100.md6.sm6.mb-2(
-      //-   name='age'
-      //-   :validators='{required: true, number: true}'
-      //-   :placeholder='$t("forms.placeholders.age")'
-      //- )
+      AppInput.w-100.md6.sm6.mb-2(
+        name='age'
+        :validators='{required: true, number: true}'
+        :placeholder='$t("forms.placeholders.age")'
+      )
       AppInput.w-100.md12.sm12.mb-2(
         name='password'
         type='password'

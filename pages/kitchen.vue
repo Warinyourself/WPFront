@@ -1,7 +1,6 @@
 <template lang="pug">
   .container
-    h1 Here kitchen page
-    p {{ $t('pages.kitchen.introduction') }}
+    h4 {{ $t('pages.kitchen.introduction') }}
 </template>
 
 <script>

@@ -1,7 +1,6 @@
 <template lang="pug">
   .container
-    h1 Here favorites page
-    p {{ $t('pages.favorites.introduction') }}
+    h4 {{ $t('pages.favorites.introduction') }}
 </template>
 
 <script>

@@ -1,7 +1,6 @@
 <template lang="pug">
   .container
-    h1 Here order page
-    p {{ $t('pages.order.introduction') }}
+    h4 {{ $t('pages.order.introduction') }}
 </template>
 
 <script>
