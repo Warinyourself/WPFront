@@ -1,6 +1,3 @@
-// import cookies from 'js-cookie'
-// import { parse as parseCookie, serialize as serializeCookie } from 'cookie'
-
 export const state = () => ({
   token: '',
   status: 'Offline',
@@ -15,8 +12,10 @@ export const mutations = {
 }
 
 export const actions = {
-  async login({ commit, dispatch, rootGetters }) {
-    const values = rootGetters['page/form/getValuesFromForm']('login')
+  async login({ commit, dispatch, rootGetters }, values) {
+    values = Object.keys(values).length
+      ? values
+      : rootGetters['page/form/getValuesFromForm']('login')
     let answer
 
     try {
@@ -27,7 +26,6 @@ export const actions = {
     }
 
     if (answer.access_token) {
-      localStorage.setItem('token', answer.access_token)
       commit('SET_STATE_USER', {
         key: 'token',
         value: answer.access_token
@@ -41,13 +39,29 @@ export const actions = {
       return answer
     }
   },
-  async create(store, { password, email }) {
-    const answer = await this.$axios.post('/user/create', { email, password })
+  async create({ commit, dispatch, rootGetters }, values) {
+    values = rootGetters['page/form/getValuesFromForm']('signUp')
+    let answer
 
-    console.log(answer.data)
+    try {
+      answer = await this.$axios.$post('/users/', values)
+    } catch (error) {
+      // In future notification up
+      console.error(error, answer)
+    }
+
+    if (answer.id) {
+      await dispatch('login', {
+        username: values.email,
+        password: values.password
+      })
+    } else {
+      return answer
+    }
   },
   logout({ commit }) {
     this.$router.push({ name: 'login' })
+    window.$nuxt.$cookies.set('token', '')
     commit('SET_STATE_USER', { value: '', key: 'token' })
   },
   updateLocalStorage(state, payload) {

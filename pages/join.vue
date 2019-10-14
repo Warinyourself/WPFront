@@ -7,7 +7,7 @@
     AppForm.form--autumn.position-center(
       :actions=`[
         {
-          path: "user/login",
+          path: "user/create",
           on: "submit"
         },
       ]`
@@ -97,6 +97,9 @@ export default {
   name: 'JoinPage',
   components: {
     Wave
+  },
+  meta: {
+    auth: false
   },
   metaInfo() {
     return {
