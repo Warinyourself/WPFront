@@ -4,7 +4,7 @@ export default (context) => {
   $axios.onRequest((config) => {
     if (store.state.user.token) {
       config.headers.Authorization = 'Bearer ' + store.state.user.token
-      config.headers['Set-Cookie'] = `tkn=${store.state.user.token}`
+      config.headers['Set-Cookie'] = `TOKEN=${store.state.user.token}`
     }
     // eslint-disable-next-line no-console
     console.log('Making request to ' + config.url)
