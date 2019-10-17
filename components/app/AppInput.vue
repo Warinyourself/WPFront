@@ -6,7 +6,7 @@
             @input='handleInput'
             @focus='onFocus'
             @blur='onBlur'
-            v-model='value'
+            v-model='innerValue'
             v-bind='$attrs'
             ref='input'
       )
@@ -24,6 +24,10 @@ export default {
     name: {
       type: String,
       default: 'input'
+    },
+    value: {
+      type: [String, Number, Boolean],
+      default: ''
     },
     modifier: {
       type: String,
@@ -56,7 +60,7 @@ export default {
   },
   data() {
     return {
-      value: '',
+      innerValue: '',
       timeout: false
     }
   },
@@ -68,12 +72,16 @@ export default {
     }
   },
   mounted() {
+    if (this.value) {
+      this.innerValue = this.value
+    }
+
     if (this.form) {
       this.ADD_INPUT_IN_FORM({
         formName: this.form.name,
         input: {
           name: this.name,
-          value: this.value,
+          value: this.innerValue,
           validators: this.validators,
           errors: []
         }
@@ -108,7 +116,7 @@ export default {
       this.updateInputInForm({
         name: this.name,
         body: {
-          value: this.value
+          value: this.innerValue
         }
       })
     },
