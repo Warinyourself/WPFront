@@ -59,6 +59,14 @@ export const actions = {
       return answer
     }
   },
+  update({ commit, dispatch, rootGetters }, values) {
+    try {
+      answer = await this.$axios.$put('/users/', values)
+    } catch (error) {
+      // In future notification up
+      console.error(error, answer)
+    }
+  },
   logout({ commit }) {
     this.$router.push({ name: 'login' })
     window.$nuxt.$cookies.set('token', '')
