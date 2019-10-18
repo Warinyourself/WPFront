@@ -17,9 +17,9 @@ export default {
 
   loading: { color: '#36a2fd' },
 
-  // transition: {
-  // name: 'router-animation',
-  // },
+  transition: {
+    name: 'router-animation'
+  },
 
   router: {
     middleware: ['auth']
@@ -57,36 +57,9 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://localhost:8080/'
+    baseURL: 'http://back:8080/',
+    browserBaseURL: 'http://localhost:8080/'
   },
-
-  // auth: {
-  //   redirect: {
-  //     login: '/login',
-  //     logout: '/login',
-  //     user: '/login',
-  //     callback: '/login'
-  //   },
-  //   strategies: {
-  //     local: {
-  //       endpoints: {
-  //         login: {
-  //           url: 'login',
-  //           method: 'post',
-  //           propertyName: 'access_token'
-  //         },
-  //         user: {
-  //           url: 'me',
-  //           method: 'get',
-  //           propertyName: 'data'
-  //         },
-  //         logout: false
-  //       },
-  //       tokenRequired: true,
-  //       tokenType: 'bearer'
-  //     }
-  //   }
-  // },
 
   manifest: {
     name: 'WP',
