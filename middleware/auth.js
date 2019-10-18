@@ -1,4 +1,4 @@
-export default function({ app, store, route, redirect }) {
+export default async function({ app, store, route, redirect }) {
   const needAuthorization = route.meta.map((meta) => {
     if (typeof meta.auth !== 'undefined') {
       return meta.auth
@@ -11,7 +11,10 @@ export default function({ app, store, route, redirect }) {
   const token = app.context.app.$cookies.get('token')
 
   if (isEmptyUser && !!token && needAuthorization) {
-    store.dispatch('user/getMe')
+    const answer = await store.dispatch('user/getMe')
+    if (answer === 'needLogin') {
+      redirect('/login')
+    }
   } else if (isEmptyUser && needAuthorization) {
     redirect('/login')
   }

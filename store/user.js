@@ -78,6 +78,7 @@ export const actions = {
     this.$router.push({ name: 'login' })
     window.$nuxt.$cookies.set('token', '')
     commit('SET_STATE_USER', { value: '', key: 'token' })
+    commit('SET_STATE_USER', { key: 'isLogin', value: false })
   },
   updateLocalStorage(state, payload) {
     const user = Object.assign(
@@ -87,10 +88,18 @@ export const actions = {
 
     localStorage.setItem('user', JSON.stringify(user))
   },
-  async getMe({ commit }) {
-    const answer = await this.$axios.$get('/me')
+  async getMe({ commit, dispatch }) {
+    let answer
 
-    commit('SET_STATE_USER', { key: 'user', value: answer })
-    commit('SET_STATE_USER', { key: 'isLogin', value: true })
+    try {
+      answer = await this.$axios.$get('/me')
+      commit('SET_STATE_USER', { key: 'user', value: answer })
+      commit('SET_STATE_USER', { key: 'isLogin', value: true })
+    } catch (error) {
+      if (process.browser) {
+        await dispatch('logout')
+      }
+      return 'needLogin'
+    }
   }
 }
