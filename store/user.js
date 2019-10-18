@@ -59,17 +59,20 @@ export const actions = {
       return answer
     }
   },
-  async update({ commit, dispatch, rootGetters }, values) {
+  async update({ state }, values) {
     let answer
 
     try {
-      answer = await this.$axios.$put('/users/', values)
+      answer = await this.$axios.put('/users/' + state.user.id, values)
     } catch (error) {
       // In future notification up
       console.error(error, answer)
     }
 
-    return answer
+    // TODO mayby add to back errors key in answer
+    if (answer.data.errors) {
+      return answer
+    }
   },
   logout({ commit }) {
     this.$router.push({ name: 'login' })
