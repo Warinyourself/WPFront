@@ -1,6 +1,6 @@
 <template lang="pug">
   form(v-bind='$attrs' @submit.prevent.stop='handleSubmit')
-    slot(v-if='form')
+    slot
 </template>
 
 <script>

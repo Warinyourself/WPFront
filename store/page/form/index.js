@@ -132,6 +132,29 @@ export const getters = {
 }
 
 export const actions = {
+  addInputInForm({ state, commit }, { formName, input }) {
+    const addInput = (function() {
+      let iterations = 0
+
+      return function() {
+        const form = state.forms.find((form) => {
+          return form.name === formName
+        })
+
+        if (form === undefined && iterations <= 3) {
+          iterations++
+          setTimeout(addInput, 1000)
+        } else if (iterations > 3) {
+          console.error('Add form error')
+          console.log('Form name', formName, 'Input', input)
+        } else {
+          commit('ADD_INPUT_IN_FORM', { formName, input })
+        }
+      }
+    })()
+
+    addInput()
+  },
   async checkFormErors({ getters, dispatch }, { name }) {
     const form = getters.getFormByName(name)
     const answer = await Promise.all(

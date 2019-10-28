@@ -77,7 +77,7 @@ export default {
     }
 
     if (this.form) {
-      this.ADD_INPUT_IN_FORM({
+      this.addInputInForm({
         formName: this.form.name,
         input: {
           name: this.name,
@@ -97,7 +97,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('page/form', ['updateInputInForm']),
+    ...mapActions('page/form', ['updateInputInForm', 'addInputInForm']),
     ...mapMutations('page/form', [
       'SET_STATE_FORM',
       'ADD_INPUT_IN_FORM',
