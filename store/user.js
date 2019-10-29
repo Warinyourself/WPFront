@@ -99,7 +99,7 @@ export const actions = {
       if (process.browser) {
         await dispatch('logout')
       }
-      return 'needLogin'
+      // return 'needLogin'
     }
   }
 }

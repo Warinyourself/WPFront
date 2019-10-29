@@ -190,6 +190,7 @@ export const actions = {
   },
   async submitForm({ getters, commit, dispatch }, { name, functions }) {
     const errors = await dispatch('checkFormErors', { name })
+
     if (errors.length) {
       console.log('Form has errors', errors)
     }
