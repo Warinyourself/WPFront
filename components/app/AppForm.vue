@@ -13,6 +13,10 @@ export default {
       type: String,
       required: true
     },
+    filter: {
+      type: Object,
+      default: () => Object.create(null)
+    },
     actions: {
       type: Array,
       default: () => []
@@ -36,7 +40,10 @@ export default {
     }
   },
   mounted() {
-    this.SET_FORM({ name: this.name })
+    this.SET_FORM({
+      name: this.name,
+      filter: this.filter
+    })
   },
   destroyed() {
     this.DELETE_FORM({ name: this.name })

@@ -11,9 +11,9 @@ export const mutations = {
   SET_STATE_FORM(state, { key, value }) {
     state[key] = value
   },
-  SET_FORM(state, { name }) {
+  SET_FORM(state, form) {
     state.forms.push({
-      name,
+      ...form,
       children: []
     })
   },
@@ -63,13 +63,32 @@ export const getters = {
   },
   getValuesFromForm: (state, getters) => (name) => {
     const form = getters.getFormByName(name)
-    const answer = {}
+    const hasFilter = Object.keys(form.filter).length
+    let values = {}
 
     form.children.forEach((input) => {
-      answer[input.name] = input.value
+      values[input.name] = input.value
     })
 
-    return answer
+    if (hasFilter) {
+      Object.keys(form.filter).forEach((nameFilter) => {
+        console.log(nameFilter)
+        values = getters[nameFilter](values, form.filter[nameFilter])
+      })
+    }
+
+    return values
+  },
+  onlyFill: (state, getters) => (values, options) => {
+    const filter = {}
+
+    Object.entries(values).forEach(([key, value]) => {
+      if (value) {
+        filter[key] = value
+      }
+    })
+
+    return filter
   },
   hasFormErrors: (state, getters) => (name) => {
     const form = getters.getFormByName(name)
@@ -111,11 +130,11 @@ export const getters = {
     }
     return { pathText: 'forms.errors.email' }
   },
-  letters: (state, getters) => (value, options) => {
-    if (/^([a-zA-Z]|\s)+$/.test(value)) {
+  letter: (state, getters) => (value, options) => {
+    if (/^([a-zA-Z]|\s)+$/.test(value) || !value) {
       return true
     }
-    return { pathText: 'forms.errors.letters' }
+    return { pathText: 'forms.errors.letter' }
   },
   required: (state, getters) => (value, options) => {
     if (value || !options) {
@@ -124,7 +143,7 @@ export const getters = {
     return { pathText: 'forms.errors.required' }
   },
   number: (state, getters) => (value, options) => {
-    if (/^\d{0,}$/.test(value)) {
+    if (/^\d{0,}$/.test(value) || !value) {
       return true
     }
     return { pathText: 'forms.errors.number' }

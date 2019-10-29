@@ -8,6 +8,7 @@
           on: "submit"
         },
       ]`
+      :filter=`{ onlyFill: true }`
       name='profileEdit'
     )
       AppInput.md4.sm6.mb-2(
@@ -26,23 +27,25 @@
       AppInput.md4.sm6.mb-2(
         name='name'
         :value='user.name'
-        :validators='{required: true}'
+        :validators='{letter: true}'
         :placeholder='$t("forms.placeholders.name")'
       )
       AppInput.md4.sm6.mb-2(
         name='middle_name'
         :value='user.middle_name'
-        :validators='{required: true}'
+        :validators='{letter: true}'
         :placeholder='$t("forms.placeholders.middle_name")'
       )
       AppInput.md4.sm6.mb-2(
         name='surname'
         :value='user.surname'
+        :validators='{letter: true}'
         :placeholder='$t("forms.placeholders.surname")'
       )
       AppInput.md4.sm6.mb-2(
         name='weight'
         :value='user.weight'
+        :validators='{number: true}'
         :placeholder='$t("forms.placeholders.weight")'
       )
       AppInput.md4.sm6.mb-2(
