@@ -16,43 +16,43 @@
       AppInput.w-100.md12.sm12.mb-2(
         name='username'
         :validators='{required: true}'
-        :placeholder='$t("forms.placeholders.username")'
+        :placeholder='$t("forms.placeholder.username")'
       )
       AppInput.w-100.md12.sm12.mb-2(
         name='email'
         type='email'
         :validators='{required: true, email: true}'
-        :placeholder='$t("forms.placeholders.email")'
+        :placeholder='$t("forms.placeholder.email")'
       )
       //- AppInput.w-100.md4.sm12.mb-2(
       //-   name='name'
       //-   :validators='{required: true}'
-      //-   :placeholder='$t("forms.placeholders.name")'
+      //-   :placeholder='$t("forms.placeholder.name")'
       //- )
       //- AppInput.w-100.md4.sm12.mb-2(
       //-   name='middle_name'
       //-   :validators='{required: true}'
-      //-   :placeholder='$t("forms.placeholders.middle_name")'
+      //-   :placeholder='$t("forms.placeholder.middle_name")'
       //- )
       //- AppInput.w-100.md4.sm12.mb-2(
       //-   name='surname'
-      //-   :placeholder='$t("forms.placeholders.surname")'
+      //-   :placeholder='$t("forms.placeholder.surname")'
       //- )
       //- AppInput.w-100.md6.sm6.mb-2(
       //-   name='weight'
       //-   :validators='{required: true}'
-      //-   :placeholder='$t("forms.placeholders.weight")'
+      //-   :placeholder='$t("forms.placeholder.weight")'
       //- )
       AppInput.w-100.md6.sm6.mb-2(
         name='age'
         :validators='{required: true, number: true}'
-        :placeholder='$t("forms.placeholders.age")'
+        :placeholder='$t("forms.placeholder.age")'
       )
       AppInput.w-100.md12.sm12.mb-2(
         name='password'
         type='password'
         :validators='{required: true}'
-        :placeholder='$t("forms.placeholders.password")'
+        :placeholder='$t("forms.placeholder.password")'
       )
       .flex.w-100.ai-center.jc-space-between
         AppToggle(
@@ -82,11 +82,11 @@
         AppButton.p-2.br-1.br-50(
           type='button'
           @click="$router.push('login')"
-        ) {{ $t('forms.buttons.login') }}
+        ) {{ $t('forms.button.login') }}
         AppButton.p-2.br-1.br-50(
           type='submit'
           :disabled="isDisabled"
-        ) {{ $t('forms.buttons.sign_up') }}
+        ) {{ $t('forms.button.sign_up') }}
 </template>
 
 <script>

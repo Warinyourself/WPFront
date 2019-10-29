@@ -62,7 +62,7 @@
             }
           ]`
           icon='exit'
-        )  {{ $t('forms.buttons.logout') }}
+        )  {{ $t('forms.button.logout') }}
 </template>
 
 <script>

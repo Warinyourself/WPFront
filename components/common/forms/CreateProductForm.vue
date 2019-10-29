@@ -16,7 +16,7 @@
     .flex.flex-wrap.ai-center
       AppInput.w-100.md6.sm6.mt-1(
         name='name'
-        :validators='{required: true, letters: true}'
+        :validators='{required: true, letter: true}'
         :placeholder='$t("search.form.name")'
       )
       AppUploadInput.w-100.md6.sm6.mt-1(
@@ -27,7 +27,7 @@
       )
       AppInput.w-100.md10.sm11.mt-1(
         name='description'
-        :validators='{required: true, letters: true}'
+        :validators='{required: true, letter: true}'
         :placeholder='$t("search.form.description")'
       )
       .flex.md1.flex-center

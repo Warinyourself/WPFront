@@ -16,13 +16,13 @@
       AppInput.w-100.md12.sm12.mb-2(
         name='username'
         :validators='{required: true}'
-        :placeholder='$t("forms.placeholders.username_or_email")'
+        :placeholder='$t("forms.placeholder.username_or_email")'
       )
       AppInput.w-100.md12.sm12.mb-2(
         name='password'
         type='password'
         :validators='{required: true}'
-        :placeholder='$t("forms.placeholders.password")'
+        :placeholder='$t("forms.placeholder.password")'
       )
       .flex.w-100.ai-center.jc-space-between
         AppToggle(
@@ -52,10 +52,10 @@
         AppButton.p-2.br-1.br-50(
           type='button'
           @click="$router.push('join')"
-        ) {{ $t('forms.buttons.sign_up') }}
+        ) {{ $t('forms.button.sign_up') }}
         AppButton.p-2.br-1.br-50(
           type='submit'
-        ) {{ $t('forms.buttons.login') }}
+        ) {{ $t('forms.button.login') }}
 </template>
 
 <script>

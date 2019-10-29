@@ -128,25 +128,25 @@ export const getters = {
     if (emailRex.test(value)) {
       return true
     }
-    return { pathText: 'forms.errors.email' }
+    return { pathText: 'forms.error.email' }
   },
   letter: (state, getters) => (value, options) => {
     if (/^([a-zA-Z]|\s)+$/.test(value) || !value) {
       return true
     }
-    return { pathText: 'forms.errors.letter' }
+    return { pathText: 'forms.error.letter' }
   },
   required: (state, getters) => (value, options) => {
     if (value || !options) {
       return true
     }
-    return { pathText: 'forms.errors.required' }
+    return { pathText: 'forms.error.required' }
   },
   number: (state, getters) => (value, options) => {
     if (/^\d{0,}$/.test(value) || !value) {
       return true
     }
-    return { pathText: 'forms.errors.number' }
+    return { pathText: 'forms.error.number' }
   }
 }
 

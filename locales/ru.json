@@ -82,7 +82,7 @@
     }
   },
   "forms" : {
-    "buttons": {
+    "button": {
       "submit": "Подтвердить",
       "expand": "Развернуть форму",
       "login": "Войти",
@@ -90,7 +90,7 @@
       "sign_up": "Зарегистироваться",
       "create_new_user": "Создать нового пользователя"
     },
-    "placeholders": {
+    "placeholder": {
       "username": "Логин",
       "username_or_email": "Логин или email",
       "email": "Email",
@@ -102,9 +102,9 @@
       "weight": "Вес",
       "age": "Возраст"
     },
-    "errors": {
+    "error": {
       "required": "Обязательное поле",
-      "letters": "Только буквы",
+      "letter": "Только буквы",
       "email": "Не неверный email",
       "number": "Только цифры",
       "already_exist": "Уже существует",

@@ -81,7 +81,7 @@
     }
   },
   "forms" : {
-    "buttons": {
+    "button": {
       "submit": "Submit",
       "expand": "Expand form",
       "login": "Sign in",
@@ -89,7 +89,7 @@
       "sign_up": "Sign up",
       "create_new_user": "Create new user"
     },
-    "placeholders": {
+    "placeholder": {
       "username": "Username",
       "username_or_email": "Username or email",
       "email": "Email",
@@ -101,9 +101,9 @@
       "weight": "Weight",
       "age": "Age"
     },
-    "errors": {
+    "error": {
       "required": "Required field",
-      "letters": "Only letters",
+      "letter": "Only letters",
       "email": "Not valid email",
       "number": "Only numbers",
       "already_exist": "Already exist",

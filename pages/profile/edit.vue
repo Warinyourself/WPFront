@@ -57,7 +57,7 @@
       .flex.w-100.ai-center.jc-space-between
         AppButton.p-2.br-1.br-50(
           type='submit'
-        ) {{ $t('forms.buttons.submit') }}
+        ) {{ $t('forms.button.submit') }}
 </template>
 
 <script>
