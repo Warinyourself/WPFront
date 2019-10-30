@@ -1,7 +1,17 @@
 <template lang="pug">
   .profile.container
     .profile__info.flex
-      .profile__avatar.mr-2
+      AppUploadBox(
+        set-image
+        :actions=`[
+          {
+            type: 'action',
+            path: 'user/updateAvatar',
+            on: 'upload'
+          }
+        ]`
+      )
+        .profile__avatar
       .profile__body.fd-column.w-100
         .profile__header.jc-space-between
           h2 {{ user.username }}
